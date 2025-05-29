@@ -40,6 +40,7 @@ const ArticleCard = ({
             alt={article.title}
             fill
             className={styles.image}
+            priority={variant === 'featured'}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div className={styles.imageOverlay}>

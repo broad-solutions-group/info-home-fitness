@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import styles from './Header.module.css';
 
 const Header = () => {
@@ -11,6 +11,15 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+
+  // 判断链接是否为当前激活状态
+  const isActiveLink = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(href);
+  };
 
   // 监听滚动事件，增强吸顶效果
   useEffect(() => {
@@ -98,19 +107,19 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className={styles.nav}>
-            <Link href="/" className={styles.navLink}>
+            <Link href="/" className={`${styles.navLink} ${isActiveLink('/') ? styles.active : ''}`}>
               Home
             </Link>
-            <Link href="/category/affordable-home-gym-setups" className={styles.navLink}>
+            <Link href="/category/affordable-home-gym-setups" className={`${styles.navLink} ${isActiveLink('/category/affordable-home-gym-setups') ? styles.active : ''}`}>
               Affordable Home Gym Setups
             </Link>
-            <Link href="/category/family-kids-friendly-workouts" className={styles.navLink}>
+            <Link href="/category/family-kids-friendly-workouts" className={`${styles.navLink} ${isActiveLink('/category/family-kids-friendly-workouts') ? styles.active : ''}`}>
               Family Workouts
             </Link>
-            <Link href="/category/strength-training-without-equipment" className={styles.navLink}>
+            <Link href="/category/strength-training-without-equipment" className={`${styles.navLink} ${isActiveLink('/category/strength-training-without-equipment') ? styles.active : ''}`}>
               Bodyweight Training
             </Link>
-            <Link href="/category/motivation-habit-building-tips" className={styles.navLink}>
+            <Link href="/category/motivation-habit-building-tips" className={`${styles.navLink} ${isActiveLink('/category/motivation-habit-building-tips') ? styles.active : ''}`}>
               Motivation Tips
             </Link>
           </nav>
@@ -163,19 +172,19 @@ const Header = () => {
 
       {/* Mobile Navigation */}
       <div className={`${styles.mobileNav} ${isMenuOpen ? styles.mobileNavOpen : ''}`}>
-        <Link href="/" className={styles.mobileNavLink} onClick={closeMenu}>
+        <Link href="/" className={`${styles.mobileNavLink} ${isActiveLink('/') ? styles.active : ''}`} onClick={closeMenu}>
           Home
         </Link>
-        <Link href="/category/affordable-home-gym-setups" className={styles.mobileNavLink} onClick={closeMenu}>
+        <Link href="/category/affordable-home-gym-setups" className={`${styles.mobileNavLink} ${isActiveLink('/category/affordable-home-gym-setups') ? styles.active : ''}`} onClick={closeMenu}>
           Affordable Home Gym Setups
         </Link>
-        <Link href="/category/family-kids-friendly-workouts" className={styles.mobileNavLink} onClick={closeMenu}>
+        <Link href="/category/family-kids-friendly-workouts" className={`${styles.mobileNavLink} ${isActiveLink('/category/family-kids-friendly-workouts') ? styles.active : ''}`} onClick={closeMenu}>
           Family & Kids Friendly Workouts
         </Link>
-        <Link href="/category/strength-training-without-equipment" className={styles.mobileNavLink} onClick={closeMenu}>
+        <Link href="/category/strength-training-without-equipment" className={`${styles.mobileNavLink} ${isActiveLink('/category/strength-training-without-equipment') ? styles.active : ''}`} onClick={closeMenu}>
           Strength Training Without Equipment
         </Link>
-        <Link href="/category/motivation-habit-building-tips" className={styles.mobileNavLink} onClick={closeMenu}>
+        <Link href="/category/motivation-habit-building-tips" className={`${styles.mobileNavLink} ${isActiveLink('/category/motivation-habit-building-tips') ? styles.active : ''}`} onClick={closeMenu}>
           Motivation & Habit Building Tips
         </Link>
         

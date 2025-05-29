@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Open_Sans, Montserrat } from "next/font/google";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import ClientWrapper from "./components/ClientWrapper/ClientWrapper";
 import "./globals.css";
 
@@ -87,6 +88,7 @@ export default function RootLayout({
           <main>
             {children}
           </main>
+          <Footer />
         </ClientWrapper>
       </body>
     </html>

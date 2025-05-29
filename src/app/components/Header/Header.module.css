@@ -433,11 +433,15 @@
   }
   
   .logo {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
+  }
+  
+  .logoText {
+    font-size: 1rem;
   }
   
   .logoIcon {
-    font-size: 1.5rem;
+    font-size: 1.375rem;
   }
 
   .mobileNav {
@@ -457,15 +461,16 @@
   }
 
   .logo {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
   
   .logoText {
-    display: none;
+    display: block;
+    font-size: 1.3rem;
   }
   
   .logoIcon {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
   }
 
   .mobileNav {

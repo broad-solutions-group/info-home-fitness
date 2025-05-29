@@ -1,0 +1,144 @@
+.footer {
+  background: linear-gradient(135deg, var(--text-dark-blue) 0%, var(--primary-green) 100%);
+  color: var(--white);
+  padding: var(--spacing-3xl) 0 30px 0;
+  margin-top: auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.footerContent {
+  text-align: center;
+}
+
+.mainContent {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-lg);
+  color: var(--white);
+  font-family: var(--font-primary);
+}
+
+.description {
+  font-size: 1.125rem;
+  margin-bottom: var(--spacing-2xl);
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.address {
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  margin: 0;
+  flex: 1;
+  text-align: left;
+}
+
+.linksSection {
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.footerLink {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all var(--transition-fast);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+}
+
+.footerLink:hover {
+  color: var(--accent-yellow);
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .footer {
+    padding: var(--spacing-2xl) 0 30px 0;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .description {
+    font-size: 1rem;
+  }
+  
+  .footerBottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-lg);
+  }
+  
+  .address {
+    text-align: center;
+    flex: none;
+  }
+  
+  .linksSection {
+    flex-direction: row;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .footerLink {
+    padding: var(--spacing-sm);
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+  
+  .title {
+    font-size: 1.75rem;
+  }
+  
+  .description {
+    font-size: 0.9rem;
+  }
+  
+  .address {
+    font-size: 0.8rem;
+  }
+  
+  .linksSection {
+    gap: var(--spacing-xs);
+  }
+  
+  .footerLink {
+    font-size: 0.75rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+} 

@@ -1,6 +1,5 @@
 import { dataService } from './services/dataService';
 import ArticleCard from './components/ArticleCard/ArticleCard';
-import Newsletter from './components/Newsletter/Newsletter';
 import Link from 'next/link';
 import styles from './page.module.css';
 
@@ -204,22 +203,6 @@ export default function Home() {
                   </div>
                 </div>
               ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter CTA */}
-      <section className={styles.ctaSection}>
-        <div className="container">
-          <div className={styles.ctaContent}>
-            <h2 className={styles.ctaTitle}>📧 Join the Fit-At-Home Movement</h2>
-            <p className={styles.ctaDescription}>
-              Get weekly tips, workout plans, and budget-friendly gear recommendations delivered to your inbox.
-            </p>
-            <Newsletter />
-            <p className={styles.ctaDisclaimer}>
-              Join 10,000+ fitness enthusiasts. No spam, unsubscribe anytime.
-            </p>
           </div>
         </div>
       </section>

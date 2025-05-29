@@ -155,19 +155,6 @@ export default function ArticlePage({ params }: ArticlePageProps) {
               </nav>
             </div>
 
-            {/* Newsletter Signup */}
-            <div className={styles.sidebarCard}>
-              <h3 className={styles.sidebarTitle}>Stay Updated</h3>
-              <p className={styles.newsletterText}>
-                Get weekly fitness tips and budget-friendly workout ideas delivered to your inbox.
-              </p>
-              <ArticleInteractions 
-                showShare={false}
-                showBackToTop={false}
-                showNewsletter={true}
-              />
-            </div>
-
             {/* Popular Articles */}
             <div className={styles.sidebarCard}>
               <h3 className={styles.sidebarTitle}>Popular This Week</h3>

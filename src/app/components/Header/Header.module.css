@@ -76,16 +76,16 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
 }
 
 .navLink {
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--text-dark-blue);
   text-decoration: none;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-sm);
   border-radius: var(--radius-md);
   transition: all var(--transition-fast);
   white-space: nowrap;
@@ -127,11 +127,15 @@
 .searchForm {
   display: flex;
   align-items: center;
-  background-color: var(--gray-100);
+  background-color: transparent;
   border-radius: var(--radius-lg);
-  padding: var(--spacing-xs);
-  width: 48px; /* 调整为能容纳按钮的合适宽度 */
-  transition: all var(--transition-medium);
+  padding: 0;
+  width: 32px; /* 默认只显示按钮的宽度 */
+  height: 32px; /* 固定高度与按钮一致 */
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              background-color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
   border: 2px solid transparent;
   overflow: hidden;
   position: relative;
@@ -143,23 +147,24 @@
   background-color: var(--white);
   border-color: var(--primary-green);
   box-shadow: 0 0 0 3px rgba(74, 177, 157, 0.1);
+  border-radius: var(--radius-lg);
 }
 
 .searchInput {
   flex: 1;
   border: none;
   background: transparent;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: 0 var(--spacing-sm);
   font-size: 0.875rem;
   color: var(--text-dark-blue);
   outline: none;
-  transition: all var(--transition-medium);
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
   width: 0;
   opacity: 0;
   pointer-events: none;
-  position: absolute;
-  left: var(--spacing-xs);
-  right: 48px; /* 为按钮留出空间 */
+  height: 100%;
+  transform: translateX(-10px);
 }
 
 /* 展开状态的输入框 */
@@ -167,13 +172,14 @@
   width: auto;
   opacity: 1;
   pointer-events: auto;
-  position: static;
-  right: auto;
+  transform: translateX(0);
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s,
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
 }
 
 .searchInput::placeholder {
   color: var(--gray-500);
-  transition: color var(--transition-fast);
+  transition: color 0.3s ease;
 }
 
 .searchFormExpanded .searchInput::placeholder {
@@ -181,34 +187,65 @@
 }
 
 .searchButton {
-  background: linear-gradient(135deg, var(--primary-green), var(--primary-orange));
+  background: var(--gray-200);
   border: none;
   border-radius: var(--radius-md);
-  padding: var(--spacing-xs);
+  padding: 0;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: background 0.2s ease,
+              transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   flex-shrink: 0;
-  position: relative;
+  position: absolute;
+  right: 2px;
+  top: 2px;
   z-index: 1;
 }
 
 .searchButton:hover {
-  transform: scale(1.05);
-  box-shadow: var(--shadow-md);
+  background: var(--gray-300);
+  transform: scale(1.02);
 }
 
 .searchButton:active {
-  transform: scale(0.95);
+  background: var(--gray-400);
+  transform: scale(0.98);
 }
 
 .searchIcon {
-  font-size: 1rem;
-  color: var(--white);
+  width: 16px;
+  height: 16px;
+  color: var(--gray-600);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.2s ease;
+}
+
+.searchButton:hover .searchIcon {
+  color: var(--gray-700);
+}
+
+.searchFormExpanded .searchIcon {
+  transform: rotate(90deg);
+  color: var(--primary-green);
+}
+
+.searchFormExpanded .searchButton {
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  width: 30px;
+  height: 30px;
+  right: 1px;
+  top: 1px;
+  border-radius: var(--radius-md);
+}
+
+.searchFormExpanded .searchButton:hover {
+  background: var(--gray-50);
+  border-color: var(--primary-green);
 }
 
 /* Mobile Menu Button - 默认隐藏，只在移动端显示 */
@@ -409,12 +446,12 @@
   }
 
   .nav {
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
   }
 
   .navLink {
-    font-size: 0.85rem;
-    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.8rem;
+    padding: var(--spacing-xs) var(--spacing-xs);
   }
 
   .searchFormExpanded {

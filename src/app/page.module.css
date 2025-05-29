@@ -6,9 +6,11 @@
 .heroSection {
   background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-orange) 100%);
   color: var(--white);
-  padding: var(--spacing-3xl) 0;
+  padding: var(--spacing-2xl) 0;
   position: relative;
   overflow: hidden;
+  min-height: 60vh;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .heroSection::before {
@@ -22,42 +24,200 @@
   opacity: 0.3;
 }
 
+.heroSection::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23ffffff"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23ffffff"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23ffffff"></path></svg>') no-repeat;
+  background-size: cover;
+  z-index: 2;
+}
+
 .heroContent {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-3xl);
+  gap: var(--spacing-2xl);
   align-items: center;
   position: relative;
   z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
 }
 
 .heroText {
-  max-width: 600px;
+  max-width: 550px;
 }
 
 .heroTitle {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 700;
   line-height: 1.1;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
   color: var(--white);
 }
 
 .heroDescription {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   line-height: 1.6;
-  margin-bottom: var(--spacing-2xl);
+  margin-bottom: var(--spacing-xl);
   color: rgba(255, 255, 255, 0.9);
 }
 
 .heroButtons {
   display: flex;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
   flex-wrap: wrap;
 }
 
 .heroFeatured {
   position: relative;
+  min-height: 300px;
+}
+
+.heroFeatured .card {
+  height: auto;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+  border: 1px solid #000;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.heroFeatured .card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  border-color: rgba(74, 177, 157, 0.25);
+}
+
+.heroFeatured .imageContainer {
+  height: 180px !important;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(74, 177, 157, 0.1);
+}
+
+.heroFeatured .imageContainer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.02) 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heroFeatured .content {
+  padding: var(--spacing-md) !important;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 140px;
+}
+
+.heroFeatured .title {
+  font-size: 1.25rem !important;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-sm) !important;
+  overflow: visible;
+  white-space: normal;
+  flex-shrink: 0;
+}
+
+.heroFeatured .description {
+  font-size: 0.95rem !important;
+  line-height: 1.5;
+  margin-bottom: var(--spacing-sm) !important;
+  flex: 1;
+  overflow: visible;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 60px;
+}
+
+.heroFeatured .meta {
+  margin-top: auto;
+  flex-shrink: 0;
+  padding-top: var(--spacing-xs);
+  border-top: 1px solid rgba(74, 177, 157, 0.15);
+}
+
+/* 广告位样式 - 确保在首屏显示 */
+.adSection {
+  background-color: var(--white);
+  padding: var(--spacing-lg) 0;
+  border-bottom: 1px solid var(--gray-200);
+  position: relative;
+  z-index: 10;
+}
+
+.adContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  text-align: center;
+}
+
+.adPlaceholder {
+  background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
+  border: 2px dashed var(--gray-300);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  color: var(--gray-600);
+  font-size: 0.875rem;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.adPlaceholder:hover {
+  border-color: var(--primary-green);
+  background: linear-gradient(135deg, rgba(74, 177, 157, 0.05), rgba(74, 177, 157, 0.1));
+}
+
+/* 响应式广告位 */
+@media (max-width: 768px) {
+  .adSection {
+    padding: var(--spacing-md) 0;
+  }
+  
+  .adPlaceholder {
+    min-height: 100px;
+    padding: var(--spacing-lg);
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .adSection {
+    padding: var(--spacing-sm) 0;
+  }
+  
+  .adPlaceholder {
+    min-height: 80px;
+    padding: var(--spacing-md);
+    font-size: 0.75rem;
+  }
 }
 
 /* Section Headers */
@@ -214,16 +374,63 @@
   margin: 0;
 }
 
-/* Responsive Design */
+/* Responsive Design - 优化平板和移动端布局 */
 @media (max-width: 1024px) {
+  .heroSection {
+    min-height: 50vh; /* 平板端进一步减少高度 */
+    padding: var(--spacing-xl) 0; /* 减少padding */
+  }
+
   .heroContent {
     grid-template-columns: 1fr;
-    gap: var(--spacing-2xl);
+    gap: var(--spacing-xl); /* 从 2xl 减少到 xl */
     text-align: center;
+    padding: 0 var(--spacing-lg);
   }
   
   .heroTitle {
-    font-size: 3rem;
+    font-size: 2.75rem; /* 从 3rem 减少 */
+  }
+
+  .heroText {
+    max-width: 100%; /* 平板端使用全宽 */
+  }
+
+  .heroFeatured {
+    min-height: 280px; /* 平板端适当高度 */
+    /* 平板端稍微减少阴影强度 */
+    filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.06));
+  }
+
+  .heroFeatured .card {
+    min-height: 280px; /* 与容器保持一致 */
+    /* 平板端阴影 */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.08);
+    /* 平板端边框 */
+    border: 1px solid rgba(74, 177, 157, 0.18);
+  }
+
+  .heroFeatured .card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px); /* 平板端减少hover移动距离 */
+    border-color: rgba(74, 177, 157, 0.3);
+  }
+
+  .heroFeatured .imageContainer {
+    height: 150px !important; /* 平板端图片高度 */
+  }
+
+  .heroFeatured .content {
+    min-height: 130px !important; /* 确保内容区域足够高 */
+  }
+
+  .heroFeatured .title {
+    font-size: 1.125rem !important; /* 平板端标题大小 */
+  }
+
+  .heroFeatured .description {
+    font-size: 0.9rem !important; /* 平板端描述文字 */
+    -webkit-line-clamp: 4; /* 保持4行显示 */
   }
   
   .categoryArticles {
@@ -233,19 +440,72 @@
 
 @media (max-width: 768px) {
   .heroSection {
-    padding: var(--spacing-2xl) 0;
+    padding: var(--spacing-lg) 0; /* 移动端进一步减少padding */
+    min-height: 45vh; /* 移动端减少最小高度 */
+  }
+
+  .heroContent {
+    gap: var(--spacing-lg); /* 进一步减少间距 */
+    padding: 0 var(--spacing-md);
   }
   
   .heroTitle {
-    font-size: 2.5rem;
+    font-size: 2.25rem; /* 从 2.5rem 减少 */
+    margin-bottom: var(--spacing-sm); /* 减少底部间距 */
   }
   
   .heroDescription {
-    font-size: 1.125rem;
+    font-size: 1rem; /* 从 1.125rem 减少 */
+    margin-bottom: var(--spacing-lg); /* 从 xl 减少到 lg */
   }
   
   .heroButtons {
     justify-content: center;
+    gap: var(--spacing-sm); /* 减少按钮间距 */
+  }
+
+  .heroFeatured {
+    min-height: 260px; /* 移动端适当高度 */
+    /* 移动端轻微阴影 */
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.05));
+  }
+
+  .heroFeatured .card {
+    min-height: 260px; /* 与容器保持一致 */
+    /* 移动端阴影 */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+    /* 移动端边框 */
+    border: 1px solid rgba(74, 177, 157, 0.2);
+  }
+
+  .heroFeatured .card:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px); /* 移动端轻微hover效果 */
+    border-color: rgba(74, 177, 157, 0.35);
+  }
+
+  .heroFeatured .imageContainer {
+    height: 130px !important; /* 移动端图片高度 */
+  }
+
+  .heroFeatured .content {
+    padding: var(--spacing-sm) !important; /* 移动端内边距 */
+    min-height: 130px !important; /* 确保内容区域足够高 */
+  }
+
+  .heroFeatured .title {
+    font-size: 1rem !important; /* 移动端标题大小 */
+    line-height: 1.3;
+  }
+
+  .heroFeatured .description {
+    font-size: 0.85rem !important; /* 移动端描述文字 */
+    -webkit-line-clamp: 3; /* 移动端保持3行显示 */
+    line-height: 1.4;
+  }
+
+  .heroFeatured .meta {
+    font-size: 0.8rem; /* 移动端meta信息 */
   }
   
   .sectionTitle {
@@ -288,12 +548,87 @@
 }
 
 @media (max-width: 480px) {
+  .heroSection {
+    padding: var(--spacing-md) 0; /* 小屏幕进一步减少padding */
+    min-height: 40vh; /* 小屏幕最小高度 */
+  }
+
+  .heroContent {
+    gap: var(--spacing-md); /* 小屏幕减少间距 */
+    padding: 0 var(--spacing-sm);
+  }
+
   .heroTitle {
-    font-size: 2rem;
+    font-size: 1.875rem; /* 从 2rem 减少 */
+    line-height: 1.2; /* 优化行高 */
   }
   
   .heroDescription {
-    font-size: 1rem;
+    font-size: 0.9rem; /* 从 1rem 减少 */
+    margin-bottom: var(--spacing-md); /* 进一步减少间距 */
+  }
+
+  .heroButtons {
+    gap: var(--spacing-xs); /* 最小间距 */
+    flex-direction: column; /* 小屏幕垂直排列按钮 */
+    width: 100%;
+  }
+
+  .heroButtons .btn {
+    width: 100%; /* 按钮全宽 */
+    justify-content: center;
+  }
+
+  .heroFeatured {
+    min-height: 240px; /* 小屏幕适当高度 */
+    /* 小屏幕最轻微阴影 */
+    filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.04));
+  }
+
+  .heroFeatured .card {
+    min-height: 240px; /* 与容器保持一致 */
+    /* 小屏幕阴影 */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.05);
+    /* 小屏幕边框 */
+    border: 1px solid rgba(74, 177, 157, 0.22);
+  }
+
+  .heroFeatured .card:hover {
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+    transform: translateY(-0.5px); /* 小屏幕最轻微hover效果 */
+    border-color: rgba(74, 177, 157, 0.4);
+  }
+
+  .heroFeatured .imageContainer {
+    height: 110px !important; /* 小屏幕图片高度 */
+  }
+
+  .heroFeatured .content {
+    padding: var(--spacing-xs) var(--spacing-sm) !important; /* 小屏幕内边距 */
+    min-height: 130px !important; /* 确保内容区域足够高 */
+  }
+
+  .heroFeatured .title {
+    font-size: 0.95rem !important; /* 小屏幕标题大小 */
+    line-height: 1.2;
+    margin-bottom: var(--spacing-xs) !important;
+  }
+
+  .heroFeatured .description {
+    font-size: 0.8rem !important; /* 小屏幕描述文字 */
+    line-height: 1.4;
+    -webkit-line-clamp: 3; /* 小屏幕保持3行显示 */
+    margin-bottom: var(--spacing-xs) !important;
+  }
+
+  .heroFeatured .meta {
+    font-size: 0.75rem; /* 小屏幕元信息文字 */
+    padding-top: var(--spacing-xs);
+  }
+
+  .heroFeatured .category {
+    font-size: 0.65rem; /* 小屏幕分类标签 */
+    padding: 2px var(--spacing-xs);
   }
   
   .sectionTitle {

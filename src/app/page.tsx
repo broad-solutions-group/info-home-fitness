@@ -11,35 +11,41 @@ export default function Home() {
     <div className={styles.homePage}>
       {/* Hero Banner */}
       <section className={styles.heroSection}>
-        <div className="container">
-          <div className={styles.heroContent}>
-            <div className={styles.heroText}>
-              <h1 className={styles.heroTitle}>
-                Transform Your Home Into Your <span className="text-primary">Perfect Gym</span>
-              </h1>
-              <p className={styles.heroDescription}>
-                Discover budget-friendly setups, family-friendly workouts, and equipment-free training. 
-                Get fit at home without breaking the bank or sacrificing space.
-              </p>
-              <div className={styles.heroButtons}>
-                <Link href="/category/affordable-home-gym-setups" className="btn btn-primary">
-                  Start Building Your Gym
-                </Link>
-                <Link href="/category/family-kids-friendly-workouts" className="btn btn-secondary">
-                  Family Workouts
-                </Link>
-              </div>
+        <div className={styles.heroContent}>
+          <div className={styles.heroText}>
+            <h1 className={styles.heroTitle}>
+              Transform Your Home Into Your <span className="text-primary">Perfect Gym</span>
+            </h1>
+            <p className={styles.heroDescription}>
+              Discover budget-friendly setups, family-friendly workouts, and equipment-free training. 
+              Get fit at home without breaking the bank or sacrificing space.
+            </p>
+            <div className={styles.heroButtons}>
+              <Link href="/category/affordable-home-gym-setups" className="btn btn-primary">
+                Start Building Your Gym
+              </Link>
+              <Link href="/category/family-kids-friendly-workouts" className="btn btn-secondary">
+                Family Workouts
+              </Link>
             </div>
-            <div className={styles.heroFeatured}>
-              {heroArticles[0] && (
-                <ArticleCard 
-                  article={heroArticles[0]} 
-                  variant="featured"
-                  showCategory={true}
-                  categoryName="Featured"
-                />
-              )}
-            </div>
+          </div>
+          <div className={styles.heroFeatured}>
+            {heroArticles[0] && (
+              <ArticleCard 
+                article={heroArticles[0]} 
+                variant="featured"
+                showCategory={false}
+              />
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* 广告位 - 首屏显示 */}
+      <section className={styles.adSection}>
+        <div className={styles.adContainer}>
+          <div className={styles.adPlaceholder}>
+            📢 Advertisement Space - 广告位预留区域
           </div>
         </div>
       </section>

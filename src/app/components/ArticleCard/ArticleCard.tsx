@@ -64,6 +64,8 @@ const ArticleCard = ({
           <p className={styles.description}>
             {variant === 'compact' 
               ? truncateText(article.description, 80)
+              : variant === 'featured'
+              ? truncateText(article.description, 150)
               : truncateText(article.description, 120)
             }
           </p>

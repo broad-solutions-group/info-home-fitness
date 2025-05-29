@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import OptimizedImage from '../OptimizedImage';
 import { Article } from '../../types';
 import styles from './ArticleCard.module.css';
 
@@ -35,7 +35,7 @@ const ArticleCard = ({
       <Link href={`/article/${article.id}`} className={styles.cardLink}>
         {/* Image */}
         <div className={styles.imageContainer}>
-          <Image
+          <OptimizedImage
             src={article.imageUrl}
             alt={article.title}
             fill

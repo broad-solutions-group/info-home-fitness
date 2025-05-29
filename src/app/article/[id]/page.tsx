@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
+import OptimizedImage from '../../components/OptimizedImage';
 import Link from 'next/link';
 import { dataService } from '../../services/dataService';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
@@ -107,13 +107,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
             {/* Featured Image */}
             <div className={styles.articleImage}>
-              <Image
+              <OptimizedImage
                 src={article.imageUrl}
                 alt={article.title}
-                width={800}
-                height={400}
+                fill
                 className={styles.image}
                 priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
               />
             </div>
 

@@ -9,6 +9,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const router = useRouter();
 
   // 监听滚动事件，增强吸顶效果
@@ -35,12 +36,44 @@ const Header = () => {
     };
   }, [isMenuOpen]);
 
+  // 点击外部区域时收起搜索框
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest(`.${styles.searchForm}`)) {
+        setIsSearchExpanded(false);
+      }
+    };
+
+    if (isSearchExpanded) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isSearchExpanded]);
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
       setSearchQuery('');
       setIsMenuOpen(false); // 搜索后关闭移动端菜单
+      setIsSearchExpanded(false); // 搜索后收起搜索框
+    }
+  };
+
+  const handleSearchButtonClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!isSearchExpanded) {
+      setIsSearchExpanded(true);
+    } else if (searchQuery.trim()) {
+      // 如果已展开且有搜索内容，执行搜索
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery('');
+      setIsSearchExpanded(false);
     }
   };
 
@@ -69,16 +102,16 @@ const Header = () => {
               Home
             </Link>
             <Link href="/category/affordable-home-gym-setups" className={styles.navLink}>
-              Home Gym
+              Home Gym Setup
             </Link>
             <Link href="/category/family-kids-friendly-workouts" className={styles.navLink}>
-              Family Fitness
+              Family Workouts
             </Link>
             <Link href="/category/strength-training-without-equipment" className={styles.navLink}>
-              Bodyweight
+              Bodyweight Training
             </Link>
             <Link href="/category/motivation-habit-building-tips" className={styles.navLink}>
-              Motivation
+              Motivation Tips
             </Link>
           </nav>
         </div>
@@ -86,15 +119,20 @@ const Header = () => {
         {/* 右侧区域：搜索框 + 移动菜单按钮 */}
         <div className={styles.rightSection}>
           {/* Search Form */}
-          <form onSubmit={handleSearch} className={styles.searchForm}>
+          <form onSubmit={handleSearch} className={`${styles.searchForm} ${isSearchExpanded ? styles.searchFormExpanded : ''}`}>
             <input
               type="text"
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className={styles.searchInput}
+              className={`${styles.searchInput} ${isSearchExpanded ? styles.searchInputExpanded : ''}`}
             />
-            <button type="submit" className={styles.searchButton} aria-label="Search">
+            <button 
+              type="button" 
+              onClick={handleSearchButtonClick}
+              className={styles.searchButton} 
+              aria-label="Search"
+            >
               <span className={styles.searchIcon}>🔍</span>
             </button>
           </form>

@@ -1,13 +1,14 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { dataService } from '../services/dataService';
 import ArticleCard from '../components/ArticleCard/ArticleCard';
+import SearchSuggestions from '../components/SearchSuggestions/SearchSuggestions';
 import { SearchResult } from '../types';
 import styles from './page.module.css';
 
-export default function SearchPage() {
+function SearchPageContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
   const [searchResult, setSearchResult] = useState<SearchResult>({
@@ -103,13 +104,9 @@ export default function SearchPage() {
               </p>
               <div className={styles.suggestions}>
                 <h3 className={styles.suggestionsTitle}>Try searching for:</h3>
-                <div className={styles.suggestionTags}>
-                  <button className={styles.suggestionTag}>home gym</button>
-                  <button className={styles.suggestionTag}>budget workout</button>
-                  <button className={styles.suggestionTag}>family fitness</button>
-                  <button className={styles.suggestionTag}>bodyweight</button>
-                  <button className={styles.suggestionTag}>motivation</button>
-                </div>
+                <SearchSuggestions 
+                  suggestions={['home gym', 'budget workout', 'family fitness', 'bodyweight', 'motivation']}
+                />
               </div>
             </div>
           ) : (
@@ -164,5 +161,13 @@ export default function SearchPage() {
         </section>
       )}
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div>Loading search...</div>}>
+      <SearchPageContent />
+    </Suspense>
   );
 } 

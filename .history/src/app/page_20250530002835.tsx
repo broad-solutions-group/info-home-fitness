@@ -1,6 +1,5 @@
 import { dataService } from './services/dataService';
 import ArticleCard from './components/ArticleCard/ArticleCard';
-import Newsletter from './components/Newsletter/Newsletter';
 import Link from 'next/link';
 import styles from './page.module.css';
 
@@ -51,7 +50,7 @@ export default function Home() {
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>🔥 Trending Now</h2>
             <p className={styles.sectionSubtitle}>
-              Most popular articles this week - don&apos;t miss out!
+              Most popular articles this week - don't miss out!
             </p>
           </div>
           <div className={styles.trendingGrid}>
@@ -216,7 +215,16 @@ export default function Home() {
             <p className={styles.ctaDescription}>
               Get weekly tips, workout plans, and budget-friendly gear recommendations delivered to your inbox.
             </p>
-            <Newsletter />
+            <div className={styles.ctaForm}>
+              <input 
+                type="email" 
+                placeholder="Enter your email address"
+                className={styles.ctaInput}
+              />
+              <button className="btn btn-accent">
+                Subscribe Now
+              </button>
+            </div>
             <p className={styles.ctaDisclaimer}>
               Join 10,000+ fitness enthusiasts. No spam, unsubscribe anytime.
             </p>

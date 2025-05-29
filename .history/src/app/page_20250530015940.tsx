@@ -51,7 +51,7 @@ export default function Home() {
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>🔥 Trending Now</h2>
             <p className={styles.sectionSubtitle}>
-              Most popular articles this week - don&apos;t miss out!
+              Most popular articles this week - don't miss out!
             </p>
           </div>
           <div className={styles.trendingGrid}>

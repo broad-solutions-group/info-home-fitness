@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { dataService } from '../../services/dataService';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
+import ArticleInteractions from '../../components/ArticleInteractions/ArticleInteractions';
 import styles from './page.module.css';
 
 interface ArticlePageProps {
@@ -123,32 +124,10 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
             {/* Article Footer */}
             <footer className={styles.articleFooter}>
-              <div className={styles.shareSection}>
-                <h3 className={styles.shareTitle}>Share this article</h3>
-                <div className={styles.shareButtons}>
-                  <button className={styles.shareButton}>
-                    📧 Email
-                  </button>
-                  <button className={styles.shareButton}>
-                    🐦 Twitter
-                  </button>
-                  <button className={styles.shareButton}>
-                    📘 Facebook
-                  </button>
-                  <button className={styles.shareButton}>
-                    💼 LinkedIn
-                  </button>
-                </div>
-              </div>
-              
-              <div className={styles.backToTop}>
-                <button 
-                  className={styles.backButton}
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                >
-                  ↑ Back to Top
-                </button>
-              </div>
+              <ArticleInteractions 
+                articleTitle={article.title}
+                articleUrl={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://localhost:3000'}/article/${article.id}`}
+              />
             </footer>
           </article>
 
@@ -182,16 +161,11 @@ export default function ArticlePage({ params }: ArticlePageProps) {
               <p className={styles.newsletterText}>
                 Get weekly fitness tips and budget-friendly workout ideas delivered to your inbox.
               </p>
-              <form className={styles.newsletterForm}>
-                <input 
-                  type="email" 
-                  placeholder="Your email address"
-                  className={styles.newsletterInput}
-                />
-                <button type="submit" className={styles.newsletterButton}>
-                  Subscribe
-                </button>
-              </form>
+              <ArticleInteractions 
+                showShare={false}
+                showBackToTop={false}
+                showNewsletter={true}
+              />
             </div>
 
             {/* Popular Articles */}

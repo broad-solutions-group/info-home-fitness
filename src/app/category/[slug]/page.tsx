@@ -103,7 +103,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
               <span className={styles.emptyIcon}>📝</span>
               <h3 className={styles.emptyTitle}>No articles yet</h3>
               <p className={styles.emptyDescription}>
-                We're working on adding more content to this category. Check back soon!
+                We&apos;re working on adding more content to this category. Check back soon!
               </p>
             </div>
           )}

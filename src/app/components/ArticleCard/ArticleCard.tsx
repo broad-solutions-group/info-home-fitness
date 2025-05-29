@@ -43,6 +43,12 @@ const ArticleCard = ({
             priority={variant === 'featured'}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
+          
+          {/* Category标签移到图片左上角 */}
+          {showCategory && categoryName && (
+            <span className={styles.categoryOverlay}>{categoryName}</span>
+          )}
+          
           <div className={styles.imageOverlay}>
             <span className={styles.duration}>{article.duration}</span>
           </div>
@@ -57,10 +63,6 @@ const ArticleCard = ({
 
         {/* Content */}
         <div className={styles.content}>
-          {showCategory && categoryName && (
-            <span className={styles.category}>{categoryName}</span>
-          )}
-          
           {/* 非featured变体的标题 */}
           {variant !== 'featured' && (
             <h3 className={styles.title}>
@@ -80,6 +82,7 @@ const ArticleCard = ({
             }
           </p>
           
+          {/* Meta区域：日期和Read More并排两端对齐 */}
           <div className={styles.meta}>
             <time className={styles.date}>
               {formatDate(article.createTime)}

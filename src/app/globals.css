@@ -283,7 +283,9 @@ a:hover {
 }
 
 .text-primary {
-  color: var(--primary-green);
+  color: #1A5A4A;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .text-secondary {

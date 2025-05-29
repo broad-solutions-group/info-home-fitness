@@ -40,6 +40,26 @@
   transform: scale(1.05);
 }
 
+/* Category标签在图片左上角 */
+.categoryOverlay {
+  position: absolute;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  z-index: 3;
+  display: inline-block;
+  background-color: var(--primary-green);
+  color: var(--white);
+  padding: var(--spacing-xs) var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+}
+
 .imageOverlay {
   position: absolute;
   top: var(--spacing-md);
@@ -81,22 +101,6 @@
   flex-direction: column;
 }
 
-.category {
-  display: inline-block;
-  background-color: var(--primary-green);
-  color: var(--white);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-sm);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: var(--spacing-sm);
-  width: fit-content;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
 .title {
   font-family: var(--font-primary);
   font-size: 1.25rem;
@@ -130,6 +134,7 @@
 .date {
   color: var(--gray-500);
   font-size: 0.875rem;
+  font-weight: 500;
 }
 
 .readMore {
@@ -217,6 +222,13 @@
     right: var(--spacing-sm);
   }
   
+  .categoryOverlay {
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+    font-size: 0.7rem;
+    padding: var(--spacing-xs) var(--spacing-xs);
+  }
+  
   .imageContainer {
     height: 180px;
   }
@@ -254,6 +266,13 @@
     right: var(--spacing-xs);
   }
 
+  .categoryOverlay {
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+    font-size: 0.65rem;
+    padding: 2px var(--spacing-xs);
+  }
+
   .imageContainer {
     height: 160px;
   }
@@ -271,8 +290,17 @@
   }
   
   .meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-xs);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .date {
+    font-size: 0.8rem;
+  }
+  
+  .readMore {
+    font-size: 0.8rem;
   }
 } 

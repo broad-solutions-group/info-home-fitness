@@ -19,7 +19,7 @@ class DataService {
     
     return {
       heroArticles: allArticles.slice(0, 3), // 轮播图文章
-      trendingArticles: allArticles.slice(3, 8), // 热门文章
+      trendingArticles: allArticles.slice(3, 9), // 热门文章，从5个增加到6个
       categoryPreviews: this.data.categories.map(category => ({
         ...category,
         articles: category.articles.slice(0, 3) // 每个分类预览3篇文章

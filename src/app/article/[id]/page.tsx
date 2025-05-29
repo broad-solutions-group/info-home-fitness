@@ -20,7 +20,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
-  const relatedArticles = dataService.getRelatedArticles(articleId, 4);
+  const relatedArticles = dataService.getRelatedArticles(articleId, 6);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -127,6 +127,8 @@ export default function ArticlePage({ params }: ArticlePageProps) {
               <ArticleInteractions 
                 articleTitle={article.title}
                 articleUrl={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://localhost:3000'}/article/${article.id}`}
+                showShare={false}
+                showBackToTop={true}
               />
             </footer>
           </article>

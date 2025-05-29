@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './ArticleInteractions.module.css';
 
 interface ArticleInteractionsProps {
@@ -16,6 +16,20 @@ const ArticleInteractions = ({
   showShare = true,
   showBackToTop = true
 }: ArticleInteractionsProps) => {
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // 当用户向下滚动超过300px时显示按钮
+      setShowButton(window.scrollY > 300);
+    };
+
+    if (showBackToTop) {
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [showBackToTop]);
+
   const handleShare = (platform: string) => {
     if (!articleTitle || !articleUrl) return;
     
@@ -91,13 +105,14 @@ const ArticleInteractions = ({
       )}
       
       {/* Back to Top */}
-      {showBackToTop && (
+      {showBackToTop && showButton && (
         <div className={styles.backToTop}>
           <button 
             className={styles.backButton}
             onClick={handleBackToTop}
+            title="Back to Top"
           >
-            ↑ Back to Top
+            ↑
           </button>
         </div>
       )}

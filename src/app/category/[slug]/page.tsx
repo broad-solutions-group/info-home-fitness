@@ -16,21 +16,6 @@ export default function CategoryPage({ params }: CategoryPageProps) {
     notFound();
   }
 
-  const getCategoryIcon = (categoryName: string) => {
-    switch (categoryName) {
-      case 'Affordable Home Gym Setups':
-        return '💰';
-      case 'Family & Kids Friendly Workouts':
-        return '👨‍👩‍👧‍👦';
-      case 'Strength Training Without Equipment':
-        return '💪';
-      case 'Motivation & Habit Building Tips':
-        return '🧠';
-      default:
-        return '🏠';
-    }
-  };
-
   const getCategoryDescription = (categoryName: string) => {
     switch (categoryName) {
       case 'Affordable Home Gym Setups':
@@ -52,9 +37,6 @@ export default function CategoryPage({ params }: CategoryPageProps) {
       <section className={styles.heroSection}>
         <div className="container">
           <div className={styles.heroContent}>
-            <span className={styles.categoryIcon}>
-              {getCategoryIcon(category.name)}
-            </span>
             <h1 className={styles.categoryTitle}>{category.name}</h1>
             <p className={styles.categoryDescription}>
               {getCategoryDescription(category.name)}
@@ -77,14 +59,6 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         <div className="container">
           <div className={styles.articlesHeader}>
             <h2 className={styles.articlesTitle}>All Articles</h2>
-            <div className={styles.sortOptions}>
-              <span className={styles.sortLabel}>Sort by:</span>
-              <select className={styles.sortSelect}>
-                <option value="newest">Newest First</option>
-                <option value="oldest">Oldest First</option>
-                <option value="popular">Most Popular</option>
-              </select>
-            </div>
           </div>
           
           <div className={styles.articlesGrid}>
@@ -123,9 +97,6 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   href={`/category/${relatedCategory.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}`}
                   className={styles.relatedCard}
                 >
-                  <span className={styles.relatedIcon}>
-                    {getCategoryIcon(relatedCategory.name)}
-                  </span>
                   <h3 className={styles.relatedName}>{relatedCategory.name}</h3>
                   <p className={styles.relatedCount}>
                     {relatedCategory.articles.length} articles

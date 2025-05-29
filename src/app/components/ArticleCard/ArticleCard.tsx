@@ -46,6 +46,13 @@ const ArticleCard = ({
           <div className={styles.imageOverlay}>
             <span className={styles.duration}>{article.duration}</span>
           </div>
+          
+          {/* Featured变体的标题覆盖层 */}
+          {variant === 'featured' && (
+            <h3 className={styles.overlayTitle}>
+              {article.title}
+            </h3>
+          )}
         </div>
 
         {/* Content */}
@@ -54,12 +61,15 @@ const ArticleCard = ({
             <span className={styles.category}>{categoryName}</span>
           )}
           
-          <h3 className={styles.title}>
-            {variant === 'compact' 
-              ? truncateText(article.title, 60)
-              : article.title
-            }
-          </h3>
+          {/* 非featured变体的标题 */}
+          {variant !== 'featured' && (
+            <h3 className={styles.title}>
+              {variant === 'compact' 
+                ? truncateText(article.title, 60)
+                : article.title
+              }
+            </h3>
+          )}
           
           <p className={styles.description}>
             {variant === 'compact' 

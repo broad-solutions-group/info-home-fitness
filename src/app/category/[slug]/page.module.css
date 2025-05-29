@@ -6,8 +6,11 @@
 .heroSection {
   background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-orange) 100%);
   color: var(--white);
-  padding: var(--spacing-3xl) 0;
+  padding: var(--spacing-xl) 0;
   text-align: center;
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
 }
 
 .heroContent {
@@ -15,14 +18,8 @@
   margin: 0 auto;
 }
 
-.categoryIcon {
-  font-size: 4rem;
-  display: block;
-  margin-bottom: var(--spacing-lg);
-}
-
 .categoryTitle {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: var(--spacing-lg);
   color: var(--white);
@@ -60,9 +57,6 @@
 }
 
 .articlesHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: var(--spacing-2xl);
   padding-bottom: var(--spacing-lg);
   border-bottom: 2px solid var(--gray-200);
@@ -73,33 +67,6 @@
   font-weight: 700;
   color: var(--text-dark-blue);
   margin: 0;
-}
-
-.sortOptions {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-}
-
-.sortLabel {
-  font-weight: 500;
-  color: var(--gray-600);
-}
-
-.sortSelect {
-  padding: var(--spacing-sm) var(--spacing-md);
-  border: 2px solid var(--gray-300);
-  border-radius: var(--radius-md);
-  background-color: var(--white);
-  color: var(--text-dark-blue);
-  font-size: 0.875rem;
-  cursor: pointer;
-  transition: border-color var(--transition-fast);
-}
-
-.sortSelect:focus {
-  outline: none;
-  border-color: var(--primary-green);
 }
 
 .articlesGrid {
@@ -175,12 +142,6 @@
   box-shadow: var(--shadow-lg);
 }
 
-.relatedIcon {
-  font-size: 2.5rem;
-  display: block;
-  margin-bottom: var(--spacing-md);
-}
-
 .relatedName {
   font-size: 1.125rem;
   font-weight: 600;
@@ -202,7 +163,8 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .heroSection {
-    padding: var(--spacing-2xl) 0;
+    padding: var(--spacing-lg) 0;
+    min-height: 35vh;
   }
   
   .categoryIcon {
@@ -210,7 +172,7 @@
   }
   
   .categoryTitle {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   
   .categoryDescription {
@@ -228,12 +190,6 @@
   
   .articlesSection {
     padding: var(--spacing-2xl) 0;
-  }
-  
-  .articlesHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-md);
   }
   
   .articlesTitle {
@@ -254,8 +210,13 @@
 }
 
 @media (max-width: 480px) {
+  .heroSection {
+    min-height: 30vh;
+    padding: var(--spacing-md) 0;
+  }
+  
   .categoryTitle {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   
   .categoryDescription {

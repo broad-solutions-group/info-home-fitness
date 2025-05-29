@@ -64,9 +64,8 @@ export default function Home() {
               <ArticleCard 
                 key={article.id} 
                 article={article}
-                variant={index === 0 ? "featured" : "default"}
-                showCategory={true}
-                categoryName="Trending"
+                variant="default"
+                showCategory={false}
               />
             ))}
           </div>

@@ -205,7 +205,7 @@ const Header = () => {
 
       {/* Overlay */}
       {isMenuOpen && (
-        <div className={styles.overlay} onClick={closeMenu} aria-hidden="true"></div>
+        <div className={styles.overlay} aria-hidden="true"></div>
       )}
     </header>
   );

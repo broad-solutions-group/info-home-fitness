@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { dataService } from '../../services/dataService';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
+import BackToTop from '../../components/BackToTop/BackToTop';
 import styles from './page.module.css';
 
 interface CategoryPageProps {
@@ -106,6 +107,9 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           </div>
         </div>
       </section>
+      
+      {/* 返回顶部按钮 */}
+      <BackToTop />
     </div>
   );
 }

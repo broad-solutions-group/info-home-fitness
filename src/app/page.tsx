@@ -1,5 +1,6 @@
 import { dataService } from './services/dataService';
 import ArticleCard from './components/ArticleCard/ArticleCard';
+import BackToTop from './components/BackToTop/BackToTop';
 import Link from 'next/link';
 import styles from './page.module.css';
 
@@ -211,6 +212,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 返回顶部按钮 */}
+      <BackToTop />
     </div>
   );
 }

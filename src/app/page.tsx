@@ -1,95 +1,236 @@
-import Image from "next/image";
+import { dataService } from './services/dataService';
+import ArticleCard from './components/ArticleCard/ArticleCard';
+import Link from 'next/link';
+import styles from './page.module.css';
 
 export default function Home() {
+  const homeData = dataService.getHomePageData();
+  const { heroArticles, trendingArticles, categoryPreviews } = homeData;
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-      </div>
+    <div className={styles.homePage}>
+      {/* Hero Banner */}
+      <section className={styles.heroSection}>
+        <div className="container">
+          <div className={styles.heroContent}>
+            <div className={styles.heroText}>
+              <h1 className={styles.heroTitle}>
+                Transform Your Home Into Your <span className="text-primary">Perfect Gym</span>
+              </h1>
+              <p className={styles.heroDescription}>
+                Discover budget-friendly setups, family-friendly workouts, and equipment-free training. 
+                Get fit at home without breaking the bank or sacrificing space.
+              </p>
+              <div className={styles.heroButtons}>
+                <Link href="/category/affordable-home-gym-setups" className="btn btn-primary">
+                  Start Building Your Gym
+                </Link>
+                <Link href="/category/family-kids-friendly-workouts" className="btn btn-secondary">
+                  Family Workouts
+                </Link>
+              </div>
+            </div>
+            <div className={styles.heroFeatured}>
+              {heroArticles[0] && (
+                <ArticleCard 
+                  article={heroArticles[0]} 
+                  variant="featured"
+                  showCategory={true}
+                  categoryName="Featured"
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      {/* Trending Now */}
+      <section className={styles.trendingSection}>
+        <div className="container">
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>🔥 Trending Now</h2>
+            <p className={styles.sectionSubtitle}>
+              Most popular articles this week - don't miss out!
+            </p>
+          </div>
+          <div className={styles.trendingGrid}>
+            {trendingArticles.map((article, index) => (
+              <ArticleCard 
+                key={article.id} 
+                article={article}
+                variant={index === 0 ? "featured" : "default"}
+                showCategory={true}
+                categoryName="Trending"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      {/* Build Your Home Gym */}
+      <section className={styles.categorySection}>
+        <div className="container">
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>🛠️ Build Your Home Gym</h2>
+            <p className={styles.sectionSubtitle}>
+              Smart solutions for every space and budget
+            </p>
+          </div>
+          <div className={styles.categoryGrid}>
+            {categoryPreviews
+              .filter(category => category.name === 'Affordable Home Gym Setups')
+              .map(category => (
+                <div key={category.id} className={styles.categoryBlock}>
+                  <div className={styles.categoryHeader}>
+                    <h3 className={styles.categoryTitle}>{category.name}</h3>
+                    <Link href="/category/affordable-home-gym-setups" className={styles.viewAllLink}>
+                      View All →
+                    </Link>
+                  </div>
+                  <div className={styles.categoryArticles}>
+                    {category.articles.map(article => (
+                      <ArticleCard 
+                        key={article.id} 
+                        article={article}
+                        variant="compact"
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      </section>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+      {/* Family & Kids Fitness */}
+      <section className={styles.familySection}>
+        <div className="container">
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>👨‍👩‍👧‍👦 Family & Kids Fitness</h2>
+            <p className={styles.sectionSubtitle}>
+              Fun activities that get the whole family moving together
+            </p>
+          </div>
+          <div className={styles.familyGrid}>
+            {categoryPreviews
+              .filter(category => category.name === 'Family & Kids Friendly Workouts')
+              .map(category => (
+                <div key={category.id} className={styles.categoryBlock}>
+                  <div className={styles.categoryHeader}>
+                    <h3 className={styles.categoryTitle}>{category.name}</h3>
+                    <Link href="/category/family-kids-friendly-workouts" className={styles.viewAllLink}>
+                      View All →
+                    </Link>
+                  </div>
+                  <div className={styles.categoryArticles}>
+                    {category.articles.map(article => (
+                      <ArticleCard 
+                        key={article.id} 
+                        article={article}
+                        variant="default"
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      </section>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+      {/* Strength Training Without Equipment */}
+      <section className={styles.strengthSection}>
+        <div className="container">
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>💪 Strength Training Without Equipment</h2>
+            <p className={styles.sectionSubtitle}>
+              Build muscle and strength using just your bodyweight
+            </p>
+          </div>
+          <div className={styles.strengthGrid}>
+            {categoryPreviews
+              .filter(category => category.name === 'Strength Training Without Equipment')
+              .map(category => (
+                <div key={category.id} className={styles.categoryBlock}>
+                  <div className={styles.categoryHeader}>
+                    <h3 className={styles.categoryTitle}>{category.name}</h3>
+                    <Link href="/category/strength-training-without-equipment" className={styles.viewAllLink}>
+                      View All →
+                    </Link>
+                  </div>
+                  <div className={styles.categoryArticles}>
+                    {category.articles.map(article => (
+                      <ArticleCard 
+                        key={article.id} 
+                        article={article}
+                        variant="compact"
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      </section>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      {/* Motivation & Habit Building */}
+      <section className={styles.motivationSection}>
+        <div className="container">
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>🧠 Fitness Habits That Stick</h2>
+            <p className={styles.sectionSubtitle}>
+              Build lasting motivation and create sustainable workout routines
+            </p>
+          </div>
+          <div className={styles.motivationGrid}>
+            {categoryPreviews
+              .filter(category => category.name === 'Motivation & Habit Building Tips')
+              .map(category => (
+                <div key={category.id} className={styles.categoryBlock}>
+                  <div className={styles.categoryHeader}>
+                    <h3 className={styles.categoryTitle}>{category.name}</h3>
+                    <Link href="/category/motivation-habit-building-tips" className={styles.viewAllLink}>
+                      View All →
+                    </Link>
+                  </div>
+                  <div className={styles.categoryArticles}>
+                    {category.articles.map(article => (
+                      <ArticleCard 
+                        key={article.id} 
+                        article={article}
+                        variant="default"
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter CTA */}
+      <section className={styles.ctaSection}>
+        <div className="container">
+          <div className={styles.ctaContent}>
+            <h2 className={styles.ctaTitle}>📧 Join the Fit-At-Home Movement</h2>
+            <p className={styles.ctaDescription}>
+              Get weekly tips, workout plans, and budget-friendly gear recommendations delivered to your inbox.
+            </p>
+            <div className={styles.ctaForm}>
+              <input 
+                type="email" 
+                placeholder="Enter your email address"
+                className={styles.ctaInput}
+              />
+              <button className="btn btn-accent">
+                Subscribe Now
+              </button>
+            </div>
+            <p className={styles.ctaDisclaimer}>
+              Join 10,000+ fitness enthusiasts. No spam, unsubscribe anytime.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

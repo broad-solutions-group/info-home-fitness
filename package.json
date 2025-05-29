@@ -1,8 +1,9 @@
 {
   "name": "info-home-fitness",
-  "description": "Build a full-stack web application with Next.js.",
+  "description": "Home Fitness - Your Ultimate Guide to Affordable Home Workouts",
+  "version": "1.0.0",
   "cloudflare": {
-    "label": "Next.js Framework Starter",
+    "label": "Home Fitness Website",
     "products": [
       "Workers"
     ],
@@ -26,7 +27,6 @@
     "eslint": "8.56.0",
     "eslint-config-next": "14.2.5",
     "postcss": "8.5.3",
-    "tailwindcss": "3.4.17",
     "typescript": "5.8.3",
     "wrangler": "4.12.0"
   },

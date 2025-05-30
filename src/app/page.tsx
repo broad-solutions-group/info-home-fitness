@@ -39,11 +39,20 @@ export default function Home() {
               />
             )}
           </div>
+          
+          {/* 广告位 - 移动端在banner内显示 */}
+          <section className={`${styles.adSection} ${styles.adSectionMobile}`}>
+            <div className={styles.adContainer}>
+              <div className={styles.adPlaceholder}>
+                📢 Advertisement Space - 广告位预留区域
+              </div>
+            </div>
+          </section>
         </div>
       </section>
 
-      {/* 广告位 - 首屏显示 */}
-      <section className={styles.adSection}>
+      {/* 广告位 - PC端在banner外显示 */}
+      <section className={`${styles.adSection} ${styles.adSectionDesktop}`}>
         <div className={styles.adContainer}>
           <div className={styles.adPlaceholder}>
             📢 Advertisement Space - 广告位预留区域

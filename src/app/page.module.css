@@ -580,6 +580,178 @@
   }
 }
 
+/* 超小屏幕设备优化 (375px-414px) */
+@media (max-width: 414px) {
+  .heroSection {
+    padding: var(--spacing-sm) 0;
+    min-height: 28vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: var(--spacing-md);
+  }
+
+  .heroFeatured {
+    margin: 0 !important;
+  }
+
+  .heroContent {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "hero-title"
+      "hero-featured"
+      "hero-ad"
+      "hero-description"
+      "hero-buttons";
+    gap: var(--spacing-xs);
+    text-align: center;
+    padding: 0 var(--spacing-sm);
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .heroText {
+    display: contents;
+  }
+
+  .heroTitle {
+    grid-area: hero-title;
+    font-size: 1.5rem; /* 减小标题字号 */
+    line-height: 1.1;
+    margin: -8px 0 0 0; /* 完全去掉所有边距 */
+    text-align: center;
+    font-weight: 700;
+    color: var(--white);
+    padding-top: 0 !important;
+  }
+  
+  .heroDescription {
+    grid-area: hero-description;
+    font-size: 0.85rem;
+    margin-bottom: 0;
+    max-width: 100%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .heroButtons {
+    grid-area: hero-buttons;
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  .heroButtons .btn {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+    text-align: center;
+    font-size: 0.8rem;
+    padding: var(--spacing-xs) var(--spacing-xs);
+    white-space: nowrap;
+  }
+
+  .heroFeatured {
+    grid-area: hero-featured;
+    position: relative;
+    min-height: 220px;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.03));
+    margin: 0 var(--spacing-sm);
+  }
+
+  .heroFeatured .card {
+    height: auto;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    transition: all var(--transition-normal);
+    border: 1px solid rgba(74, 177, 157, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02), 0 1px 1px rgba(0, 0, 0, 0.04);
+  }
+
+  .heroFeatured .card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.03);
+    transform: translateY(-0.5px);
+    border-color: rgba(74, 177, 157, 0.4);
+  }
+
+  .heroFeatured .imageContainer {
+    height: 90px !important;
+  }
+
+  .heroFeatured .content {
+    padding: var(--spacing-xs) !important;
+    min-height: 110px !important;
+  }
+
+  .heroFeatured .title {
+    font-size: 0.9rem !important;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-xs) !important;
+  }
+
+  .heroFeatured .description {
+    font-size: 0.75rem !important;
+    line-height: 1.3;
+    -webkit-line-clamp: 2;
+    margin-bottom: var(--spacing-xs) !important;
+  }
+
+  .heroFeatured .meta {
+    font-size: 0.7rem;
+    padding-top: var(--spacing-xs);
+  }
+
+  .heroFeatured .category {
+    font-size: 0.6rem;
+    padding: 1px var(--spacing-xs);
+  }
+
+  /* 超小屏幕广告位优化 */
+  .adSectionMobile {
+    display: block !important;
+    grid-area: hero-ad;
+    background-color: var(--white);
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid var(--gray-200);
+    position: static;
+    border-radius: var(--radius-lg);
+    margin: 0 var(--spacing-sm);
+  }
+
+  .adSectionMobile .adContainer {
+    padding: 0;
+    text-align: center;
+  }
+
+  .adSectionMobile .adPlaceholder {
+    background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
+    border: 2px dashed var(--gray-300);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xs);
+    color: var(--gray-600);
+    font-size: 0.7rem;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    margin: 0;
+  }
+
+  .adSectionMobile .adPlaceholder:hover {
+    border-color: var(--primary-green);
+    background: linear-gradient(135deg, rgba(74, 177, 157, 0.05), rgba(74, 177, 157, 0.1));
+  }
+}
+
 @media (max-width: 480px) {
   .heroSection {
     padding: var(--spacing-md) 0; /* 小屏幕进一步减少padding */

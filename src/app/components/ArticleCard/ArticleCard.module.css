@@ -304,3 +304,9 @@
     font-size: 0.8rem;
   }
 } 
+
+@media (max-width: 414px) {
+  .featured .imageContainer {
+    height: 130px;
+  }
+}

@@ -106,13 +106,13 @@ export default function Home() {
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTitleRow}>
               <h2 className={styles.sectionTitle}>🛠️ Build Your Home Gym</h2>
-              <Link href="/category/affordable-home-gym-setups" className={styles.viewAllLink}>
-                View All →
-              </Link>
             </div>
             <p className={styles.sectionSubtitle}>
               Smart solutions for every space and budget
             </p>
+            <Link href="/category/affordable-home-gym-setups" className={styles.viewAllButton}>
+              View All Articles →
+            </Link>
           </div>
           <div className={styles.categoryGrid}>
             {categoryPreviews
@@ -140,13 +140,13 @@ export default function Home() {
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTitleRow}>
               <h2 className={styles.sectionTitle}>👨‍👩‍👧‍👦 Family & Kids Fitness</h2>
-              <Link href="/category/family-kids-friendly-workouts" className={styles.viewAllLink}>
-                View All →
-              </Link>
             </div>
             <p className={styles.sectionSubtitle}>
               Fun activities that get the whole family moving together
             </p>
+            <Link href="/category/family-kids-friendly-workouts" className={styles.viewAllButton}>
+              View All Articles →
+            </Link>
           </div>
           <div className={styles.familyGrid}>
             {categoryPreviews
@@ -174,13 +174,13 @@ export default function Home() {
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTitleRow}>
               <h2 className={styles.sectionTitle}>💪 Strength Training Without Equipment</h2>
-              <Link href="/category/strength-training-without-equipment" className={styles.viewAllLink}>
-                View All →
-              </Link>
             </div>
             <p className={styles.sectionSubtitle}>
               Build muscle and strength using just your bodyweight
             </p>
+            <Link href="/category/strength-training-without-equipment" className={styles.viewAllButton}>
+              View All Articles →
+            </Link>
           </div>
           <div className={styles.strengthGrid}>
             {categoryPreviews
@@ -208,13 +208,13 @@ export default function Home() {
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTitleRow}>
               <h2 className={styles.sectionTitle}>🧠 Fitness Habits That Stick</h2>
-              <Link href="/category/motivation-habit-building-tips" className={styles.viewAllLink}>
-                View All →
-              </Link>
             </div>
             <p className={styles.sectionSubtitle}>
               Build lasting motivation and create sustainable workout routines
             </p>
+            <Link href="/category/motivation-habit-building-tips" className={styles.viewAllButton}>
+              View All Articles →
+            </Link>
           </div>
           <div className={styles.motivationGrid}>
             {categoryPreviews

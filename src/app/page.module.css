@@ -540,6 +540,20 @@
     flex-direction: column;
     max-width: 300px;
   }
+
+  /* 移动端View All按钮优化 */
+  .viewAllButton {
+    font-size: 0.85rem;
+    padding: var(--spacing-xs) var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 1px 4px rgba(74, 177, 157, 0.15);
+  }
+
+  .viewAllButton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(74, 177, 157, 0.25);
+  }
 }
 
 @media (max-width: 480px) {
@@ -722,6 +736,20 @@
   .ctaTitle {
     font-size: 1.75rem;
   }
+
+  /* 移动端View All按钮优化 */
+  .viewAllButton {
+    font-size: 0.85rem;
+    padding: var(--spacing-xs) var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 1px 4px rgba(74, 177, 157, 0.15);
+  }
+
+  .viewAllButton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(74, 177, 157, 0.25);
+  }
 }
 
 /* Section Headers */
@@ -839,6 +867,51 @@
   color: var(--primary-orange);
 }
 
+/* 新的View All按钮样式 - 放在副标题下方 */
+.viewAllButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background: linear-gradient(135deg, var(--primary-green), var(--primary-orange));
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal);
+  box-shadow: 0 2px 8px rgba(74, 177, 157, 0.2);
+  margin-top: var(--spacing-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.viewAllButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left var(--transition-normal);
+}
+
+.viewAllButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(74, 177, 157, 0.3);
+  background: linear-gradient(135deg, var(--primary-orange), var(--primary-green));
+}
+
+.viewAllButton:hover::before {
+  left: 100%;
+}
+
+.viewAllButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(74, 177, 157, 0.2);
+}
+
 .categoryArticles {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -872,12 +945,8 @@
 }
 
 .ctaForm {
-  display: flex;
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
+  flex-direction: column;
+  max-width: 300px;
 }
 
 .ctaInput {

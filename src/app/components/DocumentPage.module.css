@@ -1,0 +1,86 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 2rem 0;
+}
+
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem 3rem 3rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #007bff, #28a745, #ffc107, #dc3545);
+}
+
+.pageTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 2rem;
+  text-align: left;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.pageTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #007bff, #28a745);
+  border-radius: 2px;
+}
+
+.documentContent {
+  margin-top: 2rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .page {
+    padding: 1rem 0;
+  }
+  
+  .content {
+    margin: 0 1rem;
+    padding: 2rem 1.5rem;
+    border-radius: 8px;
+  }
+  
+  .pageTitle {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .pageTitle::after {
+    width: 60px;
+    height: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    margin: 0 0.5rem;
+    padding: 1.5rem 1rem;
+  }
+  
+  .pageTitle {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+} 

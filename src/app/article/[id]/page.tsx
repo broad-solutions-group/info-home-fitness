@@ -239,7 +239,7 @@ export async function generateMetadata({ params }: ArticlePageProps) {
   return {
     title: `${article.title} - Home Fitness`,
     description: article.description,
-    keywords: `${article.title.toLowerCase()}, home fitness, workout tips, exercise guides`,
+    keywords: `${article.title.toLowerCase()}, home fitness, workout tips, exercise guides, cheap home gym, home gym setup, small space gym ideas, home workout gear, no gym equipment, affordable home gym, diy gym space, compact workout space, budget workout tools, small apartment workouts, indoor kid workouts, fun family fitness, kids exercise ideas, family fitness time, living room workouts, home family exercises, bodyweight muscle building, no equipment strength, home workouts, no gear fitness, body resistance workouts, home strength plans, core workouts, no equipment abs, quick full-body workout, bodyweight burn, at-home routine, squat variations, home leg training, bodyweight strength, full body training, calisthenics workout, home fitness motivation, stay consistent, 5-minute workout, habit forming tip, morning workouts, sustainable workouts, fitness hacks`,
     openGraph: {
       title: article.title,
       description: article.description,

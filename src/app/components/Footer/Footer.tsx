@@ -23,15 +23,15 @@ const Footer = () => {
 
             {/* 右侧：链接 */}
             <div className={styles.linksSection}>
-              <Link href="/about-us" className={styles.footerLink}>
+              <a href="/about-us" className={styles.footerLink}>
                 About Us
-              </Link>
-              <Link href="/terms-of-service" className={styles.footerLink}>
+              </a>
+              <a href="/terms-of-service" className={styles.footerLink}>
                 Terms of Service
-              </Link>
-              <Link href="/privacy-policy" className={styles.footerLink}>
+              </a>
+              <a href="/privacy-policy" className={styles.footerLink}>
                 Privacy Policy
-              </Link>
+              </a>
             </div>
           </div>
         </div>

@@ -8,6 +8,9 @@ import SearchSuggestions from '../components/SearchSuggestions/SearchSuggestions
 import { SearchResult } from '../types';
 import styles from './page.module.css';
 
+// 由于这是客户端组件，metadata需要在layout中处理
+// 或者创建一个单独的metadata文件
+
 function SearchPageContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';

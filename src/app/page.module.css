@@ -11,6 +11,9 @@
   overflow: hidden;
   min-height: 60vh;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .heroSection::before {
@@ -44,7 +47,8 @@
   position: relative;
   z-index: 1;
   max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  margin: -20px auto 0 auto;
   padding: 0 var(--spacing-md);
 }
 
@@ -140,7 +144,7 @@
   margin-bottom: var(--spacing-sm) !important;
   flex: 1;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -373,6 +377,10 @@
   .heroSection {
     min-height: 50vh; /* 平板端进一步减少高度 */
     padding: var(--spacing-xl) 0; /* 减少padding */
+    /* 保持flex布局的垂直居中 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .heroContent {
@@ -424,7 +432,7 @@
 
   .heroFeatured .description {
     font-size: 0.9rem !important; /* 平板端描述文字 */
-    -webkit-line-clamp: 4; /* 保持4行显示 */
+    -webkit-line-clamp: 3; /* 统一为3行显示 */
   }
   
   .categoryArticles {
@@ -436,6 +444,11 @@
   .heroSection {
     padding: var(--spacing-lg) 0; /* 移动端进一步减少padding */
     min-height: 45vh; /* 移动端减少最小高度 */
+    /* 移动端使用flex-start避免内容被截断 */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: var(--spacing-xl);
   }
 
   .heroContent {
@@ -545,6 +558,11 @@
   .heroSection {
     padding: var(--spacing-md) 0; /* 小屏幕进一步减少padding */
     min-height: 40vh; /* 小屏幕最小高度 */
+    /* 小屏幕保持flex布局，顶部对齐 */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: var(--spacing-lg);
   }
 
   .heroContent {

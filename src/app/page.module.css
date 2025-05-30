@@ -48,8 +48,7 @@
   z-index: 1;
   max-width: 1200px;
   width: 100%;
-  margin: -20px auto 0 auto;
-  padding: 0 var(--spacing-md);
+  margin: -20px var(--spacing-md) 0 var(--spacing-md);
 }
 
 .heroText {
@@ -226,7 +225,7 @@
       "hero-buttons";
     gap: var(--spacing-lg);
     text-align: left; /* 改为左对齐 */
-    padding: 0 var(--spacing-md); /* 与全局container保持一致 */
+    margin: 0 var(--spacing-md);
   }
 
   /* 为heroText的子元素分配grid区域 */
@@ -378,7 +377,7 @@
       "hero-buttons";
     gap: var(--spacing-md);
     text-align: left; /* 移动端左对齐 */
-    padding: 0 var(--spacing-sm); /* 与全局container移动端保持一致 */
+    margin: 0 var(--spacing-sm);
   }
 
   /* 为heroText的子元素分配grid区域 */
@@ -602,10 +601,9 @@
       "hero-buttons";
     gap: var(--spacing-xs);
     text-align: center;
-    padding: 0 var(--spacing-sm); /* 与全局container移动端保持一致 */
+    margin: 0 var(--spacing-sm);
     max-width: 100%;
     width: 100%;
-    margin: 0 auto;
   }
 
   .heroText {
@@ -774,7 +772,7 @@
       "hero-buttons";
     gap: var(--spacing-sm);
     text-align: left; /* 小屏幕左对齐 */
-    padding: 0 var(--spacing-sm); /* 与全局container移动端保持一致 */
+    margin: 0 var(--spacing-sm);
   }
 
   /* 为heroText的子元素分配grid区域 */
@@ -1175,7 +1173,6 @@
     max-width: 1200px;
     width: 100%;
     margin: -20px auto 0 auto;
-    padding: 0 var(--spacing-md);
   }
 
   .heroText {

@@ -179,7 +179,6 @@
 .adContainer {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
   text-align: center;
 }
 
@@ -967,7 +966,7 @@
 }
 
 .sectionTitle {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0;
   color: var(--text-dark-blue);
@@ -1005,7 +1004,7 @@
 .familySection,
 .strengthSection,
 .motivationSection {
-  padding: var(--spacing-md) 0; /* 移动端进一步减小 */
+  padding: var(--spacing-lg) 0; /* 移动端进一步减小 */
 }
 
 .categorySection {
@@ -1200,7 +1199,6 @@
   .adSectionDesktop .adContainer {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
     text-align: center;
   }
 

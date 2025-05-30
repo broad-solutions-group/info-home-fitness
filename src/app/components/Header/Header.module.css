@@ -154,7 +154,7 @@
 
 /* 展开状态 */
 .searchFormExpanded {
-  width: 280px;
+  width: 220px; /* 从280px减少到220px */
   background-color: var(--white);
   border-color: var(--primary-green);
   box-shadow: 0 0 0 3px rgba(74, 177, 157, 0.1);
@@ -181,7 +181,7 @@
 
 /* 展开状态的输入框 */
 .searchInputExpanded {
-  width: 240px; /* 固定宽度，为按钮留出空间 */
+  width: 180px; /* 从240px减少到180px，为按钮留出空间 */
   opacity: 1;
   pointer-events: auto;
   transform: translateX(0);
@@ -488,11 +488,11 @@
   }
 
   .searchFormExpanded {
-    width: 240px;
+    width: 200px; /* 从240px减少到200px */
   }
 
   .searchInputExpanded {
-    width: 200px;
+    width: 160px; /* 从200px减少到160px */
   }
 }
 

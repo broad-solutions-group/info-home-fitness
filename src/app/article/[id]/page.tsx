@@ -99,11 +99,16 @@ export default function ArticlePage({ params }: ArticlePageProps) {
               </div>
               
               <h1 className={styles.articleTitle}>{article.title}</h1>
-              
-              <p className={styles.articleDescription}>
-                {article.description}
-              </p>
             </header>
+
+            {/* Advertisement Section */}
+            <section className={styles.adSection}>
+              <div className={styles.adContainer}>
+                <div className={styles.adPlaceholder}>
+                  📢 Advertisement Space - 广告位预留区域
+                </div>
+              </div>
+            </section>
 
             {/* Featured Image */}
             <div className={styles.articleImage}>

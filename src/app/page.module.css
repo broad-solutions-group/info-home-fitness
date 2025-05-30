@@ -497,7 +497,7 @@
   }
   
   .sectionTitle {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   
   .categorySection,
@@ -698,7 +698,7 @@
   }
   
   .sectionTitle {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
   }
   
   .categoryTitle {
@@ -713,13 +713,13 @@
 /* Section Headers */
 .sectionHeader {
   text-align: center;
-  margin-bottom: var(--spacing-2xl);
+  margin-bottom: var(--spacing-xl);
 }
 
 .sectionTitle {
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
   color: var(--text-dark-blue);
 }
 
@@ -732,7 +732,7 @@
 
 /* Trending Section */
 .trendingSection {
-  padding: var(--spacing-2xl) 0 var(--spacing-3xl) 0;
+  padding: var(--spacing-xl) 0 var(--spacing-2xl) 0;
   background-color: var(--white);
 }
 
@@ -747,7 +747,7 @@
 .familySection,
 .strengthSection,
 .motivationSection {
-  padding: var(--spacing-3xl) 0;
+  padding: var(--spacing-2xl) 0;
 }
 
 .categorySection {

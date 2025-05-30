@@ -41,73 +41,46 @@
 
 .heroContent {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-areas: 
-    "hero-title"
-    "hero-featured"
-    "hero-ad"
-    "hero-description"
-    "hero-buttons";
-  gap: var(--spacing-xs);
-  text-align: center;
-  padding: 0;
-  max-width: 100%;
+  grid-template-columns: 1.3fr 1fr;
+  gap: var(--spacing-2xl);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
   width: 100%;
-  margin: 0 auto;
+  margin: -20px auto 0 auto;
+  padding: 0 var(--spacing-md);
 }
 
 .heroText {
-  display: contents;
+  max-width: 600px;
 }
 
 .heroTitle {
-  grid-area: hero-title;
-  font-size: 1.5rem;
-  line-height: 1.1;
-  margin: -8px 0 0 0;
-  text-align: center;
+  font-size: 3rem;
   font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: var(--spacing-md);
+  padding: 10px 0;
   color: var(--white);
-  padding-top: 0 !important;
 }
 
 .heroDescription {
-  grid-area: hero-description;
-  font-size: 0.85rem;
-  margin-bottom: 0;
-  max-width: 100%;
-  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-xl);
   color: rgba(255, 255, 255, 0.9);
-  padding: 0 var(--spacing-sm);
 }
 
 .heroButtons {
-  grid-area: hero-buttons;
   display: flex;
-  justify-content: center;
-  gap: var(--spacing-xs);
-  flex-direction: row;
-  flex-wrap: nowrap;
-  width: 100%;
-  padding: 0 var(--spacing-sm);
-}
-
-.heroButtons .btn {
-  flex: 1;
-  min-width: 0;
-  max-width: none;
-  text-align: center;
-  font-size: 0.8rem;
-  padding: var(--spacing-xs) var(--spacing-xs);
-  white-space: nowrap;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
 }
 
 .heroFeatured {
-  grid-area: hero-featured;
   position: relative;
   min-height: 220px;
-  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.03));
-  margin: 0 var(--spacing-sm);
 }
 
 .heroFeatured .card {
@@ -516,7 +489,7 @@
   }
 
   .heroFeatured .content {
-    padding: var(--spacing-sm) !important; /* 移动端内边距 */
+    padding: var(--spacing-sm) !important;
     min-height: 130px !important; /* 确保内容区域足够高 */
   }
 

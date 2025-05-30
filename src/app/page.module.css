@@ -497,7 +497,11 @@
   }
   
   .sectionTitle {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+  }
+  
+  .sectionSubtitle {
+    font-size: 1rem;
   }
   
   .sectionTitleRow {
@@ -719,7 +723,11 @@
   }
   
   .sectionTitle {
-    font-size: 1.25rem;
+    font-size: 1.125rem; /* 从 1.25rem 进一步减小一级 */
+  }
+  
+  .sectionSubtitle {
+    font-size: 0.9rem; /* 从 1rem 进一步减小一级 */
   }
   
   .sectionTitleRow {
@@ -767,7 +775,7 @@
 }
 
 .sectionTitle {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0;
   color: var(--text-dark-blue);
@@ -782,7 +790,7 @@
 }
 
 .sectionSubtitle {
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: var(--gray-600);
   max-width: 600px;
   margin: 0 auto;

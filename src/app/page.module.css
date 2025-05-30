@@ -9,7 +9,7 @@
   padding: var(--spacing-2xl) 0;
   position: relative;
   overflow: hidden;
-  min-height: 60vh;
+  min-height: 45vh;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
@@ -375,7 +375,7 @@
 /* Responsive Design - 优化平板和移动端布局 */
 @media (max-width: 1024px) {
   .heroSection {
-    min-height: 50vh; /* 平板端进一步减少高度 */
+    min-height: 40vh; /* 平板端减少高度，保持比PC端稍小 */
     padding: var(--spacing-xl) 0; /* 减少padding */
     /* 保持flex布局的垂直居中 */
     display: flex;
@@ -443,7 +443,7 @@
 @media (max-width: 768px) {
   .heroSection {
     padding: var(--spacing-lg) 0; /* 移动端进一步减少padding */
-    min-height: 45vh; /* 移动端减少最小高度 */
+    min-height: 35vh; /* 移动端减少最小高度 */
     /* 移动端使用flex-start避免内容被截断 */
     display: flex;
     align-items: flex-start;
@@ -557,7 +557,7 @@
 @media (max-width: 480px) {
   .heroSection {
     padding: var(--spacing-md) 0; /* 小屏幕进一步减少padding */
-    min-height: 40vh; /* 小屏幕最小高度 */
+    min-height: 30vh; /* 小屏幕最小高度 */
     /* 小屏幕保持flex布局，顶部对齐 */
     display: flex;
     align-items: flex-start;

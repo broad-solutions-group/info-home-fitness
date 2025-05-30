@@ -298,7 +298,7 @@
     align-items: center;
     justify-content: center;
     transition: all var(--transition-fast);
-    margin: 0 var(--spacing-lg); /* 在两边添加间距 */
+    margin: 0 var(--spacing-md); /* 与adSection的上下padding保持一致 */
   }
 
   .adSectionMobile .adPlaceholder:hover {
@@ -461,7 +461,7 @@
     align-items: center;
     justify-content: center;
     transition: all var(--transition-fast);
-    margin: 0 var(--spacing-md); /* 在两边添加间距 */
+    margin: 0 var(--spacing-sm); /* 与adSection的上下padding保持一致 */
   }
 
   .adSectionMobile .adPlaceholder:hover {
@@ -690,7 +690,7 @@
     align-items: center;
     justify-content: center;
     transition: all var(--transition-fast);
-    margin: 0 var(--spacing-sm); /* 在两边添加较小的间距 */
+    margin: 0 var(--spacing-xs); /* 与adSection的上下padding保持一致 */
   }
 
   .adSectionMobile .adPlaceholder:hover {
@@ -941,7 +941,7 @@
     align-items: center;
     justify-content: center;
     transition: all var(--transition-fast);
-    margin: 0;
+    margin: 0 var(--spacing-xs); /* 与adSection的上下padding保持一致 */
   }
 
   .adSectionMobile .adPlaceholder:hover {

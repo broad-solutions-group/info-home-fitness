@@ -5,12 +5,24 @@
 }
 
 .markdownContent h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
-  margin: 2rem 0 1.5rem 0;
   color: #1a1a1a;
-  border-bottom: 3px solid #007bff;
-  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.markdownContent h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #007bff, #28a745);
+  border-radius: 2px;
 }
 
 .markdownContent h2 {
@@ -159,7 +171,13 @@
 /* 响应式设计 */
 @media (max-width: 768px) {
   .markdownContent h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .markdownContent h1::after {
+    width: 60px;
+    height: 2px;
   }
   
   .markdownContent h2 {
@@ -182,5 +200,12 @@
   
   .markdownContent pre {
     padding: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .markdownContent h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
   }
 } 

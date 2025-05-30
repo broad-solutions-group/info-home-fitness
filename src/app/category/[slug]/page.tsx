@@ -55,6 +55,15 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         </div>
       </section>
 
+      {/* 广告位 */}
+      <section className={styles.adSection}>
+        <div className={styles.adContainer}>
+          <div className={styles.adPlaceholder}>
+            📢 Advertisement Space - 广告位预留区域
+          </div>
+        </div>
+      </section>
+
       {/* Articles Grid */}
       <section className={styles.articlesSection}>
         <div className="container">

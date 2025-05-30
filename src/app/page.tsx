@@ -86,7 +86,12 @@ export default function Home() {
       <section className={styles.categorySection}>
         <div className="container">
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>🛠️ Build Your Home Gym</h2>
+            <div className={styles.sectionTitleRow}>
+              <h2 className={styles.sectionTitle}>🛠️ Build Your Home Gym</h2>
+              <Link href="/category/affordable-home-gym-setups" className={styles.viewAllLink}>
+                View All →
+              </Link>
+            </div>
             <p className={styles.sectionSubtitle}>
               Smart solutions for every space and budget
             </p>
@@ -96,12 +101,6 @@ export default function Home() {
               .filter(category => category.name === 'Affordable Home Gym Setups')
               .map(category => (
                 <div key={category.id} className={styles.categoryBlock}>
-                  <div className={styles.categoryHeader}>
-                    <h3 className={styles.categoryTitle}>{category.name}</h3>
-                    <Link href="/category/affordable-home-gym-setups" className={styles.viewAllLink}>
-                      View All →
-                    </Link>
-                  </div>
                   <div className={styles.categoryArticles}>
                     {category.articles.map(article => (
                       <ArticleCard 
@@ -121,7 +120,12 @@ export default function Home() {
       <section className={styles.familySection}>
         <div className="container">
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>👨‍👩‍👧‍👦 Family & Kids Fitness</h2>
+            <div className={styles.sectionTitleRow}>
+              <h2 className={styles.sectionTitle}>👨‍👩‍👧‍👦 Family & Kids Fitness</h2>
+              <Link href="/category/family-kids-friendly-workouts" className={styles.viewAllLink}>
+                View All →
+              </Link>
+            </div>
             <p className={styles.sectionSubtitle}>
               Fun activities that get the whole family moving together
             </p>
@@ -131,12 +135,6 @@ export default function Home() {
               .filter(category => category.name === 'Family & Kids Friendly Workouts')
               .map(category => (
                 <div key={category.id} className={styles.categoryBlock}>
-                  <div className={styles.categoryHeader}>
-                    <h3 className={styles.categoryTitle}>{category.name}</h3>
-                    <Link href="/category/family-kids-friendly-workouts" className={styles.viewAllLink}>
-                      View All →
-                    </Link>
-                  </div>
                   <div className={styles.categoryArticles}>
                     {category.articles.map(article => (
                       <ArticleCard 
@@ -156,7 +154,12 @@ export default function Home() {
       <section className={styles.strengthSection}>
         <div className="container">
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>💪 Strength Training Without Equipment</h2>
+            <div className={styles.sectionTitleRow}>
+              <h2 className={styles.sectionTitle}>💪 Strength Training Without Equipment</h2>
+              <Link href="/category/strength-training-without-equipment" className={styles.viewAllLink}>
+                View All →
+              </Link>
+            </div>
             <p className={styles.sectionSubtitle}>
               Build muscle and strength using just your bodyweight
             </p>
@@ -166,12 +169,6 @@ export default function Home() {
               .filter(category => category.name === 'Strength Training Without Equipment')
               .map(category => (
                 <div key={category.id} className={styles.categoryBlock}>
-                  <div className={styles.categoryHeader}>
-                    <h3 className={styles.categoryTitle}>{category.name}</h3>
-                    <Link href="/category/strength-training-without-equipment" className={styles.viewAllLink}>
-                      View All →
-                    </Link>
-                  </div>
                   <div className={styles.categoryArticles}>
                     {category.articles.map(article => (
                       <ArticleCard 
@@ -191,7 +188,12 @@ export default function Home() {
       <section className={styles.motivationSection}>
         <div className="container">
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>🧠 Fitness Habits That Stick</h2>
+            <div className={styles.sectionTitleRow}>
+              <h2 className={styles.sectionTitle}>🧠 Fitness Habits That Stick</h2>
+              <Link href="/category/motivation-habit-building-tips" className={styles.viewAllLink}>
+                View All →
+              </Link>
+            </div>
             <p className={styles.sectionSubtitle}>
               Build lasting motivation and create sustainable workout routines
             </p>
@@ -201,12 +203,6 @@ export default function Home() {
               .filter(category => category.name === 'Motivation & Habit Building Tips')
               .map(category => (
                 <div key={category.id} className={styles.categoryBlock}>
-                  <div className={styles.categoryHeader}>
-                    <h3 className={styles.categoryTitle}>{category.name}</h3>
-                    <Link href="/category/motivation-habit-building-tips" className={styles.viewAllLink}>
-                      View All →
-                    </Link>
-                  </div>
                   <div className={styles.categoryArticles}>
                     {category.articles.map(article => (
                       <ArticleCard 

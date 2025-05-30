@@ -500,6 +500,13 @@
     font-size: 1.5rem;
   }
   
+  .sectionTitleRow {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+  
   .categorySection,
   .familySection,
   .strengthSection,
@@ -701,6 +708,13 @@
     font-size: 1.25rem;
   }
   
+  .sectionTitleRow {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+  
   .categoryTitle {
     font-size: 1.25rem;
   }
@@ -716,11 +730,27 @@
   margin-bottom: var(--spacing-xl);
 }
 
+.sectionTitleRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+  position: relative;
+}
+
 .sectionTitle {
   font-size: 1.75rem;
   font-weight: 700;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 0;
   color: var(--text-dark-blue);
+  text-align: center;
+}
+
+.sectionTitleRow .viewAllLink {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .sectionSubtitle {
@@ -777,7 +807,7 @@
 .categoryBlock {
   background-color: var(--white);
   border-radius: var(--radius-xl);
-  padding: var(--spacing-2xl);
+  padding: var(--spacing-xl);
   box-shadow: var(--shadow-md);
   border-top: 1px solid var(--gray-100);
 }

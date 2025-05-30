@@ -8,7 +8,7 @@
   color: var(--white);
   padding: var(--spacing-xl) 0;
   text-align: center;
-  min-height: 40vh;
+  min-height: 25vh;
   display: flex;
   align-items: center;
 }
@@ -50,23 +50,57 @@
   opacity: 0.6;
 }
 
+/* 广告位样式 */
+.adSection {
+  background-color: var(--white);
+  padding: var(--spacing-lg) 0;
+  border-bottom: 1px solid var(--gray-200);
+  position: relative;
+  z-index: 10;
+}
+
+.adContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  text-align: center;
+}
+
+.adPlaceholder {
+  background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
+  border: 2px dashed var(--gray-300);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  color: var(--gray-600);
+  font-size: 0.875rem;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.adPlaceholder:hover {
+  border-color: var(--primary-green);
+  background: linear-gradient(135deg, rgba(74, 177, 157, 0.05), rgba(74, 177, 157, 0.1));
+}
+
 /* Articles Section */
 .articlesSection {
   padding: var(--spacing-3xl) 0;
-  background-color: var(--bg-light-gray);
+  background-color: var(--white);
 }
 
 .articlesHeader {
+  text-align: center;
   margin-bottom: var(--spacing-2xl);
-  padding-bottom: var(--spacing-lg);
-  border-bottom: 2px solid var(--gray-200);
 }
 
 .articlesTitle {
   font-size: 2rem;
   font-weight: 700;
   color: var(--text-dark-blue);
-  margin: 0;
+  margin-bottom: var(--spacing-md);
 }
 
 .articlesGrid {
@@ -78,36 +112,33 @@
 /* Empty State */
 .emptyState {
   text-align: center;
-  padding: var(--spacing-3xl) var(--spacing-lg);
-  background-color: var(--white);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-3xl) 0;
+  color: var(--gray-600);
 }
 
 .emptyIcon {
   font-size: 4rem;
-  display: block;
   margin-bottom: var(--spacing-lg);
-  opacity: 0.6;
+  display: block;
 }
 
 .emptyTitle {
   font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-dark-blue);
+  font-weight: 600;
   margin-bottom: var(--spacing-md);
+  color: var(--text-dark-blue);
 }
 
 .emptyDescription {
-  color: var(--gray-600);
-  font-size: 1.125rem;
-  margin: 0;
+  font-size: 1rem;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
-/* Related Section */
+/* Related Categories */
 .relatedSection {
   padding: var(--spacing-3xl) 0;
-  background-color: var(--white);
+  background-color: var(--bg-light-gray);
 }
 
 .relatedTitle {
@@ -125,38 +156,32 @@
 }
 
 .relatedCard {
-  background-color: var(--bg-light-gray);
+  background-color: var(--white);
   border-radius: var(--radius-lg);
   padding: var(--spacing-xl);
-  text-align: center;
   text-decoration: none;
   color: inherit;
   transition: all var(--transition-normal);
-  border: 2px solid transparent;
+  border: 1px solid var(--gray-200);
+  display: block;
 }
 
 .relatedCard:hover {
-  background-color: var(--white);
-  border-color: var(--primary-green);
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
+  border-color: var(--primary-green);
 }
 
 .relatedName {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: var(--text-dark-blue);
   margin-bottom: var(--spacing-sm);
-  transition: color var(--transition-fast);
-}
-
-.relatedCard:hover .relatedName {
-  color: var(--primary-green);
+  color: var(--text-dark-blue);
 }
 
 .relatedCount {
-  color: var(--gray-600);
   font-size: 0.875rem;
+  color: var(--gray-600);
   margin: 0;
 }
 
@@ -164,7 +189,18 @@
 @media (max-width: 768px) {
   .heroSection {
     padding: var(--spacing-lg) 0;
-    min-height: 35vh;
+    min-height: 25vh;
+  }
+  
+  .adSection {
+    padding: var(--spacing-md) 0;
+  }
+  
+  .adPlaceholder {
+    padding: var(--spacing-lg);
+    min-height: 80px;
+    font-size: 0.8rem;
+    margin: 0 var(--spacing-md);
   }
   
   .categoryIcon {
@@ -200,19 +236,30 @@
     grid-template-columns: 1fr;
   }
   
-  .relatedGrid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  .relatedSection {
+    padding: var(--spacing-2xl) 0;
   }
   
-  .relatedCard {
-    padding: var(--spacing-lg);
+  .relatedTitle {
+    font-size: 1.75rem;
+  }
+  
+  .relatedGrid {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 480px) {
   .heroSection {
-    min-height: 30vh;
     padding: var(--spacing-md) 0;
+    min-height: 20vh;
+  }
+  
+  .adPlaceholder {
+    padding: var(--spacing-md);
+    min-height: 60px;
+    font-size: 0.75rem;
+    margin: 0 var(--spacing-sm);
   }
   
   .categoryTitle {

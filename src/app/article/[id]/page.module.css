@@ -192,13 +192,13 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
-  position: fixed;
+  position: sticky;
   top: calc(70px + var(--spacing-lg));
-  right: calc((100vw - 1200px) / 2);
   width: 340px;
   max-height: calc(100vh - 70px - var(--spacing-lg) * 2);
   overflow: hidden;
   z-index: 10;
+  align-self: flex-start;
 }
 
 .sidebarCard {

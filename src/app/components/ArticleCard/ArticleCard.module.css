@@ -160,7 +160,7 @@
 }
 
 .featured .imageContainer {
-  height: 320px;
+  height: 220px;
 }
 
 .featured .title {
@@ -202,6 +202,11 @@
 }
 
 /* Responsive Design */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .featured .imageContainer {
+    height: 320px;
+  }
+}
 @media (max-width: 768px) {
   .featured {
     grid-column: span 1;
@@ -326,5 +331,20 @@
     -webkit-line-clamp: 8;
     font-size: 1.1rem;
     line-height: 1.7;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .cardLink {
+    flex-direction: row;
+  }
+
+  .imageContainer {
+    width: 50%;
+  }
+
+  .description {
+    text-align: left;
+    -webkit-line-clamp: 8 !important;
   }
 }

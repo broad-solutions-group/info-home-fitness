@@ -202,7 +202,7 @@
 }
 
 /* Responsive Design - 优化平板和移动端布局 */
-@media (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   .heroSection {
     min-height: 40vh; /* 平板端减少高度，保持比PC端稍小 */
     padding: var(--spacing-xl) 0; /* 减少padding */
@@ -234,9 +234,9 @@
 
   .heroTitle {
     grid-area: hero-title;
-    font-size: 2.75rem; /* 从 3rem 减少 */
+    font-size: 2.2rem; /* 从 3rem 减少 */
     text-align: center; /* 标题居中对齐 */
-    padding: 0 var(--spacing-lg); /* 增加两边间距 */
+    padding: 0;
   }
 
   .heroDescription {

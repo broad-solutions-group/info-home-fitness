@@ -110,7 +110,7 @@
   gap: var(--spacing-2xl);
   align-items: center;
   width: 100%;
-  max-width: 1060px;
+  max-width: 1040px;
   margin: 0 auto;
 }
 
@@ -200,11 +200,11 @@
 }
 
 .prevButton {
-  left: 0;
+  left: var(--spacing-sm);
 }
 
 .nextButton {
-  right: 0;
+  right: var(--spacing-sm);
 }
 
 /* 指示器 */
@@ -256,14 +256,6 @@
   .navButton {
     width: 44px;
     height: 44px;
-  }
-
-  .prevButton {
-    left: var(--spacing-sm);
-  }
-
-  .nextButton {
-    right: var(--spacing-sm);
   }
 }
 

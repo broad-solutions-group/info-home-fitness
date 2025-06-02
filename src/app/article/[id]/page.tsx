@@ -140,52 +140,42 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
           {/* Sidebar */}
           <aside className={styles.articleSidebar}>
-            {/* Quick Navigation */}
-            <div className={styles.sidebarCard}>
-              <h3 className={styles.sidebarTitle}>Quick Navigation</h3>
-              <nav className={styles.quickNav}>
-                <Link href="/" className={styles.navLink}>
-                  🏠 Home
-                </Link>
-                <Link href="/category/affordable-home-gym-setups" className={styles.navLink}>
-                  💰 Budget Gym Setups
-                </Link>
-                <Link href="/category/family-kids-friendly-workouts" className={styles.navLink}>
-                  👨‍👩‍👧‍👦 Family Workouts
-                </Link>
-                <Link href="/category/strength-training-without-equipment" className={styles.navLink}>
-                  💪 Bodyweight Training
-                </Link>
-                <Link href="/category/motivation-habit-building-tips" className={styles.navLink}>
-                  🧠 Motivation Tips
-                </Link>
-              </nav>
-            </div>
-
             {/* Popular Articles */}
             <div className={styles.sidebarCard}>
               <h3 className={styles.sidebarTitle}>Popular This Week</h3>
               <div className={styles.popularList}>
-                {dataService.getAllArticles().slice(0, 3).map((popularArticle, index) => (
-                  <Link 
-                    key={popularArticle.id}
-                    href={`/article/${popularArticle.id}`}
-                    className={styles.popularItem}
-                  >
-                    <span className={styles.popularNumber}>{index + 1}</span>
-                    <div className={styles.popularContent}>
-                      <h4 className={styles.popularTitle}>
-                        {popularArticle.title.length > 60 
-                          ? popularArticle.title.substring(0, 60) + '...'
-                          : popularArticle.title
-                        }
-                      </h4>
-                      <span className={styles.popularDuration}>
-                        {popularArticle.duration}
-                      </span>
-                    </div>
-                  </Link>
-                ))}
+                {dataService.getPopularArticlesFromDifferentCategories(4).map((popularArticle, index) => {
+                  const category = dataService.getArticleCategory(popularArticle.id);
+                  const categoryShortName = category ? dataService.getCategoryShortName(category.name) : '';
+                  
+                  return (
+                    <Link 
+                      key={popularArticle.id}
+                      href={`/article/${popularArticle.id}`}
+                      className={styles.popularItem}
+                    >
+                      <span className={styles.popularNumber}>{index + 1}</span>
+                      <div className={styles.popularContent}>
+                        <h4 className={styles.popularTitle}>
+                          {popularArticle.title.length > 60 
+                            ? popularArticle.title.substring(0, 60) + '...'
+                            : popularArticle.title
+                          }
+                        </h4>
+                        <div className={styles.popularMeta}>
+                          {categoryShortName && (
+                            <span className={styles.popularCategory}>
+                              {categoryShortName}
+                            </span>
+                          )}
+                          <span className={styles.popularDuration}>
+                            {popularArticle.duration}
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </aside>

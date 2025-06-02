@@ -113,6 +113,54 @@ class DataService {
 
     return relatedArticles;
   }
+
+  // 根据文章ID获取文章所属的分类
+  getArticleCategory(articleId: number): Category | null {
+    return this.data.categories.find(category =>
+      category.articles.some(article => article.id === articleId)
+    ) || null;
+  }
+
+  // 获取分类的简短名称（用于标签显示）
+  getCategoryShortName(categoryName: string): string {
+    const shortNameMap: { [key: string]: string } = {
+      'Affordable Home Gym Setups': '💰 Budget',
+      'Family & Kids Friendly Workouts': '👨‍👩‍👧‍👦 Family',
+      'Strength Training Without Equipment': '💪 Bodyweight',
+      'Motivation & Habit Building Tips': '🧠 Motivation'
+    };
+
+    return shortNameMap[categoryName] || categoryName;
+  }
+
+  // 获取来自不同分类的热门文章（每个分类一篇）
+  getPopularArticlesFromDifferentCategories(limit: number = 4): Article[] {
+    const popularArticles: Article[] = [];
+    const usedCategories = new Set<string>();
+
+    // 遍历所有分类，每个分类取第一篇文章
+    for (const category of this.data.categories) {
+      if (popularArticles.length >= limit) break;
+      
+      if (category.articles.length > 0 && !usedCategories.has(category.name)) {
+        popularArticles.push(category.articles[0]);
+        usedCategories.add(category.name);
+      }
+    }
+
+    // 如果还没有达到限制数量，从剩余文章中补充
+    if (popularArticles.length < limit) {
+      const allArticles = this.getAllArticles();
+      const remainingArticles = allArticles.filter(article => 
+        !popularArticles.some(popular => popular.id === article.id)
+      );
+      
+      const needed = limit - popularArticles.length;
+      popularArticles.push(...remainingArticles.slice(0, needed));
+    }
+
+    return popularArticles;
+  }
 }
 
 export const dataService = new DataService(); 

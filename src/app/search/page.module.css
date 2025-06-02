@@ -49,6 +49,17 @@
   gap: var(--spacing-lg);
 }
 
+/* Featured card in results grid spans 2 columns on desktop */
+@media (min-width: 769px) {
+  .resultsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .resultsGrid > :first-child {
+    grid-column: span 2;
+  }
+}
+
 /* Loading State */
 .loadingState {
   text-align: center;

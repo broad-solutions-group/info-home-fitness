@@ -144,7 +144,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
             <div className={styles.sidebarCard}>
               <h3 className={styles.sidebarTitle}>Popular This Week</h3>
               <div className={styles.popularList}>
-                {dataService.getPopularArticlesFromDifferentCategories(10).map((popularArticle, index) => {
+                {dataService.getPopularArticlesFromDifferentCategories(3).map((popularArticle, index) => {
                   const category = dataService.getArticleCategory(popularArticle.id);
                   const categoryShortName = category ? dataService.getCategoryShortName(category.name) : '';
                   

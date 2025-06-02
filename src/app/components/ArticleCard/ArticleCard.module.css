@@ -377,35 +377,52 @@
     line-height: 1.7;
   }
   
-  /* 首卡特殊样式：增大图片高度，让描述撑满剩余空间 */
-  .firstCard .imageContainer {
+  /* 确保所有默认变体的卡片描述都是3行 */
+  .card:not(.featured) .description {
+    -webkit-line-clamp: 3 !important;
+  }
+  
+  /* Hero区域首卡特殊样式：增大图片高度，让描述撑满剩余空间 */
+  /* 使用更具体的选择器，避免影响 Trending Now 部分 */
+  .heroContext .firstCard .imageContainer {
     height: 280px; /* 从220px增加到280px */
   }
   
-  .firstCard .description {
+  .heroContext .firstCard .description {
     -webkit-line-clamp: 4; /* 增加描述行数到4行 */
     font-size: 1rem; /* 稍微增大字体 */
     line-height: 1.7; /* 增加行高提升可读性 */
   }
   
-  /* Featured变体的首卡样式 */
-  .firstCard.featured .imageContainer {
+  /* Hero区域Featured变体的首卡样式 */
+  .heroContext .firstCard.featured .imageContainer {
     height: 320px; /* Featured的首卡图片更高 */
   }
   
-  .firstCard.featured .description {
+  .heroContext .firstCard.featured .description {
     -webkit-line-clamp: 4; /* Featured首卡描述4行 */
     font-size: 1.1rem;
     line-height: 1.8;
   }
   
-  /* 默认变体的首卡样式 */
-  .firstCard:not(.featured) .imageContainer {
+  /* Hero区域默认变体的首卡样式 */
+  .heroContext .firstCard:not(.featured) .imageContainer {
     height: 280px;
   }
   
-  .firstCard:not(.featured) .description {
+  .heroContext .firstCard:not(.featured) .description {
     -webkit-line-clamp: 4;
+  }
+  
+  /* Trending Now 和其他区域的首卡保持标准样式，描述最多3行 */
+  .trendingContext .firstCard .description,
+  .categoryContext .firstCard .description {
+    -webkit-line-clamp: 3 !important;
+  }
+  
+  /* 强制确保 Trending Now 区域的所有卡片描述都是3行 */
+  .trendingContext .card .description {
+    -webkit-line-clamp: 3 !important;
   }
 }
 

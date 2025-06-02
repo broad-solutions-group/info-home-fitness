@@ -50,7 +50,7 @@ export default function Home() {
               Most popular articles this week - don&apos;t miss out!
             </p>
           </div>
-          <div className={styles.trendingGrid}>
+          <div className={`${styles.trendingGrid} trendingContext`}>
             {trendingArticles.map((article, index) => (
               <ArticleCard 
                 key={article.id} 

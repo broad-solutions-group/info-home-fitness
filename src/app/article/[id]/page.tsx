@@ -219,7 +219,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                               src={recommendedArticle.imageUrl}
                               alt={recommendedArticle.title}
                               fill
-                              sizes="80px"
+                              sizes="(max-width: 1024px) 80px, 160px"
                             />
                           </div>
                         </Link>

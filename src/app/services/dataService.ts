@@ -18,8 +18,8 @@ class DataService {
     const allArticles = this.getAllArticles();
     
     return {
-      heroArticles: allArticles.slice(0, 3), // 轮播图文章
-      trendingArticles: allArticles.slice(3, 11), // 热门文章，增加到8个
+      heroArticles: allArticles.slice(0, 4), // 轮播图文章增加到4个
+      trendingArticles: allArticles.slice(4, 12), // 热门文章，增加到8个
       categoryPreviews: this.data.categories.map(category => ({
         ...category,
         articles: category.articles.slice(0, 3) // 每个分类预览3篇文章

@@ -1,5 +1,6 @@
 import { dataService } from './services/dataService';
 import ArticleCard from './components/ArticleCard/ArticleCard';
+import HeroBanner from './components/HeroBanner/HeroBanner';
 import BackToTop from './components/BackToTop/BackToTop';
 import Link from 'next/link';
 import styles from './page.module.css';
@@ -28,46 +29,8 @@ export default function Home() {
 
   return (
     <div className={styles.homePage}>
-      {/* Hero Banner */}
-      <section className={styles.heroSection}>
-        <div className={styles.heroContent}>
-          <div className={styles.heroText}>
-            <h1 className={styles.heroTitle}>
-              Transform Your Home Into Your <span className="text-primary">Perfect Gym</span>
-            </h1>
-            <p className={styles.heroDescription}>
-              Discover budget-friendly setups, family-friendly workouts, and equipment-free training. 
-              Get fit at home without breaking the bank or sacrificing space.
-            </p>
-            <div className={styles.heroButtons}>
-              <Link href="/category/affordable-home-gym-setups" className="btn btn-primary">
-                Start Building Your Gym
-              </Link>
-              <Link href="/category/family-kids-friendly-workouts" className="btn btn-secondary">
-                Family Workouts
-              </Link>
-            </div>
-          </div>
-          <div className={styles.heroFeatured}>
-            {heroArticles[0] && (
-              <ArticleCard 
-                article={heroArticles[0]} 
-                variant="featured"
-                showCategory={false}
-              />
-            )}
-          </div>
-          
-          {/* 广告位 - 移动端在banner内显示 */}
-          <section className={`${styles.adSection} ${styles.adSectionMobile}`}>
-            <div className={styles.adContainer}>
-              <div className={styles.adPlaceholder}>
-                📢 Advertisement Space - 广告位预留区域
-              </div>
-            </div>
-          </section>
-        </div>
-      </section>
+      {/* Hero Banner 轮播 */}
+      <HeroBanner articles={heroArticles} />
 
       {/* 广告位 - PC端在banner外显示 */}
       <section className={`${styles.adSection} ${styles.adSectionDesktop}`}>

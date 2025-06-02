@@ -998,6 +998,17 @@
   gap: var(--spacing-lg);
 }
 
+/* Featured card in trending grid spans 2 columns on desktop */
+@media (min-width: 769px) {
+  .trendingGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .trendingGrid > :first-child {
+    grid-column: span 2;
+  }
+}
+
 /* Category Sections */
 .categorySection,
 .familySection,

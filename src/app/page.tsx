@@ -92,7 +92,7 @@ export default function Home() {
               <ArticleCard 
                 key={article.id} 
                 article={article}
-                variant="default"
+                variant={index === 0 ? "featured" : "default"}
                 showCategory={false}
               />
             ))}

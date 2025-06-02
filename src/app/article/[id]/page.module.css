@@ -467,8 +467,8 @@
 
 /* Related Articles */
 .relatedSection {
-  margin-top: var(--spacing-2xl);
-  padding: var(--spacing-2xl) 0 var(--spacing-3xl) 0;
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-xl) 0 var(--spacing-2xl) 0;
   background-color: var(--white);
 }
 
@@ -476,7 +476,7 @@
   font-size: 2rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: var(--spacing-2xl);
+  margin-bottom: var(--spacing-xl);
   color: var(--text-dark-blue);
 }
 
@@ -501,13 +501,16 @@
     display: flex;
     flex-direction: column;
     max-height: none;
+    height: auto;
     overflow: visible;
+    width: 100%;
   }
   
   .sidebarCard {
     display: flex;
     flex-direction: column;
     max-height: none;
+    height: auto;
     overflow: visible;
   }
   
@@ -516,6 +519,7 @@
     overflow: visible;
     padding-right: 0;
     margin-right: 0;
+    max-height: none;
   }
   
   .popularSection {
@@ -558,6 +562,11 @@
   
   .articleTitle {
     font-size: 2rem;
+  }
+
+  /* 确保隐藏滚动条的样式在平板上也被禁用 */
+  .sidebarContent::-webkit-scrollbar {
+    display: block;
   }
 }
 
@@ -615,6 +624,35 @@
   .relatedGrid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--spacing-md);
+  }
+
+  /* 侧边栏移动端样式重置 */
+  .articleSidebar {
+    width: 100%;
+    max-height: none;
+    height: auto;
+    overflow: visible;
+    position: static;
+  }
+  
+  .sidebarCard {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+  
+  .sidebarContent {
+    overflow: visible;
+    max-height: none;
+    height: auto;
+    flex: none;
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  /* 移动端禁用滚动条隐藏 */
+  .sidebarContent::-webkit-scrollbar {
+    display: block;
   }
 }
 
@@ -674,6 +712,44 @@
   .recommendImage {
     width: 70px;
     height: 70px;
+  }
+
+  /* 小屏幕侧边栏样式确保 */
+  .articleLayout {
+    gap: var(--spacing-md);
+  }
+
+  .articleSidebar {
+    width: 100%;
+    max-height: none;
+    height: auto;
+    overflow: visible;
+    position: static;
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .sidebarCard {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    padding: var(--spacing-md);
+  }
+  
+  .sidebarContent {
+    overflow: visible;
+    max-height: none;
+    height: auto;
+    flex: none;
+  }
+
+  /* 小屏幕取消侧边栏项目内边距 */
+  .popularItem {
+    padding: 0;
+  }
+
+  .recommendItem {
+    padding: 0;
   }
 }
 

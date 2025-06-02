@@ -94,6 +94,7 @@ function SearchPageContent() {
                   variant={index === 0 ? "featured" : "default"}
                   showCategory={true}
                   categoryName="Search Result"
+                  isFirstCard={index === 0}
                 />
               ))}
             </div>

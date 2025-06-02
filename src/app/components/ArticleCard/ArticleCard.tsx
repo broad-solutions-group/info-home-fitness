@@ -8,13 +8,15 @@ interface ArticleCardProps {
   variant?: 'default' | 'featured' | 'compact';
   showCategory?: boolean;
   categoryName?: string;
+  isFirstCard?: boolean;
 }
 
 const ArticleCard = ({ 
   article, 
   variant = 'default', 
   showCategory = false, 
-  categoryName 
+  categoryName,
+  isFirstCard = false
 }: ArticleCardProps) => {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -25,8 +27,10 @@ const ArticleCard = ({
     });
   };
 
+  const cardClassName = `${styles.card} ${styles[variant]} ${isFirstCard ? styles.firstCard : ''}`;
+
   return (
-    <article className={`${styles.card} ${styles[variant]}`}>
+    <article className={cardClassName}>
       <Link href={`/article/${article.id}`} className={styles.cardLink}>
         {/* Image */}
         <div className={styles.imageContainer}>

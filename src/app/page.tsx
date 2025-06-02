@@ -94,6 +94,7 @@ export default function Home() {
                 article={article}
                 variant={index === 0 ? "featured" : "default"}
                 showCategory={false}
+                isFirstCard={index === 0}
               />
             ))}
           </div>

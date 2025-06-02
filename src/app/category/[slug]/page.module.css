@@ -62,7 +62,6 @@
 .adContainer {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
   text-align: center;
 }
 
@@ -87,7 +86,7 @@
 
 /* Articles Section */
 .articlesSection {
-  padding: var(--spacing-3xl) 0;
+  padding: var(--spacing-2xl) 0;
   background-color: var(--white);
 }
 
@@ -148,7 +147,7 @@
 
 /* Related Categories */
 .relatedSection {
-  padding: var(--spacing-3xl) 0;
+  padding: var(--spacing-2xl) 0;
   background-color: var(--bg-light-gray);
 }
 

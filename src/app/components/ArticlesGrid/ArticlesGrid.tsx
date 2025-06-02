@@ -33,6 +33,7 @@ const ArticlesGrid = ({ articles, showCategory = false, gridClassName }: Article
           article={article}
           variant={index === 0 && !isMobile ? "featured" : "default"}
           showCategory={showCategory}
+          isFirstCard={index === 0}
         />
       ))}
     </div>

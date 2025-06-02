@@ -349,6 +349,115 @@
   color: var(--gray-500);
 }
 
+/* More Recommend Articles */
+.recommendList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  overflow-y: scroll;
+  flex: 1;
+  min-height: 0;
+  padding-right: var(--spacing-xs);
+  margin-right: calc(-1 * var(--spacing-xs));
+  
+  /* 隐藏滚动条但保持滚动功能 */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* 隐藏 Webkit 浏览器的滚动条 */
+.recommendList::-webkit-scrollbar {
+  display: none;
+}
+
+.recommendItem {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color var(--transition-fast);
+  min-height: 80px;
+}
+
+.recommendItem:hover {
+  background-color: var(--gray-100);
+}
+
+.recommendContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.recommendTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-dark-blue);
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.3;
+  /* 限制标题为2行 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recommendDescription {
+  font-size: 0.75rem;
+  color: var(--gray-600);
+  line-height: 1.4;
+  margin-bottom: var(--spacing-xs);
+  /* 限制描述为2行 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recommendMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.recommendCategory {
+  font-size: 0.7rem;
+  color: var(--white);
+  background-color: var(--primary-orange);
+  padding: 2px var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+
+.recommendDuration {
+  font-size: 0.7rem;
+  color: var(--gray-500);
+}
+
+.recommendImage {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: var(--gray-200);
+}
+
+.recommendImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Related Articles */
 .relatedSection {
   margin-top: var(--spacing-2xl);
@@ -393,6 +502,13 @@
   }
   
   .popularList {
+    overflow-y: visible;
+    flex: none;
+    min-height: auto;
+    max-height: none;
+  }
+  
+  .recommendList {
     overflow-y: visible;
     flex: none;
     min-height: auto;
@@ -502,5 +618,25 @@
   .popularCategory,
   .popularDuration {
     font-size: 0.7rem;
+  }
+  
+  /* Recommend Articles 小屏幕调整 */
+  .recommendTitle {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+  
+  .recommendDescription {
+    font-size: 0.7rem;
+  }
+  
+  .recommendCategory,
+  .recommendDuration {
+    font-size: 0.65rem;
+  }
+  
+  .recommendImage {
+    width: 70px;
+    height: 70px;
   }
 } 

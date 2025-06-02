@@ -208,6 +208,23 @@ class DataService {
 
     return popularArticles;
   }
+
+  // 获取推荐文章（用于More Recommend版块）
+  getRecommendedArticles(currentArticleId: number, limit: number = 6): Article[] {
+    const allArticles = this.getAllArticles();
+    
+    if (allArticles.length === 0) {
+      return [];
+    }
+    
+    // 简单的实现：排除当前文章，返回其他文章
+    const otherArticles = allArticles.filter(article => article.id !== currentArticleId);
+    
+    // 随机打乱并取前limit个
+    const shuffled = otherArticles.sort(() => Math.random() - 0.5);
+    
+    return shuffled.slice(0, Math.min(limit, shuffled.length));
+  }
 }
 
 export const dataService = new DataService(); 

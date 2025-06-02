@@ -21,6 +21,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   }
 
   const relatedArticles = dataService.getRelatedArticles(articleId, 6);
+  const recommendedArticles = dataService.getRecommendedArticles(articleId, 6);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -175,6 +176,54 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                 })}
               </div>
             </div>
+
+            {/* More Recommend */}
+            {recommendedArticles && recommendedArticles.length > 0 && (
+              <div className={styles.sidebarCard}>
+                <h3 className={styles.sidebarTitle}>More Recommend</h3>
+                <div className={styles.recommendList}>
+                  {recommendedArticles.map((recommendedArticle) => {
+                    const category = dataService.getArticleCategory(recommendedArticle.id);
+                    const categoryShortName = category ? dataService.getCategoryShortName(category.name) : '';
+                    
+                    return (
+                      <Link 
+                        key={recommendedArticle.id}
+                        href={`/article/${recommendedArticle.id}`}
+                        className={styles.recommendItem}
+                      >
+                        <div className={styles.recommendContent}>
+                          <h4 className={styles.recommendTitle}>
+                            {recommendedArticle.title}
+                          </h4>
+                          <p className={styles.recommendDescription}>
+                            {recommendedArticle.description}
+                          </p>
+                          <div className={styles.recommendMeta}>
+                            {categoryShortName && (
+                              <span className={styles.recommendCategory}>
+                                {categoryShortName}
+                              </span>
+                            )}
+                            <span className={styles.recommendDuration}>
+                              {recommendedArticle.duration}
+                            </span>
+                          </div>
+                        </div>
+                        <div className={styles.recommendImage}>
+                          <OptimizedImage
+                            src={recommendedArticle.imageUrl}
+                            alt={recommendedArticle.title}
+                            fill
+                            sizes="80px"
+                          />
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </aside>
         </div>
       </div>

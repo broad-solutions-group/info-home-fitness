@@ -182,7 +182,7 @@
 .featured .description {
   font-size: 1rem;
   margin-bottom: var(--spacing-sm);
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
 }
 
 .featured .overlayTitle {
@@ -210,7 +210,7 @@
 .compact .description {
   font-size: 0.875rem;
   margin-bottom: var(--spacing-sm);
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
 }
 
 .compact .meta {
@@ -295,7 +295,7 @@
 
   .featured .description {
     font-size: 0.9rem;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
   }
 
   .featured .overlayTitle {
@@ -336,7 +336,7 @@
   
   .description {
     font-size: 0.875rem;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
   }
   
   .meta {
@@ -372,7 +372,7 @@
 /* PC端featured描述优化 */
 @media (min-width: 769px) {
   .featured .description {
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 3;
     font-size: 1.1rem;
     line-height: 1.7;
   }
@@ -389,6 +389,6 @@
 
   .description {
     text-align: left;
-    -webkit-line-clamp: 4 !important;
+    -webkit-line-clamp: 3 !important;
   }
 }

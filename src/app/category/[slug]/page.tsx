@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { dataService } from '../../services/dataService';
-import ArticleCard from '../../components/ArticleCard/ArticleCard';
+import ArticlesGrid from '../../components/ArticlesGrid/ArticlesGrid';
 import BackToTop from '../../components/BackToTop/BackToTop';
 import styles from './page.module.css';
 
@@ -71,16 +71,11 @@ export default function CategoryPage({ params }: CategoryPageProps) {
             <h2 className={styles.articlesTitle}>All Articles</h2>
           </div>
           
-          <div className={styles.articlesGrid}>
-            {category.articles.map((article, index) => (
-              <ArticleCard 
-                key={article.id} 
-                article={article}
-                variant={index === 0 ? "featured" : "default"}
-                showCategory={false}
-              />
-            ))}
-          </div>
+          <ArticlesGrid 
+            articles={category.articles}
+            showCategory={false}
+            gridClassName={styles.articlesGrid}
+          />
 
           {category.articles.length === 0 && (
             <div className={styles.emptyState}>

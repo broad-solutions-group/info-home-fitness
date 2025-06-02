@@ -156,6 +156,8 @@ a:hover {
   cursor: pointer;
   transition: all var(--transition-fast);
   white-space: nowrap;
+  position: relative;
+  z-index: 10;
 }
 
 .btn-primary {

@@ -25,6 +25,7 @@
   bottom: 0;
   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
   opacity: 0.3;
+  z-index: 0;
 }
 
 .heroSection::after {
@@ -36,7 +37,7 @@
   height: 60px;
   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><defs><linearGradient id="waveGradient1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:white;stop-opacity:0.8"/><stop offset="100%" style="stop-color:white;stop-opacity:0.2"/></linearGradient><linearGradient id="waveGradient2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:white;stop-opacity:0.6"/><stop offset="100%" style="stop-color:white;stop-opacity:0.1"/></linearGradient><linearGradient id="waveGradient3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:white;stop-opacity:0.4"/><stop offset="100%" style="stop-color:white;stop-opacity:0.05"/></linearGradient></defs><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V120H0Z" fill="url(%23waveGradient1)"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V120H0Z" fill="url(%23waveGradient2)"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V120H0Z" fill="url(%23waveGradient3)"></path></svg>') no-repeat;
   background-size: cover;
-  z-index: 2;
+  z-index: 1;
 }
 
 .heroContent {
@@ -45,7 +46,7 @@
   gap: var(--spacing-2xl);
   align-items: center;
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 1200px;
   width: 100%;
   margin: -20px var(--spacing-md) 0 var(--spacing-md);
@@ -75,6 +76,8 @@
   display: flex;
   gap: var(--spacing-md);
   flex-wrap: wrap;
+  position: relative;
+  z-index: 20;
 }
 
 .heroFeatured {
@@ -163,7 +166,7 @@
   padding: var(--spacing-lg) 0;
   border-bottom: 1px solid var(--gray-200);
   position: relative;
-  z-index: 10;
+  z-index: 5;
 }
 
 /* PC端广告位：默认显示 */
@@ -249,6 +252,8 @@
     grid-area: hero-buttons;
     justify-content: center; /* 按钮居中对齐 */
     gap: var(--spacing-md); /* 保持适当间距 */
+    position: relative;
+    z-index: 20;
   }
 
   .heroButtons .btn {
@@ -409,6 +414,8 @@
     flex-direction: row;
     flex-wrap: nowrap; /* 防止换行，确保并排 */
     width: 100%; /* 确保容器全宽 */
+    position: relative;
+    z-index: 20;
   }
 
   .heroButtons .btn {
@@ -443,6 +450,7 @@
     position: static;
     border-radius: var(--radius-lg); /* 添加圆角适应banner内部 */
     margin: 0; /* 移除负边距，不延伸到容器边缘 */
+    z-index: 3;
   }
 
   .adSectionMobile .adContainer {
@@ -638,6 +646,8 @@
     flex-direction: row;
     flex-wrap: nowrap; /* 防止换行，确保并排 */
     width: 100%; /* 确保容器全宽 */
+    position: relative;
+    z-index: 20;
   }
 
   .heroButtons .btn {
@@ -672,6 +682,7 @@
     position: static;
     border-radius: var(--radius-lg); /* 添加圆角适应banner内部 */
     margin: 0; /* 移除负边距，不延伸到容器边缘 */
+    z-index: 3;
   }
 
   .adSectionMobile .adContainer {
@@ -843,6 +854,8 @@
     flex-wrap: nowrap;
     width: 100%;
     padding: 0; /* 去掉额外的padding */
+    position: relative;
+    z-index: 20;
   }
 
   .heroButtons .btn {
@@ -922,6 +935,7 @@
     border-bottom: 1px solid var(--gray-200);
     position: static;
     border-radius: var(--radius-lg);
+    z-index: 3;
   }
 
   .adSectionMobile .adContainer {

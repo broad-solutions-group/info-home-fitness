@@ -409,17 +409,4 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
-  .cardLink {
-    flex-direction: row;
-  }
-
-  .imageContainer {
-    width: 50%;
-  }
-
-  .description {
-    text-align: left;
-    -webkit-line-clamp: 3 !important;
-  }
-}
+/* 移除平板设备上的横向布局，恢复垂直卡片样式 */

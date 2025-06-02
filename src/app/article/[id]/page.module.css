@@ -320,6 +320,12 @@
   color: var(--text-dark-blue);
   margin-bottom: var(--spacing-xs);
   line-height: 1.3;
+  /* 添加CSS文本截断 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .popularMeta {

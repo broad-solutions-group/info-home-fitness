@@ -157,10 +157,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                       <span className={styles.popularNumber}>{index + 1}</span>
                       <div className={styles.popularContent}>
                         <h4 className={styles.popularTitle}>
-                          {popularArticle.title.length > 60 
-                            ? popularArticle.title.substring(0, 60) + '...'
-                            : popularArticle.title
-                          }
+                          {popularArticle.title}
                         </h4>
                         <div className={styles.popularMeta}>
                           {categoryShortName && (

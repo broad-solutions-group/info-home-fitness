@@ -136,44 +136,74 @@ class DataService {
   // 获取来自不同分类的热门文章（每个分类一篇）
   getPopularArticlesFromDifferentCategories(limit: number = 4): Article[] {
     const popularArticles: Article[] = [];
-    const usedCategories = new Set<string>();
-
-    // 遍历所有分类，每个分类取第一篇文章
-    for (const category of this.data.categories) {
-      if (popularArticles.length >= limit) break;
-      
-      if (category.articles.length > 0 && !usedCategories.has(category.name)) {
-        popularArticles.push(category.articles[0]);
-        usedCategories.add(category.name);
-      }
+    
+    // 获取有文章的分类列表
+    const availableCategories = this.data.categories.filter(category => category.articles.length > 0);
+    
+    if (availableCategories.length === 0) {
+      return popularArticles;
     }
-
-    // 如果还没有达到限制数量，从每个分类取更多文章
-    if (popularArticles.length < limit) {
-      for (const category of this.data.categories) {
-        if (popularArticles.length >= limit) break;
+    
+    // 计算每个分类应该分配的文章数量，确保分布均匀
+    const baseQuota = Math.floor(limit / availableCategories.length);
+    const extraSlots = limit % availableCategories.length;
+    
+    // 为每个分类设置配额
+    const categoryQuotas: { [categoryName: string]: number } = {};
+    availableCategories.forEach((category, index) => {
+      categoryQuotas[category.name] = baseQuota + (index < extraSlots ? 1 : 0);
+    });
+    
+    // 为每个分类分别维护选择的索引，加入随机起始位置
+    const categoryIndexes: { [categoryName: string]: number } = {};
+    availableCategories.forEach(category => {
+      // 随机起始位置，避免总是选择每个分类的前几篇文章
+      categoryIndexes[category.name] = Math.floor(Math.random() * Math.min(3, category.articles.length));
+    });
+    
+    // 先按配额从每个分类选择文章
+    for (const category of availableCategories) {
+      const quota = categoryQuotas[category.name];
+      let selectedFromCategory = 0;
+      let articleIndex = categoryIndexes[category.name];
+      
+      while (selectedFromCategory < quota && articleIndex < category.articles.length) {
+        const article = category.articles[articleIndex];
         
-        // 跳过每个分类的第一篇（已经添加过了），从第二篇开始
-        for (let i = 1; i < category.articles.length; i++) {
-          if (popularArticles.length >= limit) break;
+        // 确保文章没有重复添加
+        if (!popularArticles.some(existing => existing.id === article.id)) {
+          popularArticles.push(article);
+          selectedFromCategory++;
+        }
+        articleIndex++;
+      }
+      
+      // 如果某个分类的文章不够，从头开始继续选择
+      if (selectedFromCategory < quota) {
+        articleIndex = 0;
+        while (selectedFromCategory < quota && articleIndex < categoryIndexes[category.name]) {
+          const article = category.articles[articleIndex];
           
-          const article = category.articles[i];
           if (!popularArticles.some(existing => existing.id === article.id)) {
             popularArticles.push(article);
+            selectedFromCategory++;
           }
+          articleIndex++;
         }
       }
     }
-
-    // 如果仍然不够，从剩余文章中补充
+    
+    // 如果仍然不够文章（某些分类文章数量太少），从所有剩余文章中随机补充
     if (popularArticles.length < limit) {
       const allArticles = this.getAllArticles();
       const remainingArticles = allArticles.filter(article => 
         !popularArticles.some(popular => popular.id === article.id)
       );
       
+      // 随机打乱剩余文章
+      const shuffledRemaining = remainingArticles.sort(() => Math.random() - 0.5);
       const needed = limit - popularArticles.length;
-      popularArticles.push(...remainingArticles.slice(0, needed));
+      popularArticles.push(...shuffledRemaining.slice(0, needed));
     }
 
     return popularArticles;

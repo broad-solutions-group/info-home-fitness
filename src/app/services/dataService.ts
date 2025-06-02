@@ -148,7 +148,24 @@ class DataService {
       }
     }
 
-    // 如果还没有达到限制数量，从剩余文章中补充
+    // 如果还没有达到限制数量，从每个分类取更多文章
+    if (popularArticles.length < limit) {
+      for (const category of this.data.categories) {
+        if (popularArticles.length >= limit) break;
+        
+        // 跳过每个分类的第一篇（已经添加过了），从第二篇开始
+        for (let i = 1; i < category.articles.length; i++) {
+          if (popularArticles.length >= limit) break;
+          
+          const article = category.articles[i];
+          if (!popularArticles.some(existing => existing.id === article.id)) {
+            popularArticles.push(article);
+          }
+        }
+      }
+    }
+
+    // 如果仍然不够，从剩余文章中补充
     if (popularArticles.length < limit) {
       const allArticles = this.getAllArticles();
       const remainingArticles = allArticles.filter(article => 

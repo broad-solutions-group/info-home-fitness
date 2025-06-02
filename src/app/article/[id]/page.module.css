@@ -194,6 +194,8 @@
   gap: var(--spacing-lg);
   position: sticky;
   top: 90px;
+  max-height: calc(100vh - 110px);
+  overflow: hidden;
 }
 
 .sidebarCard {
@@ -201,6 +203,9 @@
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
   box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .sidebarTitle {
@@ -210,6 +215,7 @@
   margin-bottom: var(--spacing-md);
   padding-bottom: var(--spacing-sm);
   border-bottom: 2px solid var(--gray-200);
+  flex-shrink: 0;
 }
 
 /* Newsletter */
@@ -260,6 +266,20 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
+  overflow-y: scroll;
+  flex: 1;
+  min-height: 0;
+  padding-right: var(--spacing-xs);
+  margin-right: calc(-1 * var(--spacing-xs));
+  
+  /* 隐藏滚动条但保持滚动功能 */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* 隐藏 Webkit 浏览器的滚动条 */
+.popularList::-webkit-scrollbar {
+  display: none;
 }
 
 .popularItem {
@@ -358,6 +378,19 @@
     order: 3;
     display: flex;
     flex-direction: column;
+    max-height: none;
+    overflow: visible;
+  }
+  
+  .sidebarCard {
+    display: block;
+  }
+  
+  .popularList {
+    overflow-y: visible;
+    flex: none;
+    min-height: auto;
+    max-height: none;
   }
   
   /* You Might Also Like 在 Popular This Week 之前显示 */
@@ -452,5 +485,16 @@
   .articleImage {
     margin: 0 var(--spacing-md);
     width: auto;
+  }
+
+  /* Popular Articles 小屏幕字体调整 */
+  .popularTitle {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .popularCategory,
+  .popularDuration {
+    font-size: 0.7rem;
   }
 } 

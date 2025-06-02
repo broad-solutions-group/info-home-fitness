@@ -6,8 +6,8 @@
 
 .articleLayout {
   display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: var(--spacing-2xl);
+  grid-template-columns: 1fr 320px;
+  gap: var(--spacing-xl);
   align-items: start;
 }
 

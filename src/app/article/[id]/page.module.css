@@ -192,10 +192,13 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
-  position: sticky;
-  top: 90px;
-  max-height: calc(100vh - 110px);
+  position: fixed;
+  top: calc(70px + var(--spacing-lg));
+  right: calc((100vw - 1200px) / 2);
+  width: 340px;
+  max-height: calc(100vh - 70px - var(--spacing-lg) * 2);
   overflow: hidden;
+  z-index: 10;
 }
 
 .sidebarCard {
@@ -206,6 +209,8 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
+  height: calc(100vh - 120px);
+  overflow: hidden;
 }
 
 .sidebarTitle {
@@ -216,6 +221,10 @@
   padding-bottom: var(--spacing-sm);
   border-bottom: 2px solid var(--gray-200);
   flex-shrink: 0;
+}
+
+.sidebarTitle:not(:first-child) {
+  margin-top: var(--spacing-xl);
 }
 
 /* Newsletter */
@@ -263,23 +272,34 @@
 
 /* Popular Articles */
 .popularList {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-  overflow-y: scroll;
-  flex: 1;
-  min-height: 0;
-  padding-right: var(--spacing-xs);
-  margin-right: calc(-1 * var(--spacing-xs));
-  
-  /* 隐藏滚动条但保持滚动功能 */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  overflow-y: visible;
+  flex: none;
+  min-height: auto;
+  max-height: none;
 }
 
-/* 隐藏 Webkit 浏览器的滚动条 */
-.popularList::-webkit-scrollbar {
-  display: none;
+/* Combined List for Popular and Recommend */
+.combinedList {
+  overflow-y: visible;
+  flex: none;
+  min-height: auto;
+  max-height: none;
+}
+
+/* Section Separator */
+.sectionSeparator {
+  margin: var(--spacing-lg) 0 var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--gray-200);
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark-blue);
+  margin: 0;
+  text-align: center;
+  opacity: 0.8;
 }
 
 .popularItem {
@@ -351,23 +371,10 @@
 
 /* More Recommend Articles */
 .recommendList {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-  overflow-y: scroll;
-  flex: 1;
-  min-height: 0;
-  padding-right: var(--spacing-xs);
-  margin-right: calc(-1 * var(--spacing-xs));
-  
-  /* 隐藏滚动条但保持滚动功能 */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
-}
-
-/* 隐藏 Webkit 浏览器的滚动条 */
-.recommendList::-webkit-scrollbar {
-  display: none;
+  overflow-y: visible;
+  flex: none;
+  min-height: auto;
+  max-height: none;
 }
 
 .recommendItem {
@@ -498,7 +505,29 @@
   }
   
   .sidebarCard {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    max-height: none;
+    overflow: visible;
+  }
+  
+  .sidebarContent {
+    flex: none;
+    overflow: visible;
+    padding-right: 0;
+    margin-right: 0;
+  }
+  
+  .popularSection {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .recommendSection {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
   }
   
   .popularList {
@@ -509,6 +538,13 @@
   }
   
   .recommendList {
+    overflow-y: visible;
+    flex: none;
+    min-height: auto;
+    max-height: none;
+  }
+  
+  .combinedList {
     overflow-y: visible;
     flex: none;
     min-height: auto;
@@ -639,4 +675,35 @@
     width: 70px;
     height: 70px;
   }
+}
+
+/* Popular Section */
+.popularSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Recommend Section */
+.recommendSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Scrollable Content Container */
+.sidebarContent {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: var(--spacing-xs);
+  margin-right: calc(-1 * var(--spacing-xs));
+  
+  /* 隐藏滚动条但保持滚动功能 */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* 隐藏 Webkit 浏览器的滚动条 */
+.sidebarContent::-webkit-scrollbar {
+  display: none;
 } 

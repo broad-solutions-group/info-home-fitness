@@ -141,89 +141,94 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
           {/* Sidebar */}
           <aside className={styles.articleSidebar}>
-            {/* Popular Articles */}
+            {/* Popular Articles & More Recommend */}
             <div className={styles.sidebarCard}>
-              <h3 className={styles.sidebarTitle}>Popular This Week</h3>
-              <div className={styles.popularList}>
-                {dataService.getPopularArticlesFromDifferentCategories(3).map((popularArticle, index) => {
-                  const category = dataService.getArticleCategory(popularArticle.id);
-                  const categoryShortName = category ? dataService.getCategoryShortName(category.name) : '';
-                  
-                  return (
-                    <Link 
-                      key={popularArticle.id}
-                      href={`/article/${popularArticle.id}`}
-                      className={styles.popularItem}
-                    >
-                      <span className={styles.popularNumber}>{index + 1}</span>
-                      <div className={styles.popularContent}>
-                        <h4 className={styles.popularTitle}>
-                          {popularArticle.title}
-                        </h4>
-                        <div className={styles.popularMeta}>
-                          {categoryShortName && (
-                            <span className={styles.popularCategory}>
-                              {categoryShortName}
-                            </span>
-                          )}
-                          <span className={styles.popularDuration}>
-                            {popularArticle.duration}
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* More Recommend */}
-            {recommendedArticles && recommendedArticles.length > 0 && (
-              <div className={styles.sidebarCard}>
-                <h3 className={styles.sidebarTitle}>More Recommend</h3>
-                <div className={styles.recommendList}>
-                  {recommendedArticles.map((recommendedArticle) => {
-                    const category = dataService.getArticleCategory(recommendedArticle.id);
+              <div className={styles.sidebarContent}>
+                {/* Popular This Week */}
+                <h3 className={styles.sidebarTitle}>Popular This Week</h3>
+                
+                {/* Popular Articles */}
+                <div className={styles.popularSection}>
+                  {dataService.getPopularArticlesFromDifferentCategories(3).map((popularArticle, index) => {
+                    const category = dataService.getArticleCategory(popularArticle.id);
                     const categoryShortName = category ? dataService.getCategoryShortName(category.name) : '';
                     
                     return (
                       <Link 
-                        key={recommendedArticle.id}
-                        href={`/article/${recommendedArticle.id}`}
-                        className={styles.recommendItem}
+                        key={popularArticle.id}
+                        href={`/article/${popularArticle.id}`}
+                        className={styles.popularItem}
                       >
-                        <div className={styles.recommendContent}>
-                          <h4 className={styles.recommendTitle}>
-                            {recommendedArticle.title}
+                        <span className={styles.popularNumber}>{index + 1}</span>
+                        <div className={styles.popularContent}>
+                          <h4 className={styles.popularTitle}>
+                            {popularArticle.title}
                           </h4>
-                          <p className={styles.recommendDescription}>
-                            {recommendedArticle.description}
-                          </p>
-                          <div className={styles.recommendMeta}>
+                          <div className={styles.popularMeta}>
                             {categoryShortName && (
-                              <span className={styles.recommendCategory}>
+                              <span className={styles.popularCategory}>
                                 {categoryShortName}
                               </span>
                             )}
-                            <span className={styles.recommendDuration}>
-                              {recommendedArticle.duration}
+                            <span className={styles.popularDuration}>
+                              {popularArticle.duration}
                             </span>
                           </div>
-                        </div>
-                        <div className={styles.recommendImage}>
-                          <OptimizedImage
-                            src={recommendedArticle.imageUrl}
-                            alt={recommendedArticle.title}
-                            fill
-                            sizes="80px"
-                          />
                         </div>
                       </Link>
                     );
                   })}
                 </div>
+
+                {/* More Recommend */}
+                <h3 className={styles.sidebarTitle}>More Recommend</h3>
+                
+                {/* More Recommend Articles */}
+                <div className={styles.recommendSection}>
+                  {recommendedArticles && recommendedArticles.length > 0 && 
+                    recommendedArticles.map((recommendedArticle) => {
+                      const category = dataService.getArticleCategory(recommendedArticle.id);
+                      const categoryShortName = category ? dataService.getCategoryShortName(category.name) : '';
+                      
+                      return (
+                        <Link 
+                          key={recommendedArticle.id}
+                          href={`/article/${recommendedArticle.id}`}
+                          className={styles.recommendItem}
+                        >
+                          <div className={styles.recommendContent}>
+                            <h4 className={styles.recommendTitle}>
+                              {recommendedArticle.title}
+                            </h4>
+                            <p className={styles.recommendDescription}>
+                              {recommendedArticle.description}
+                            </p>
+                            <div className={styles.recommendMeta}>
+                              {categoryShortName && (
+                                <span className={styles.recommendCategory}>
+                                  {categoryShortName}
+                                </span>
+                              )}
+                              <span className={styles.recommendDuration}>
+                                {recommendedArticle.duration}
+                              </span>
+                            </div>
+                          </div>
+                          <div className={styles.recommendImage}>
+                            <OptimizedImage
+                              src={recommendedArticle.imageUrl}
+                              alt={recommendedArticle.title}
+                              fill
+                              sizes="80px"
+                            />
+                          </div>
+                        </Link>
+                      );
+                    })
+                  }
+                </div>
               </div>
-            )}
+            </div>
           </aside>
         </div>
       </div>

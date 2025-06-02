@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
 import OptimizedImage from '../../components/OptimizedImage';
-import Link from 'next/link';
 import { dataService } from '../../services/dataService';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
 import ArticleInteractions from '../../components/ArticleInteractions/ArticleInteractions';
+import RefreshLink from '../../components/RefreshLink/RefreshLink';
 import styles from './page.module.css';
 
 interface ArticlePageProps {
@@ -154,7 +154,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                     const categoryShortName = category ? dataService.getCategoryShortName(category.name) : '';
                     
                     return (
-                      <Link 
+                      <RefreshLink 
                         key={popularArticle.id}
                         href={`/article/${popularArticle.id}`}
                         className={styles.popularItem}
@@ -175,7 +175,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                             </span>
                           </div>
                         </div>
-                      </Link>
+                      </RefreshLink>
                     );
                   })}
                 </div>
@@ -191,7 +191,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                       const categoryShortName = category ? dataService.getCategoryShortName(category.name) : '';
                       
                       return (
-                        <Link 
+                        <RefreshLink 
                           key={recommendedArticle.id}
                           href={`/article/${recommendedArticle.id}`}
                           className={styles.recommendItem}
@@ -222,7 +222,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                               sizes="(max-width: 1024px) 80px, 160px"
                             />
                           </div>
-                        </Link>
+                        </RefreshLink>
                       );
                     })
                   }

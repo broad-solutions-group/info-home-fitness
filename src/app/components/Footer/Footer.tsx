@@ -1,9 +1,13 @@
 'use client';
 
-import Link from 'next/link';
 import styles from './Footer.module.css';
 
 const Footer = () => {
+  const handleLinkClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    window.location.href = href;
+  };
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -23,13 +27,25 @@ const Footer = () => {
 
             {/* 右侧：链接 */}
             <div className={styles.linksSection}>
-              <a href="/about-us" className={styles.footerLink}>
+              <a 
+                href="/about-us" 
+                className={styles.footerLink}
+                onClick={(e) => handleLinkClick(e, '/about-us')}
+              >
                 About Us
               </a>
-              <a href="/terms-of-service" className={styles.footerLink}>
+              <a 
+                href="/terms-of-service" 
+                className={styles.footerLink}
+                onClick={(e) => handleLinkClick(e, '/terms-of-service')}
+              >
                 Terms of Service
               </a>
-              <a href="/privacy-policy" className={styles.footerLink}>
+              <a 
+                href="/privacy-policy" 
+                className={styles.footerLink}
+                onClick={(e) => handleLinkClick(e, '/privacy-policy')}
+              >
                 Privacy Policy
               </a>
             </div>

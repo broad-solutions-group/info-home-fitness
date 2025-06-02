@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
 
 const Header = () => {
@@ -10,7 +9,6 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
-  const router = useRouter();
   const pathname = usePathname();
 
   // 判断链接是否为当前激活状态
@@ -63,10 +61,15 @@ const Header = () => {
     };
   }, [isSearchExpanded]);
 
+  // 处理刷新跳转的函数
+  const handleRefreshNavigation = (href: string) => {
+    window.location.href = href;
+  };
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      window.location.href = `/search?q=${encodeURIComponent(searchQuery.trim())}`;
       setSearchQuery('');
       setIsMenuOpen(false); // 搜索后关闭移动端菜单
       setIsSearchExpanded(false); // 搜索后收起搜索框
@@ -80,7 +83,7 @@ const Header = () => {
       setIsSearchExpanded(true);
     } else if (searchQuery.trim()) {
       // 如果已展开且有搜索内容，执行搜索
-      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      window.location.href = `/search?q=${encodeURIComponent(searchQuery.trim())}`;
       setSearchQuery('');
       setIsSearchExpanded(false);
     }
@@ -100,28 +103,71 @@ const Header = () => {
         {/* 左侧区域：Logo + 导航 */}
         <div className={styles.leftSection}>
           {/* Logo */}
-          <Link href="/" className={styles.logo} onClick={closeMenu}>
+          <a 
+            href="/" 
+            className={styles.logo} 
+            onClick={(e) => {
+              e.preventDefault();
+              closeMenu();
+              handleRefreshNavigation('/');
+            }}
+          >
             <span className={styles.logoIcon}>🏠</span>
             <span className={styles.logoText}>Home Fitness</span>
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <nav className={styles.nav}>
-            <Link href="/" className={`${styles.navLink} ${isActiveLink('/') ? styles.active : ''}`}>
+            <a 
+              href="/" 
+              className={`${styles.navLink} ${isActiveLink('/') ? styles.active : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleRefreshNavigation('/');
+              }}
+            >
               Home
-            </Link>
-            <Link href="/category/affordable-home-gym-setups" className={`${styles.navLink} ${isActiveLink('/category/affordable-home-gym-setups') ? styles.active : ''}`}>
+            </a>
+            <a 
+              href="/category/affordable-home-gym-setups" 
+              className={`${styles.navLink} ${isActiveLink('/category/affordable-home-gym-setups') ? styles.active : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleRefreshNavigation('/category/affordable-home-gym-setups');
+              }}
+            >
               Affordable Home Gym Setups
-            </Link>
-            <Link href="/category/family-kids-friendly-workouts" className={`${styles.navLink} ${isActiveLink('/category/family-kids-friendly-workouts') ? styles.active : ''}`}>
+            </a>
+            <a 
+              href="/category/family-kids-friendly-workouts" 
+              className={`${styles.navLink} ${isActiveLink('/category/family-kids-friendly-workouts') ? styles.active : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleRefreshNavigation('/category/family-kids-friendly-workouts');
+              }}
+            >
               Family Workouts
-            </Link>
-            <Link href="/category/strength-training-without-equipment" className={`${styles.navLink} ${isActiveLink('/category/strength-training-without-equipment') ? styles.active : ''}`}>
+            </a>
+            <a 
+              href="/category/strength-training-without-equipment" 
+              className={`${styles.navLink} ${isActiveLink('/category/strength-training-without-equipment') ? styles.active : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleRefreshNavigation('/category/strength-training-without-equipment');
+              }}
+            >
               Bodyweight Training
-            </Link>
-            <Link href="/category/motivation-habit-building-tips" className={`${styles.navLink} ${isActiveLink('/category/motivation-habit-building-tips') ? styles.active : ''}`}>
+            </a>
+            <a 
+              href="/category/motivation-habit-building-tips" 
+              className={`${styles.navLink} ${isActiveLink('/category/motivation-habit-building-tips') ? styles.active : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleRefreshNavigation('/category/motivation-habit-building-tips');
+              }}
+            >
               Motivation Tips
-            </Link>
+            </a>
           </nav>
         </div>
 
@@ -172,21 +218,61 @@ const Header = () => {
 
       {/* Mobile Navigation */}
       <div className={`${styles.mobileNav} ${isMenuOpen ? styles.mobileNavOpen : ''}`}>
-        <Link href="/" className={`${styles.mobileNavLink} ${isActiveLink('/') ? styles.active : ''}`} onClick={closeMenu}>
+        <a 
+          href="/" 
+          className={`${styles.mobileNavLink} ${isActiveLink('/') ? styles.active : ''}`} 
+          onClick={(e) => {
+            e.preventDefault();
+            closeMenu();
+            handleRefreshNavigation('/');
+          }}
+        >
           Home
-        </Link>
-        <Link href="/category/affordable-home-gym-setups" className={`${styles.mobileNavLink} ${isActiveLink('/category/affordable-home-gym-setups') ? styles.active : ''}`} onClick={closeMenu}>
+        </a>
+        <a 
+          href="/category/affordable-home-gym-setups" 
+          className={`${styles.mobileNavLink} ${isActiveLink('/category/affordable-home-gym-setups') ? styles.active : ''}`} 
+          onClick={(e) => {
+            e.preventDefault();
+            closeMenu();
+            handleRefreshNavigation('/category/affordable-home-gym-setups');
+          }}
+        >
           Affordable Home Gym Setups
-        </Link>
-        <Link href="/category/family-kids-friendly-workouts" className={`${styles.mobileNavLink} ${isActiveLink('/category/family-kids-friendly-workouts') ? styles.active : ''}`} onClick={closeMenu}>
+        </a>
+        <a 
+          href="/category/family-kids-friendly-workouts" 
+          className={`${styles.mobileNavLink} ${isActiveLink('/category/family-kids-friendly-workouts') ? styles.active : ''}`} 
+          onClick={(e) => {
+            e.preventDefault();
+            closeMenu();
+            handleRefreshNavigation('/category/family-kids-friendly-workouts');
+          }}
+        >
           Family & Kids Friendly Workouts
-        </Link>
-        <Link href="/category/strength-training-without-equipment" className={`${styles.mobileNavLink} ${isActiveLink('/category/strength-training-without-equipment') ? styles.active : ''}`} onClick={closeMenu}>
+        </a>
+        <a 
+          href="/category/strength-training-without-equipment" 
+          className={`${styles.mobileNavLink} ${isActiveLink('/category/strength-training-without-equipment') ? styles.active : ''}`} 
+          onClick={(e) => {
+            e.preventDefault();
+            closeMenu();
+            handleRefreshNavigation('/category/strength-training-without-equipment');
+          }}
+        >
           Strength Training Without Equipment
-        </Link>
-        <Link href="/category/motivation-habit-building-tips" className={`${styles.mobileNavLink} ${isActiveLink('/category/motivation-habit-building-tips') ? styles.active : ''}`} onClick={closeMenu}>
+        </a>
+        <a 
+          href="/category/motivation-habit-building-tips" 
+          className={`${styles.mobileNavLink} ${isActiveLink('/category/motivation-habit-building-tips') ? styles.active : ''}`} 
+          onClick={(e) => {
+            e.preventDefault();
+            closeMenu();
+            handleRefreshNavigation('/category/motivation-habit-building-tips');
+          }}
+        >
           Motivation & Habit Building Tips
-        </Link>
+        </a>
         
         {/* Mobile Search */}
         <form onSubmit={handleSearch} className={styles.mobileSearchForm}>

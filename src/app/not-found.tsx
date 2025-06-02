@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import RefreshLink from './components/RefreshLink/RefreshLink';
 import styles from './not-found.module.css';
 
 export default function NotFound() {
@@ -14,29 +14,47 @@ export default function NotFound() {
           </p>
           
           <div className={styles.notFoundActions}>
-            <Link href="/" className={styles.homeButton}>
+            <RefreshLink 
+              href="/" 
+              className={styles.homeButton}
+            >
               🏠 Go Home
-            </Link>
-            <Link href="/search" className={styles.searchButton}>
+            </RefreshLink>
+            <RefreshLink 
+              href="/search" 
+              className={styles.searchButton}
+            >
               🔍 Search Articles
-            </Link>
+            </RefreshLink>
           </div>
 
           <div className={styles.helpfulLinks}>
             <h3 className={styles.helpfulTitle}>Popular Categories:</h3>
             <div className={styles.categoryLinks}>
-              <Link href="/category/affordable-home-gym-setups" className={styles.categoryLink}>
+              <RefreshLink 
+                href="/category/affordable-home-gym-setups" 
+                className={styles.categoryLink}
+              >
                 💰 Affordable Home Gym Setups
-              </Link>
-              <Link href="/category/family-kids-friendly-workouts" className={styles.categoryLink}>
+              </RefreshLink>
+              <RefreshLink 
+                href="/category/family-kids-friendly-workouts" 
+                className={styles.categoryLink}
+              >
                 👨‍👩‍👧‍👦 Family & Kids Friendly Workouts
-              </Link>
-              <Link href="/category/strength-training-without-equipment" className={styles.categoryLink}>
+              </RefreshLink>
+              <RefreshLink 
+                href="/category/strength-training-without-equipment" 
+                className={styles.categoryLink}
+              >
                 💪 Strength Training Without Equipment
-              </Link>
-              <Link href="/category/motivation-habit-building-tips" className={styles.categoryLink}>
+              </RefreshLink>
+              <RefreshLink 
+                href="/category/motivation-habit-building-tips" 
+                className={styles.categoryLink}
+              >
                 🧠 Motivation & Habit Building Tips
-              </Link>
+              </RefreshLink>
             </div>
           </div>
         </div>

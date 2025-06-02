@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import styles from './SearchSuggestions.module.css';
 
 interface SearchSuggestionsProps {
@@ -9,10 +8,8 @@ interface SearchSuggestionsProps {
 }
 
 const SearchSuggestions = ({ suggestions, className = '' }: SearchSuggestionsProps) => {
-  const router = useRouter();
-
   const handleSuggestionClick = (suggestion: string) => {
-    router.push(`/search?q=${encodeURIComponent(suggestion)}`);
+    window.location.href = `/search?q=${encodeURIComponent(suggestion)}`;
   };
 
   return (

@@ -1,4 +1,5 @@
-import Link from 'next/link';
+'use client';
+
 import OptimizedImage from '../OptimizedImage';
 import { Article } from '../../types';
 import styles from './ArticleCard.module.css';
@@ -27,11 +28,16 @@ const ArticleCard = ({
     });
   };
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.location.href = `/article/${article.id}`;
+  };
+
   const cardClassName = `${styles.card} ${styles[variant]} ${isFirstCard ? styles.firstCard : ''}`;
 
   return (
     <article className={cardClassName}>
-      <Link href={`/article/${article.id}`} className={styles.cardLink}>
+      <a href={`/article/${article.id}`} className={styles.cardLink} onClick={handleCardClick}>
         {/* Image */}
         <div className={styles.imageContainer}>
           <OptimizedImage
@@ -81,7 +87,7 @@ const ArticleCard = ({
             <span className={styles.readMore}>Read More →</span>
           </div>
         </div>
-      </Link>
+      </a>
     </article>
   );
 };

@@ -120,6 +120,12 @@
   line-height: 1.6;
   margin-bottom: var(--spacing-md);
   flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 0;
 }
 
 .meta {
@@ -154,7 +160,7 @@
 }
 
 .featured .imageContainer {
-  height: 205px;
+  height: 280px;
 }
 
 .featured .title {
@@ -165,10 +171,21 @@
 .featured .description {
   font-size: 1rem;
   margin-bottom: var(--spacing-sm);
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.6;
+  min-height: 0;
 }
 
 .featured .content {
   padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .compact .imageContainer {
@@ -200,7 +217,7 @@
   }
   
   .featured .imageContainer {
-    height: 180px;
+    height: 220px;
   }
   
   .featured .title {
@@ -209,10 +226,21 @@
   
   .featured .description {
     font-size: 0.95rem;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.6;
+    min-height: 0;
   }
 
   .featured .content {
     padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
   
   .overlayTitle {
@@ -244,7 +272,7 @@
 
 @media (max-width: 480px) {
   .featured .imageContainer {
-    height: 160px;
+    height: 180px;
   }
 
   .featured .title {
@@ -253,10 +281,21 @@
 
   .featured .description {
     font-size: 0.9rem;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.6;
+    min-height: 0;
   }
 
   .featured .content {
     padding: var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 
   .overlayTitle {

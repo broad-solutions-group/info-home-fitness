@@ -76,9 +76,7 @@ const ArticleCard = ({
           <p className={styles.description}>
             {variant === 'compact' 
               ? truncateText(article.description, 80)
-              : variant === 'featured'
-              ? truncateText(article.description, 150)
-              : truncateText(article.description, 120)
+              : article.description /* 移除featured的截断逻辑，让CSS的line-clamp处理 */
             }
           </p>
           

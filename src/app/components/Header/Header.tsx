@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import styles from './Header.module.css';
+import logoSvg from '../../logo.svg';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -112,7 +114,13 @@ const Header = () => {
               handleRefreshNavigation('/');
             }}
           >
-            <span className={styles.logoIcon}>🏠</span>
+            <Image 
+              src={logoSvg} 
+              alt="Home Fitness Logo" 
+              width={38} 
+              height={38} 
+              className={styles.logoIcon}
+            />
             <span className={styles.logoText}>Home Fitness</span>
           </a>
 

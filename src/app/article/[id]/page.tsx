@@ -1,13 +1,13 @@
 import { notFound } from 'next/navigation';
-import LazyImage from '../../components/LazyImage/LazyImage';
 import { dataService } from '../../services/dataService';
-import ArticleCard from '../../components/ArticleCard/ArticleCard';
-import { DynamicArticleInteractions } from '../../components/DynamicComponents/DynamicComponents';
-import RefreshLink from '../../components/RefreshLink/RefreshLink';
-import styles from './page.module.css';
+import LazyImage from '../../components/LazyImage/LazyImage';
 import AdPlaceholder from '../../components/AdPlaceholder/AdPlaceholder';
-import adsPlaceholderImg from '../../ads_300_250.png';
+import RefreshLink from '../../components/RefreshLink/RefreshLink';
+import { DynamicArticleInteractions } from '../../components/DynamicComponents/DynamicComponents';
 import MarkdownRenderer from '../../components/MarkdownRenderer';
+import styles from './page.module.css';
+import adsPlaceholderImg from '../../ads_300_250.png';
+import ArticleCard from '../../components/ArticleCard/ArticleCard';
 
 interface ArticlePageProps {
   params: {

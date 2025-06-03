@@ -189,6 +189,8 @@ const HeroBanner = ({ articles, autoPlayInterval = 4000 }: HeroBannerProps) => {
                         priority={index === 0}
                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 400px, 50vw"
                       />
+                      {/* 移动端悬浮标题 */}
+                      <h3 className={styles.slideImageTitle}>{article.title}</h3>
                     </a>
                   </div>
                 </div>

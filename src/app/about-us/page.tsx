@@ -1,11 +1,11 @@
 import DocumentPage from '../components/DocumentPage';
-import aboutUsData from '../data/about_us.json';
+import attachmentData from '../data/Home-Fitness-attachment.json';
 
 export default function AboutUs() {
   return (
     <DocumentPage 
       title="About Us" 
-      content={aboutUsData.content} 
+      content={attachmentData.about} 
     />
   );
 } 

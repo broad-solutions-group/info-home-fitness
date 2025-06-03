@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
-import OptimizedImage from '../OptimizedImage';
+import LazyImage from '../LazyImage';
 import { Article } from '../../index';
 import styles from './HeroBanner.module.css';
 
@@ -181,13 +181,15 @@ const HeroBanner = ({ articles, autoPlayInterval = 4000 }: HeroBannerProps) => {
                       className={styles.imageLink}
                       aria-label={`Read article: ${article.title}`}
                     >
-                      <OptimizedImage
+                      <LazyImage
                         src={article.imageUrl}
                         alt={article.title}
                         fill
                         className={styles.bannerImage}
                         priority={index === 0}
                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 400px, 50vw"
+                        placeholder="skeleton"
+                        rootMargin="200px"
                       />
                       {/* 移动端悬浮元信息 */}
                       <div className={styles.slideImageMeta}>

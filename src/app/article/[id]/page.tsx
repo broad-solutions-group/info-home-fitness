@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import OptimizedImage from '../../components/OptimizedImage';
+import LazyImage from '../../components/LazyImage';
 import { dataService } from '../../services/dataService';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
 import ArticleInteractions from '../../components/ArticleInteractions/ArticleInteractions';
@@ -113,13 +113,14 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
             {/* Featured Image */}
             <div className={styles.articleImage}>
-              <OptimizedImage
+              <LazyImage
                 src={article.imageUrl}
                 alt={article.title}
                 fill
                 className={styles.image}
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
+                placeholder="skeleton"
               />
             </div>
 
@@ -215,11 +216,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                             </div>
                           </div>
                           <div className={styles.recommendImage}>
-                            <OptimizedImage
+                            <LazyImage
                               src={recommendedArticle.imageUrl}
                               alt={recommendedArticle.title}
                               fill
                               sizes="(max-width: 1024px) 80px, 160px"
+                              placeholder="skeleton"
+                              rootMargin="50px"
                             />
                           </div>
                         </RefreshLink>

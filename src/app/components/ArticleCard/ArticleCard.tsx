@@ -1,7 +1,7 @@
 'use client';
 
-import OptimizedImage from '../OptimizedImage';
-import { Article } from '../../types';
+import LazyImage from '../LazyImage';
+import { Article } from '../../index';
 import styles from './ArticleCard.module.css';
 
 interface ArticleCardProps {
@@ -40,13 +40,15 @@ const ArticleCard = ({
       <a href={`/article/${article.id}`} className={styles.cardLink} onClick={handleCardClick}>
         {/* Image */}
         <div className={styles.imageContainer}>
-          <OptimizedImage
+          <LazyImage
             src={article.imageUrl}
             alt={article.title}
             fill
             className={styles.image}
-            priority={variant === 'featured'}
+            priority={variant === 'featured' || isFirstCard}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            placeholder="skeleton"
+            rootMargin="100px"
           />
           
           {/* Category标签移到图片左上角 */}

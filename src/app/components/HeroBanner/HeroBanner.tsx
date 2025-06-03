@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import OptimizedImage from '../OptimizedImage';
 import { Article } from '../../index';
 import styles from './HeroBanner.module.css';
@@ -13,9 +13,16 @@ interface HeroBannerProps {
 const HeroBanner = ({ articles, autoPlayInterval = 4000 }: HeroBannerProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [isSwipeActive, setIsSwipeActive] = useState(false);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   // 显示的文章数量（取前4个）
   const displayArticles = articles.slice(0, 4);
+
+  // 最小滑动距离
+  const minSwipeDistance = 50;
 
   // 下一张
   const nextSlide = useCallback(() => {
@@ -31,6 +38,39 @@ const HeroBanner = ({ articles, autoPlayInterval = 4000 }: HeroBannerProps) => {
   const goToSlide = useCallback((index: number) => {
     setCurrentIndex(index);
   }, []);
+
+  // 触摸开始
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+    setIsSwipeActive(true);
+  };
+
+  // 触摸移动
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  // 触摸结束
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) {
+      setIsSwipeActive(false);
+      return;
+    }
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && displayArticles.length > 1) {
+      nextSlide();
+    }
+    if (isRightSwipe && displayArticles.length > 1) {
+      prevSlide();
+    }
+    
+    setIsSwipeActive(false);
+  };
 
   // 键盘导航支持
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
@@ -64,6 +104,17 @@ const HeroBanner = ({ articles, autoPlayInterval = 4000 }: HeroBannerProps) => {
   const handleMouseEnter = () => setIsAutoPlaying(false);
   const handleMouseLeave = () => setIsAutoPlaying(true);
 
+  // 触摸时暂停自动播放
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsAutoPlaying(false);
+    onTouchStart(e);
+  };
+
+  const handleTouchEnd = () => {
+    setIsAutoPlaying(true);
+    onTouchEnd();
+  };
+
   // 错误处理：如果没有文章，显示占位符
   if (!displayArticles || displayArticles.length === 0) {
     return (
@@ -90,12 +141,16 @@ const HeroBanner = ({ articles, autoPlayInterval = 4000 }: HeroBannerProps) => {
           className={styles.sliderWrapper}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={handleTouchEnd}
           role="region"
           aria-label="Article carousel"
           aria-live="polite"
         >
           <div 
-            className={styles.slider}
+            ref={sliderRef}
+            className={`${styles.slider} ${isSwipeActive ? styles.swipeActive : ''}`}
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             role="tabpanel"
             aria-describedby="carousel-instructions"
@@ -191,7 +246,7 @@ const HeroBanner = ({ articles, autoPlayInterval = 4000 }: HeroBannerProps) => {
 
         {/* 屏幕阅读器说明 */}
         <div id="carousel-instructions" className="sr-only" style={{display: 'none'}}>
-          Use left and right arrow keys to navigate, or press number keys 1-4 to jump directly to the corresponding article
+          Use left and right arrow keys to navigate, or press number keys 1-4 to jump directly to the corresponding article. On touch devices, swipe left or right to navigate.
         </div>
       </div>
     </section>

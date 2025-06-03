@@ -1,0 +1,105 @@
+{
+    "code": 0,
+    "domain": "https://betterhomefit.com/",
+    "websiteType": "info",
+    "channelID": "1000002",
+    "gaID": "G-DSV385ZLN2",
+    "collectDataFlag": true,
+    "bottomAnchorFlag": true,
+    "topAnchorFlag": true,
+    "adxOrAdsFlag": true,
+    "adxInterstitialFlag": true,
+    "adxInterstitial":
+    {
+        "type": "AdxInterstitial",
+        "index": 0,
+        "slot_account": "23155053380",
+        "slot_channel_tag": "ca-pub-8981344377250832-tag/HK",
+        "ad_unit": "04_betterhomefitcom_primary_home_inter_01"
+    },
+    "adx_bottom_anchor":
+    {
+        "type": "adx_bottom_anchor",
+        "index": 0,
+        "slot_account": "23155053380",
+        "slot_channel_tag": "ca-pub-8981344377250832-tag/HK",
+        "ad_unit": "04_betterhomefitcom_primary_home_anchor_01"
+    },
+    "adPages":
+    {
+        "index.html":
+        [
+            {
+                "type": "AdX",
+                "pagePageAdId": "seattle-ad-10001",
+                "slot_account": "23155053380",
+                "slot_channel_tag": "ca-pub-8981344377250832-tag/HK",
+                "ad_unit": "04_betterhomefitcom_primary_home_300x250_01",
+                "size":
+                [
+                    300,
+                    250
+                ],
+                "unitId": "div-gpt-ad-1748915591082859"
+            },
+            {
+                "type": "AdX",
+                "pagePageAdId": "seattle-ad-10002",
+                "slot_account": "23155053380",
+                "slot_channel_tag": "ca-pub-8981344377250832-tag/HK",
+                "ad_unit": "04_betterhomefitcom_primary_home_300x250_02",
+                "size":
+                [
+                    300,
+                    250
+                ],
+                "unitId": "div-gpt-ad-1748915591082177"
+            },
+            {
+                "type": "AdX",
+                "pagePageAdId": "seattle-ad-10003",
+                "slot_account": "23155053380",
+                "slot_channel_tag": "ca-pub-8981344377250832-tag/HK",
+                "ad_unit": "04_betterhomefitcom_primary_home_300x250_03",
+                "size":
+                [
+                    300,
+                    250
+                ],
+                "unitId": "div-gpt-ad-1748915591083091"
+            },
+            {
+                "type": "AdX",
+                "pagePageAdId": "seattle-ad-10004",
+                "slot_account": "23155053380",
+                "slot_channel_tag": "ca-pub-8981344377250832-tag/HK",
+                "ad_unit": "04_betterhomefitcom_primary_home_300x250_04",
+                "size":
+                [
+                    300,
+                    250
+                ],
+                "unitId": "div-gpt-ad-1748915591083351"
+            }
+        ],
+        "list":
+        [
+            {
+                "type": "AdX",
+                "pagePageAdId": "seattle-ad-10001",
+                "slot_account": "23155053380",
+                "slot_channel_tag": "ca-pub-8981344377250832-tag/HK",
+                "ad_unit": "04_betterhomefitcom_primary_detail_300x250_01",
+                "size":
+                [
+                    300,
+                    250
+                ],
+                "unitId": "div-gpt-ad-1748915591083493"
+            }
+        ]
+       
+    },
+    "bakAdList":
+    []
+}

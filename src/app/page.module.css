@@ -186,12 +186,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-fast);
-}
-
-.adPlaceholder:hover {
-  border-color: var(--primary-green);
-  background: linear-gradient(135deg, rgba(74, 177, 157, 0.05), rgba(74, 177, 157, 0.1));
 }
 
 /* Responsive Design - 优化平板和移动端布局 */

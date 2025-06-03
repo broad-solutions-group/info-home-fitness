@@ -8,6 +8,7 @@ interface AdPlaceholderProps {
   imageSrc?: any;
   alt?: string;
   className?: string;
+  backgroundColor?: string;
 }
 
 /**
@@ -20,12 +21,14 @@ const AdPlaceholder: React.FC<AdPlaceholderProps> = ({
   height = 250,
   imageSrc,
   alt = 'Advertisement',
-  className = ''
+  className = '',
+  backgroundColor
 }) => {
   return (
     <div 
       id={id} 
       className={`${styles.adContainer} ${className}`}
+      style={backgroundColor ? { backgroundColor: `#${backgroundColor}` } : undefined}
     >
       <div className={styles.adTip}>Advertisement ▼</div>
       {imageSrc ? (

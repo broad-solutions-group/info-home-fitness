@@ -5,8 +5,10 @@ import { useState, useEffect, Suspense } from 'react';
 import { dataService } from '../services/dataService';
 import ArticleCard from '../components/ArticleCard/ArticleCard';
 import SearchSuggestions from '../components/SearchSuggestions/SearchSuggestions';
+import AdPlaceholder from '../components/AdPlaceholder/AdPlaceholder';
 import { SearchResult, Category } from '../index';
 import styles from './page.module.css';
+import adsPlaceholderImg from '../ads_300_250.png';
 
 // 由于这是客户端组件，metadata需要在layout中处理
 // 或者创建一个单独的metadata文件
@@ -72,6 +74,16 @@ function SearchPageContent() {
           </div>
         </div>
       </section>
+
+      {/* 广告位 - 使用组件化设计 */}
+      <AdPlaceholder 
+        id="seattle-ad-10001"
+        imageSrc={adsPlaceholderImg}
+        alt="Advertisement"
+        width={300}
+        height={250}
+        backgroundColor="f5f5f5"
+      />
 
       {/* Search Results */}
       <section className={styles.resultsSection}>

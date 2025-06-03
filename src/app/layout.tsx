@@ -3,7 +3,6 @@ import { Poppins, Open_Sans, Montserrat } from "next/font/google";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import ClientWrapper from "./components/ClientWrapper/ClientWrapper";
-import ImageLoadingStats from "./components/ImageLoadingStats";
 import "./globals.css";
 
 const poppins = Poppins({ 
@@ -90,7 +89,6 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
-          <ImageLoadingStats />
         </ClientWrapper>
       </body>
     </html>

@@ -17,11 +17,11 @@ interface LazyImageProps {
   style?: CSSProperties;
   placeholder?: 'blur' | 'skeleton' | 'none';
   blurDataURL?: string;
-  threshold?: number; // Intersection observer threshold
-  rootMargin?: string; // Intersection observer root margin
+  threshold?: number;
+  rootMargin?: string;
   onLoad?: () => void;
   onError?: () => void;
-  enableLoadingManager?: boolean; // 是否启用加载管理器
+  enableLoadingManager?: boolean;
 }
 
 const LazyImage = ({
@@ -44,21 +44,19 @@ const LazyImage = ({
   enableLoadingManager = true,
   ...props
 }: LazyImageProps) => {
-  const [isInView, setIsInView] = useState(priority); // 如果是priority，立即显示
+  const [isInView, setIsInView] = useState(priority);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [shouldLoad, setShouldLoad] = useState(priority); // 是否应该开始加载
+  const [shouldLoad, setShouldLoad] = useState(priority);
   const imgRef = useRef<HTMLDivElement>(null);
   const loadingTimeoutRef = useRef<NodeJS.Timeout>();
 
   const { canStartLoading, startLoading, finishLoading, getImageStatus } = useImageLoadingStrategy();
-
-  // 检查图片状态
   const imageStatus = enableLoadingManager ? getImageStatus(src) : null;
 
   // Intersection Observer 监听图片是否进入视口
   useEffect(() => {
-    if (priority || isInView) return; // 如果已经是priority或已经在视口内，不需要观察
+    if (priority || isInView) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -69,10 +67,7 @@ const LazyImage = ({
           }
         });
       },
-      {
-        threshold,
-        rootMargin,
-      }
+      { threshold, rootMargin }
     );
 
     if (imgRef.current) {
@@ -91,7 +86,6 @@ const LazyImage = ({
     if (!isInView || shouldLoad) return;
 
     if (enableLoadingManager) {
-      // 使用加载管理器
       if (imageStatus?.isLoaded) {
         setIsLoaded(true);
         setShouldLoad(true);
@@ -114,13 +108,11 @@ const LazyImage = ({
         if (startLoading(src)) {
           setShouldLoad(true);
         } else {
-          // 如果无法立即开始加载，设置延时重试
           loadingTimeoutRef.current = setTimeout(() => {
             setShouldLoad(true);
           }, 100);
         }
       } else {
-        // 达到并发限制，延时重试
         loadingTimeoutRef.current = setTimeout(() => {
           if (canStartLoading(src)) {
             setShouldLoad(true);
@@ -128,7 +120,6 @@ const LazyImage = ({
         }, 200);
       }
     } else {
-      // 不使用加载管理器，直接加载
       setShouldLoad(true);
     }
 
@@ -139,7 +130,6 @@ const LazyImage = ({
     };
   }, [isInView, shouldLoad, enableLoadingManager, imageStatus, canStartLoading, startLoading, src]);
 
-  // 处理图片加载完成
   const handleLoad = useCallback(() => {
     setIsLoaded(true);
     if (enableLoadingManager) {
@@ -148,7 +138,6 @@ const LazyImage = ({
     onLoad?.();
   }, [enableLoadingManager, finishLoading, src, onLoad]);
 
-  // 处理图片加载错误
   const handleError = useCallback(() => {
     setHasError(true);
     if (enableLoadingManager) {
@@ -157,7 +146,6 @@ const LazyImage = ({
     onError?.();
   }, [enableLoadingManager, finishLoading, src, onError]);
 
-  // 生成占位符样式
   const getPlaceholderStyle = (): CSSProperties => {
     const baseStyle: CSSProperties = {
       position: 'absolute',
@@ -194,7 +182,6 @@ const LazyImage = ({
     }
   };
 
-  // 容器样式
   const containerStyle: CSSProperties = {
     position: fill ? 'absolute' : 'relative',
     width: fill ? '100%' : width || 'auto',

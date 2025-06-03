@@ -4,6 +4,8 @@ import { Category } from '../../index';
 import ArticlesGrid from '../../components/ArticlesGrid/ArticlesGrid';
 import BackToTop from '../../components/BackToTop/BackToTop';
 import styles from './page.module.css';
+import AdPlaceholder from '@/app/components/AdPlaceholder/AdPlaceholder';
+import adsPlaceholderImg from '../../ads_300_250.png';
 
 interface CategoryPageProps {
   params: {
@@ -56,14 +58,14 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         </div>
       </section>
 
-      {/* 广告位 */}
-      <section className={styles.adSection}>
-        <div className={styles.adContainer}>
-          <div className={styles.adPlaceholder}>
-            📢 Advertisement Space - 广告位预留区域
-          </div>
-        </div>
-      </section>
+      {/* 广告位 - 使用组件化设计 */}
+      <AdPlaceholder 
+        id="seattle-ad-10001"
+        imageSrc={adsPlaceholderImg}
+        alt="Advertisement"
+        width={300}
+        height={250}
+      />
 
       {/* Articles Grid */}
       <section className={styles.articlesSection}>

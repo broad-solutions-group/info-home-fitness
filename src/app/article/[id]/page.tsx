@@ -5,6 +5,8 @@ import ArticleCard from '../../components/ArticleCard/ArticleCard';
 import { DynamicArticleInteractions } from '../../components/DynamicComponents/DynamicComponents';
 import RefreshLink from '../../components/RefreshLink/RefreshLink';
 import styles from './page.module.css';
+import AdPlaceholder from '@/app/components/AdPlaceholder/AdPlaceholder';
+import adsPlaceholderImg from '../../ads_300_250.png';
 
 interface ArticlePageProps {
   params: {
@@ -102,14 +104,14 @@ export default function ArticlePage({ params }: ArticlePageProps) {
               <h1 className={styles.articleTitle}>{article.title}</h1>
             </header>
 
-            {/* Advertisement Section */}
-            <section className={styles.adSection}>
-              <div className={styles.adContainer}>
-                <div className={styles.adPlaceholder}>
-                  📢 Advertisement Space - 广告位预留区域
-                </div>
-              </div>
-            </section>
+            {/* 广告位 - 使用组件化设计 */}
+            <AdPlaceholder 
+              id="seattle-ad-10001"
+              imageSrc={adsPlaceholderImg}
+              alt="Advertisement"
+              width={300}
+              height={250}
+            />
 
             {/* Featured Image */}
             <div className={styles.articleImage}>

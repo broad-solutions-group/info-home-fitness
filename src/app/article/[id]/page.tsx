@@ -1,12 +1,13 @@
 import { notFound } from 'next/navigation';
-import LazyImage from '../../components/LazyImage';
+import LazyImage from '../../components/LazyImage/LazyImage';
 import { dataService } from '../../services/dataService';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
 import { DynamicArticleInteractions } from '../../components/DynamicComponents/DynamicComponents';
 import RefreshLink from '../../components/RefreshLink/RefreshLink';
 import styles from './page.module.css';
-import AdPlaceholder from '@/app/components/AdPlaceholder/AdPlaceholder';
+import AdPlaceholder from '../../components/AdPlaceholder/AdPlaceholder';
 import adsPlaceholderImg from '../../ads_300_250.png';
+import MarkdownRenderer from '../../components/MarkdownRenderer';
 
 interface ArticlePageProps {
   params: {
@@ -32,56 +33,6 @@ export default function ArticlePage({ params }: ArticlePageProps) {
       month: 'long',
       day: 'numeric'
     });
-  };
-
-  const formatContent = (content: string) => {
-    // Split content by double newlines to create paragraphs
-    const paragraphs = content.split('\n\n');
-    
-    return paragraphs.map((paragraph, index) => {
-      // Handle headers (lines starting with ##)
-      if (paragraph.startsWith('## ')) {
-        return (
-          <h2 key={index} className={styles.contentHeading}>
-            {paragraph.replace('## ', '')}
-          </h2>
-        );
-      }
-      
-      // Handle subheaders (lines starting with ###)
-      if (paragraph.startsWith('### ')) {
-        return (
-          <h3 key={index} className={styles.contentSubheading}>
-            {paragraph.replace('### ', '')}
-          </h3>
-        );
-      }
-      
-      // Handle lists (lines starting with -)
-      if (paragraph.includes('\n- ')) {
-        const listItems = paragraph.split('\n- ').filter(item => item.trim());
-        return (
-          <ul key={index} className={styles.contentList}>
-            {listItems.map((item, itemIndex) => (
-              <li key={itemIndex} className={styles.contentListItem}>
-                {item.replace(/^- /, '')}
-              </li>
-            ))}
-          </ul>
-        );
-      }
-      
-      // Regular paragraphs
-      if (paragraph.trim()) {
-        return (
-          <p key={index} className={styles.contentParagraph}>
-            {paragraph}
-          </p>
-        );
-      }
-      
-      return null;
-    }).filter(Boolean);
   };
 
   return (
@@ -128,7 +79,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
             {/* Article Content */}
             <div className={styles.articleContent}>
-              {formatContent(article.content)}
+              <MarkdownRenderer content={article.content} />
             </div>
 
             {/* Article Footer */}

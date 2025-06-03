@@ -160,28 +160,18 @@
   border-top: 1px solid rgba(74, 177, 157, 0.15);
 }
 
-/* 广告位样式 - 确保在首屏显示 */
+/* 广告位样式 - 统一在banner外显示 */
 .adSection {
   background-color: var(--white);
   padding: var(--spacing-lg) 0;
-  border-bottom: 1px solid var(--gray-200);
   position: relative;
   z-index: 5;
-}
-
-/* PC端广告位：默认显示 */
-.adSectionDesktop {
-  display: block;
-}
-
-/* 移动端广告位：默认隐藏 */
-.adSectionMobile {
-  display: none;
 }
 
 .adContainer {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 var(--spacing-md);
   text-align: center;
 }
 
@@ -216,13 +206,12 @@
   }
 
   .heroContent {
-    /* 平板端：重新定义grid布局，包含广告位 */
+    /* 平板端：重新定义grid布局 */
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas: 
       "hero-title"
       "hero-featured"
-      "hero-ad"
       "hero-description"
       "hero-buttons";
     gap: var(--spacing-lg);
@@ -268,48 +257,6 @@
     min-height: 280px; /* 平板端适当高度 */
     /* 平板端稍微减少阴影强度 */
     filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.06));
-  }
-
-  /* 平板端：隐藏banner外的桌面端广告位 */
-  .adSectionDesktop {
-    display: none !important;
-  }
-
-  /* 平板端：显示banner内的移动端广告位 */
-  .adSectionMobile {
-    display: block !important;
-    grid-area: hero-ad;
-    background-color: var(--white); /* 恢复PC端背景色 */
-    padding: var(--spacing-md) 0; /* 恢复PC端padding */
-    border-bottom: 1px solid var(--gray-200); /* 恢复PC端边框 */
-    position: static;
-    border-radius: var(--radius-lg); /* 添加圆角适应banner内部 */
-    margin: 0; /* 移除负边距，不延伸到容器边缘 */
-  }
-
-  .adSectionMobile .adContainer {
-    padding: 0; /* 移除内边距，让adPlaceholder控制间距 */
-    text-align: center; /* 广告位内容居中 */
-  }
-
-  .adSectionMobile .adPlaceholder {
-    background: linear-gradient(135deg, var(--gray-100), var(--gray-200)); /* 恢复PC端背景 */
-    border: 2px dashed var(--gray-300); /* 恢复PC端边框 */
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-lg); /* 恢复PC端内边距 */
-    color: var(--gray-600); /* 恢复PC端文字颜色 */
-    font-size: 0.875rem;
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-fast);
-    margin: 0 var(--spacing-md); /* 与adSection的上下padding保持一致 */
-  }
-
-  .adSectionMobile .adPlaceholder:hover {
-    border-color: var(--primary-green); /* 恢复PC端hover效果 */
-    background: linear-gradient(135deg, rgba(74, 177, 157, 0.05), rgba(74, 177, 157, 0.1));
   }
 
   .heroFeatured .card {
@@ -372,13 +319,12 @@
   }
 
   .heroContent {
-    /* 移动端：保持相同的grid布局 */
+    /* 移动端：重新定义grid布局 */
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas: 
       "hero-title"
       "hero-featured"
-      "hero-ad"
       "hero-description"
       "hero-buttons";
     gap: var(--spacing-md);
@@ -433,49 +379,6 @@
     min-height: 260px; /* 移动端适当高度 */
     /* 移动端轻微阴影 */
     filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.05));
-  }
-
-  /* 移动端：隐藏banner外的桌面端广告位 */
-  .adSectionDesktop {
-    display: none !important;
-  }
-
-  /* 移动端：显示banner内的移动端广告位 */
-  .adSectionMobile {
-    display: block !important;
-    grid-area: hero-ad;
-    background-color: var(--white); /* 恢复PC端背景色 */
-    padding: var(--spacing-sm) 0; /* 移动端适当减少padding */
-    border-bottom: 1px solid var(--gray-200); /* 恢复PC端边框 */
-    position: static;
-    border-radius: var(--radius-lg); /* 添加圆角适应banner内部 */
-    margin: 0; /* 移除负边距，不延伸到容器边缘 */
-    z-index: 3;
-  }
-
-  .adSectionMobile .adContainer {
-    padding: 0; /* 移除内边距，让adPlaceholder控制间距 */
-    text-align: center; /* 广告位内容居中 */
-  }
-
-  .adSectionMobile .adPlaceholder {
-    background: linear-gradient(135deg, var(--gray-100), var(--gray-200)); /* 恢复PC端背景 */
-    border: 2px dashed var(--gray-300); /* 恢复PC端边框 */
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-md); /* 移动端适当减少内边距 */
-    color: var(--gray-600); /* 恢复PC端文字颜色 */
-    font-size: 0.8rem;
-    min-height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-fast);
-    margin: 0 var(--spacing-sm); /* 与adSection的上下padding保持一致 */
-  }
-
-  .adSectionMobile .adPlaceholder:hover {
-    border-color: var(--primary-green); /* 恢复PC端hover效果 */
-    background: linear-gradient(135deg, rgba(74, 177, 157, 0.05), rgba(74, 177, 157, 0.1));
   }
 
   .heroFeatured .card {
@@ -586,6 +489,17 @@
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(74, 177, 157, 0.25);
   }
+
+  /* 广告位响应式优化 */
+  .adSection {
+    padding: var(--spacing-md) 0;
+  }
+
+  .adPlaceholder {
+    padding: var(--spacing-lg);
+    min-height: 80px;
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -609,7 +523,6 @@
     grid-template-areas: 
       "hero-title"
       "hero-featured"
-      "hero-ad"
       "hero-description"
       "hero-buttons";
     gap: var(--spacing-sm);
@@ -667,49 +580,6 @@
     filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.04));
   }
 
-  /* 小屏幕：隐藏banner外的桌面端广告位 */
-  .adSectionDesktop {
-    display: none !important;
-  }
-
-  /* 小屏幕：显示banner内的移动端广告位 */
-  .adSectionMobile {
-    display: block !important;
-    grid-area: hero-ad;
-    background-color: var(--white); /* 恢复PC端背景色 */
-    padding: var(--spacing-xs) 0; /* 小屏幕适当减少padding */
-    border-bottom: 1px solid var(--gray-200); /* 恢复PC端边框 */
-    position: static;
-    border-radius: var(--radius-lg); /* 添加圆角适应banner内部 */
-    margin: 0; /* 移除负边距，不延伸到容器边缘 */
-    z-index: 3;
-  }
-
-  .adSectionMobile .adContainer {
-    padding: 0; /* 移除内边距，让adPlaceholder控制间距 */
-    text-align: center; /* 广告位内容居中 */
-  }
-
-  .adSectionMobile .adPlaceholder {
-    background: linear-gradient(135deg, var(--gray-100), var(--gray-200)); /* 恢复PC端背景 */
-    border: 2px dashed var(--gray-300); /* 恢复PC端边框 */
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-sm); /* 小屏幕适当减少内边距 */
-    color: var(--gray-600); /* 恢复PC端文字颜色 */
-    font-size: 0.75rem;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-fast);
-    margin: 0 var(--spacing-xs); /* 与adSection的上下padding保持一致 */
-  }
-
-  .adSectionMobile .adPlaceholder:hover {
-    border-color: var(--primary-green); /* 恢复PC端hover效果 */
-    background: linear-gradient(135deg, rgba(74, 177, 157, 0.05), rgba(74, 177, 157, 0.1));
-  }
-
   .heroFeatured .card {
     min-height: 240px; /* 与容器保持一致 */
     /* 小屏幕阴影 */
@@ -752,8 +622,8 @@
   }
 
   .heroFeatured .category {
-    font-size: 0.65rem; /* 小屏幕分类标签 */
-    padding: 2px var(--spacing-xs);
+    font-size: 0.6rem;
+    padding: 1px var(--spacing-xs);
   }
   
   .sectionTitle {
@@ -792,6 +662,17 @@
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(74, 177, 157, 0.25);
   }
+
+  /* 广告位响应式优化 */
+  .adSection {
+    padding: var(--spacing-sm) 0;
+  }
+
+  .adPlaceholder {
+    padding: var(--spacing-md);
+    min-height: 60px;
+    font-size: 0.75rem;
+  }
 }
 
 /* 超小屏幕设备优化 (375px-414px) */
@@ -811,7 +692,6 @@
     grid-template-areas: 
       "hero-title"
       "hero-featured"
-      "hero-ad"
       "hero-description"
       "hero-buttons";
     gap: var(--spacing-xs);
@@ -924,43 +804,6 @@
   .heroFeatured .category {
     font-size: 0.6rem;
     padding: 1px var(--spacing-xs);
-  }
-
-  /* 超小屏幕广告位优化 */
-  .adSectionMobile {
-    display: block !important;
-    grid-area: hero-ad;
-    background-color: var(--white);
-    padding: var(--spacing-xs) 0;
-    border-bottom: 1px solid var(--gray-200);
-    position: static;
-    border-radius: var(--radius-lg);
-    z-index: 3;
-  }
-
-  .adSectionMobile .adContainer {
-    padding: 0;
-    text-align: center;
-  }
-
-  .adSectionMobile .adPlaceholder {
-    background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
-    border: 2px dashed var(--gray-300);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-xs);
-    color: var(--gray-600);
-    font-size: 0.7rem;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-fast);
-    margin: 0 var(--spacing-xs); /* 与adSection的上下padding保持一致 */
-  }
-
-  .adSectionMobile .adPlaceholder:hover {
-    border-color: var(--primary-green);
-    background: linear-gradient(135deg, rgba(74, 177, 157, 0.05), rgba(74, 177, 157, 0.1));
   }
 }
 
@@ -1203,46 +1046,5 @@
 
   .heroText {
     max-width: 600px;
-  }
-
-  /* PC端：隐藏banner内的移动端广告位 */
-  .adSectionMobile {
-    display: none !important;
-  }
-
-  /* PC端：显示banner外的桌面端广告位 */
-  .adSectionDesktop {
-    display: block;
-    background-color: var(--white);
-    padding: var(--spacing-lg) 0;
-    border-bottom: 1px solid var(--gray-200);
-    position: relative;
-    z-index: 10;
-  }
-
-  .adSectionDesktop .adContainer {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .adSectionDesktop .adPlaceholder {
-    background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
-    border: 2px dashed var(--gray-300);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-xl);
-    color: var(--gray-600);
-    font-size: 0.875rem;
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-fast);
-    margin: 0;
-  }
-
-  .adSectionDesktop .adPlaceholder:hover {
-    border-color: var(--primary-green);
-    background: linear-gradient(135deg, rgba(74, 177, 157, 0.05), rgba(74, 177, 157, 0.1));
   }
 } 

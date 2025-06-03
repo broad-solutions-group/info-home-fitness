@@ -32,8 +32,8 @@ export default function Home() {
       {/* Hero Banner 轮播 */}
       <HeroBanner articles={heroArticles} />
 
-      {/* 广告位 - PC端在banner外显示 */}
-      <section className={`${styles.adSection} ${styles.adSectionDesktop}`}>
+      {/* 广告位 - 统一在banner外显示 */}
+      <section className={styles.adSection}>
         <div className={styles.adContainer}>
           <div className={styles.adPlaceholder}>
             📢 Advertisement Space - 广告位预留区域

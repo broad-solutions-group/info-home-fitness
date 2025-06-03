@@ -431,6 +431,10 @@
     min-height: 350px;
   }
 
+  .bannerContainer {
+    padding: 10px 0 30px 0;
+  }
+
   .slide {
     padding: var(--spacing-md);
   }

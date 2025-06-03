@@ -1,11 +1,14 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import HeroBanner from './components/HeroBanner/HeroBanner';
 import ArticleCard from './components/ArticleCard/ArticleCard';
+import AdPlaceholder from './components/AdPlaceholder/AdPlaceholder';
 import { DynamicBackToTop } from './components/DynamicComponents/DynamicComponents';
 import RefreshLink from './components/RefreshLink/RefreshLink';
 import { dataService } from './services/dataService';
 import { Category } from './index';
 import styles from './page.module.css';
+import adsPlaceholderImg from './ads_300_250.png';
 
 export const metadata: Metadata = {
   title: "Home Fitness - Transform Your Home Into Your Perfect Gym",
@@ -33,14 +36,14 @@ export default function Home() {
       {/* Hero Banner 轮播 */}
       <HeroBanner articles={heroArticles} />
 
-      {/* 广告位 - 统一在banner外显示 */}
-      <section className={styles.adSection}>
-        <div className={styles.adContainer}>
-          <div className={styles.adPlaceholder}>
-            📢 Advertisement Space - 广告位预留区域
-          </div>
-        </div>
-      </section>
+      {/* 广告位 - 使用组件化设计 */}
+      <AdPlaceholder 
+        id="seattle-ad-10001"
+        imageSrc={adsPlaceholderImg}
+        alt="Advertisement"
+        width={300}
+        height={250}
+      />
 
       {/* Trending Now */}
       <section className={styles.trendingSection}>

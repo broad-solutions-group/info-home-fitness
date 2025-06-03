@@ -3,6 +3,7 @@ import { Poppins, Open_Sans, Montserrat } from "next/font/google";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import ClientWrapper from "./components/ClientWrapper/ClientWrapper";
+import SDKLoader from "./components/SDKLoader/SDKLoader";
 import "./globals.css";
 
 const poppins = Poppins({ 
@@ -90,6 +91,14 @@ export default function RootLayout({
           </main>
           <Footer />
         </ClientWrapper>
+        
+        {/* SDK加载器 - 全局引入 */}
+        <SDKLoader 
+          config={{
+            enabled: process.env.NEXT_PUBLIC_SDK_ENABLED !== 'false',
+            debug: process.env.NEXT_PUBLIC_SDK_DEBUG === 'true' || process.env.NODE_ENV === 'development'
+          }}
+        />
       </body>
     </html>
   );

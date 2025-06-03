@@ -1,11 +1,25 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import styles from './Footer.module.css';
 
 const Footer = () => {
+  const [domain, setDomain] = useState('');
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    setDomain(window.location.hostname);
+  }, []);
+
   const handleLinkClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
     window.location.href = href;
+  };
+
+  // 动态获取当前年份
+  const getCurrentYear = () => {
+    return new Date().getFullYear();
   };
 
   return (
@@ -20,10 +34,10 @@ const Footer = () => {
           </div>
           
           <div className={styles.footerBottom}>
-            {/* 左侧：地址 */}
-            <address className={styles.address}>
-              3911 Concord Pike #8030, SMB#27548, Wilmington, DE 19803, USA
-            </address>
+            {/* 左侧：版权信息 */}
+            <div className={styles.address}>
+              Copyright © {getCurrentYear()} {isClient ? domain : ''}
+            </div>
 
             {/* 右侧：链接 */}
             <div className={styles.linksSection}>

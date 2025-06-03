@@ -5,7 +5,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { dataService } from '../services/dataService';
 import ArticleCard from '../components/ArticleCard/ArticleCard';
 import SearchSuggestions from '../components/SearchSuggestions/SearchSuggestions';
-import { SearchResult } from '../types';
+import { SearchResult, Category } from '../index';
 import styles from './page.module.css';
 
 // 由于这是客户端组件，metadata需要在layout中处理
@@ -142,7 +142,7 @@ function SearchPageContent() {
           <div className="container">
             <h2 className={styles.categoriesTitle}>Browse by Category</h2>
             <div className={styles.categoriesGrid}>
-              {dataService.getAllData().categories.map(category => (
+              {dataService.getAllData().categories.map((category: Category) => (
                 <a 
                   key={category.id}
                   href={`/category/${category.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}`}

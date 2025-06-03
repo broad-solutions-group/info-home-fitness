@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Article } from '../../types';
+import { Article } from '../../index';
 import ArticleCard from '../ArticleCard/ArticleCard';
 
 interface ArticlesGridProps {

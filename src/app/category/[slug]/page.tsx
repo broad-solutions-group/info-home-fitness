@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { dataService } from '../../services/dataService';
+import { Category } from '../../index';
 import ArticlesGrid from '../../components/ArticlesGrid/ArticlesGrid';
 import BackToTop from '../../components/BackToTop/BackToTop';
 import styles from './page.module.css';
@@ -95,8 +96,8 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           <h2 className={styles.relatedTitle}>Explore Other Categories</h2>
           <div className={styles.relatedGrid}>
             {dataService.getAllData().categories
-              .filter(cat => cat.name !== category.name)
-              .map(relatedCategory => (
+              .filter((cat: Category) => cat.name !== category.name)
+              .map((relatedCategory: Category) => (
                 <a 
                   key={relatedCategory.id}
                   href={`/category/${relatedCategory.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}`}

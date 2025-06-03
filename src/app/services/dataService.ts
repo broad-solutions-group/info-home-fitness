@@ -1,4 +1,4 @@
-import { HomeData, Article, Category, SearchResult } from '../types';
+import { HomeData, Article, Category, SearchResult } from '../index';
 import homeData from '../data/Home-Fitness.json';
 
 class DataService {

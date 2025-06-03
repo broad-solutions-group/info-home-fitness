@@ -1,3 +1,9 @@
+import bundleAnalyzer from '@next/bundle-analyzer';
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -17,23 +23,51 @@ const nextConfig = {
         ...config.resolve.fallback,
         fs: false,
       };
-      
+    }
+    
+    // 优化bundle分割
+    if (!dev && !isServer) {
       config.optimization = {
         ...config.optimization,
         splitChunks: {
-          ...config.optimization.splitChunks,
+          chunks: 'all',
           cacheGroups: {
-            ...config.optimization.splitChunks.cacheGroups,
+            // 将React相关库分离到单独的chunk
+            react: {
+              name: 'react',
+              test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+              chunks: 'all',
+              priority: 20,
+            },
+            // 将第三方库分离
+            vendor: {
+              name: 'vendor',
+              test: /[\\/]node_modules[\\/]/,
+              chunks: 'all',
+              priority: 10,
+              enforce: true,
+            },
+            // 将样式文件分离
             styles: {
               name: 'styles',
               test: /\.css$/,
               chunks: 'all',
               enforce: true,
+              priority: 15,
+            },
+            // 将组件分离到单独的chunk
+            components: {
+              name: 'components',
+              test: /[\\/]src[\\/]app[\\/]components[\\/]/,
+              chunks: 'all',
+              priority: 5,
+              minSize: 10000,
             },
           },
         },
       };
     }
+    
     return config;
   },
   
@@ -49,6 +83,11 @@ const nextConfig = {
   swcMinify: true,
   
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
+  
+  // 启用实验性功能来优化bundle
+  experimental: {
+    optimizePackageImports: ['react', 'react-dom'],
+  },
   
   async headers() {
     return [
@@ -77,14 +116,10 @@ const nextConfig = {
     ];
   },
   
-  experimental: {
-    optimizePackageImports: ['react', 'react-dom'],
-  },
-  
   ...(process.env.NODE_ENV === 'production' && {
     output: 'standalone',
     compress: true,
   }),
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);

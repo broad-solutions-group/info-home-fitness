@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import LazyImage from '../../components/LazyImage';
 import { dataService } from '../../services/dataService';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
-import ArticleInteractions from '../../components/ArticleInteractions/ArticleInteractions';
+import { DynamicArticleInteractions } from '../../components/DynamicComponents/DynamicComponents';
 import RefreshLink from '../../components/RefreshLink/RefreshLink';
 import styles from './page.module.css';
 
@@ -131,7 +131,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
             {/* Article Footer */}
             <footer className={styles.articleFooter}>
-              <ArticleInteractions 
+              <DynamicArticleInteractions 
                 articleTitle={article.title}
                 articleUrl={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://localhost:3000'}/article/${article.id}`}
                 showShare={false}

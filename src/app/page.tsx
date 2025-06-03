@@ -1,9 +1,10 @@
 import { Metadata } from 'next';
 import HeroBanner from './components/HeroBanner/HeroBanner';
 import ArticleCard from './components/ArticleCard/ArticleCard';
-import BackToTop from './components/BackToTop/BackToTop';
+import { DynamicBackToTop } from './components/DynamicComponents/DynamicComponents';
 import RefreshLink from './components/RefreshLink/RefreshLink';
 import { dataService } from './services/dataService';
+import { Category } from './index';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -83,8 +84,8 @@ export default function Home() {
           </div>
           <div className={styles.categoryGrid}>
             {categoryPreviews
-              .filter(category => category.name === 'Affordable Home Gym Setups')
-              .map(category => (
+              .filter((category: Category) => category.name === 'Affordable Home Gym Setups')
+              .map((category: Category) => (
                 <div key={category.id} className={styles.categoryBlock}>
                   <div className={styles.categoryArticles}>
                     {category.articles.map(article => (
@@ -120,8 +121,8 @@ export default function Home() {
           </div>
           <div className={styles.familyGrid}>
             {categoryPreviews
-              .filter(category => category.name === 'Family & Kids Friendly Workouts')
-              .map(category => (
+              .filter((category: Category) => category.name === 'Family & Kids Friendly Workouts')
+              .map((category: Category) => (
                 <div key={category.id} className={styles.categoryBlock}>
                   <div className={styles.categoryArticles}>
                     {category.articles.map(article => (
@@ -157,8 +158,8 @@ export default function Home() {
           </div>
           <div className={styles.strengthGrid}>
             {categoryPreviews
-              .filter(category => category.name === 'Strength Training Without Equipment')
-              .map(category => (
+              .filter((category: Category) => category.name === 'Strength Training Without Equipment')
+              .map((category: Category) => (
                 <div key={category.id} className={styles.categoryBlock}>
                   <div className={styles.categoryArticles}>
                     {category.articles.map(article => (
@@ -194,8 +195,8 @@ export default function Home() {
           </div>
           <div className={styles.motivationGrid}>
             {categoryPreviews
-              .filter(category => category.name === 'Motivation & Habit Building Tips')
-              .map(category => (
+              .filter((category: Category) => category.name === 'Motivation & Habit Building Tips')
+              .map((category: Category) => (
                 <div key={category.id} className={styles.categoryBlock}>
                   <div className={styles.categoryArticles}>
                     {category.articles.map(article => (
@@ -213,7 +214,7 @@ export default function Home() {
       </section>
 
       {/* 返回顶部按钮 */}
-      <BackToTop />
+      <DynamicBackToTop />
     </div>
   );
 }

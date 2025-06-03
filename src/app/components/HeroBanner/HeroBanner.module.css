@@ -357,7 +357,6 @@
     bottom: 0;
     left: 0;
     right: 0;
-    margin-bottom: 0;
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
     color: var(--white);
     padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
@@ -373,6 +372,35 @@
     z-index: 4;
   }
 
+  /* 移动端图片上的悬浮元信息 */
+  .slideImageMeta {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-sm);
+    pointer-events: none;
+  }
+
+  .slideImageDuration,
+  .slideImageDate {
+    display: block;
+    background: rgba(0, 0, 0, 0.4);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 400;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+    opacity: 0.8;
+  }
+
   /* 隐藏移动端的原始标题 */
   .slideTitle {
     display: none;
@@ -380,12 +408,13 @@
 
   .slideDescription {
     font-size: 0.95rem;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     -webkit-line-clamp: 2;
   }
 
+  /* 隐藏移动端的原始元信息 */
   .slideMeta {
-    justify-content: center;
+    display: none;
   }
 
   .navButton {
@@ -445,7 +474,7 @@
 /* 小屏手机优化 */
 @media (max-width: 480px) {
   .heroBanner {
-    min-height: 350px;
+    min-height: 300px;
   }
 
   .bannerContainer {
@@ -453,7 +482,7 @@
   }
 
   .slide {
-    padding: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-md) 0 var(--spacing-md);
   }
 
   .slideTitle {
@@ -477,6 +506,7 @@
     bottom: 0;
     left: 0;
     right: 0;
+    margin-bottom: 0;
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
     color: var(--white);
     padding: var(--spacing-md) var(--spacing-lg) var(--spacing-sm);
@@ -492,9 +522,38 @@
     z-index: 4;
   }
 
+  /* 小屏手机图片上的悬浮元信息 */
+  .slideImageMeta {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-xs);
+    pointer-events: none;
+  }
+
+  .slideImageDuration,
+  .slideImageDate {
+    display: block;
+    background: rgba(0, 0, 0, 0.4);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 400;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+    opacity: 0.8;
+  }
+
+  /* 隐藏小屏手机的原始元信息 */
   .slideMeta {
-    font-size: 0.8rem;
-    gap: var(--spacing-sm);
+    display: none;
   }
 
   .navButton {
@@ -569,6 +628,15 @@
 /* 桌面端隐藏悬浮标题 */
 @media (min-width: 769px) {
   .slideImageTitle {
+    display: none;
+  }
+
+  .slideImageMeta {
+    display: none;
+  }
+
+  .slideImageDuration,
+  .slideImageDate {
     display: none;
   }
 } 

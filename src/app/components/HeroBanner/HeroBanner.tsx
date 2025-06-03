@@ -189,6 +189,16 @@ const HeroBanner = ({ articles, autoPlayInterval = 4000 }: HeroBannerProps) => {
                         priority={index === 0}
                         sizes="(max-width: 480px) 100vw, (max-width: 768px) 400px, 50vw"
                       />
+                      {/* 移动端悬浮元信息 */}
+                      <div className={styles.slideImageMeta}>
+                        <span className={styles.slideImageDuration}>{article.duration}</span>
+                        <time 
+                          className={styles.slideImageDate}
+                          dateTime={article.createTime}
+                        >
+                          {new Date(article.createTime).toLocaleDateString('en-US')}
+                        </time>
+                      </div>
                       {/* 移动端悬浮标题 */}
                       <h3 className={styles.slideImageTitle}>{article.title}</h3>
                     </a>

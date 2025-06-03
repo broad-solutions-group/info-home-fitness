@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import ArticleCard from '../ArticleCard/ArticleCard';
-import { Article } from '../../types';
+import OptimizedImage from '../OptimizedImage';
+import { Article } from '../../index';
 import styles from './HeroBanner.module.css';
 
 interface HeroBannerProps {
@@ -121,11 +121,20 @@ const HeroBanner = ({ articles, autoPlayInterval = 4000 }: HeroBannerProps) => {
                     </div>
                   </div>
                   <div className={styles.slideImage}>
-                    <ArticleCard 
-                      article={article} 
-                      variant="featured"
-                      showCategory={false}
-                    />
+                    <a 
+                      href={`/article/${article.id}`}
+                      className={styles.imageLink}
+                      aria-label={`Read article: ${article.title}`}
+                    >
+                      <OptimizedImage
+                        src={article.imageUrl}
+                        alt={article.title}
+                        fill
+                        className={styles.bannerImage}
+                        priority={index === 0}
+                        sizes="(max-width: 480px) 100vw, (max-width: 768px) 400px, 50vw"
+                      />
+                    </a>
                   </div>
                 </div>
               </div>

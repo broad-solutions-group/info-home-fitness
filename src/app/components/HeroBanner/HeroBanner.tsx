@@ -90,8 +90,8 @@ const HeroBanner = ({ articles, autoPlayInterval = 4000 }: HeroBannerProps) => {
   useEffect(() => {
     if (!isAutoPlaying || displayArticles.length <= 1) return;
 
-    const interval = setInterval(nextSlide, autoPlayInterval);
-    return () => clearInterval(interval);
+    // const interval = setInterval(nextSlide, autoPlayInterval);
+    // return () => clearInterval(interval);
   }, [nextSlide, autoPlayInterval, isAutoPlaying, displayArticles.length]);
 
   // 键盘事件监听

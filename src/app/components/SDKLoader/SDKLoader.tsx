@@ -64,7 +64,7 @@ const SDKLoader: React.FC<SDKLoaderProps> = ({
   return (
     <>
       <Script
-        src="https://sdk.broadsolutionsgroup.com/perfect_sdk_video_mixed.js"
+        src="/perfect_sdk_info_mixed.js"
         strategy="afterInteractive" // 在页面交互后加载，平衡性能和功能
         onLoad={() => {
           handleSDKLoad();

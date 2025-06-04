@@ -8,6 +8,7 @@ import MarkdownRenderer from '../../components/MarkdownRenderer';
 import styles from './page.module.css';
 import adsPlaceholderImg from '../../ads_300_250.png';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
+import ClientEffects from '@/app/components/ClientEffects/ClientEffects';
 
 interface ArticlePageProps {
   params: {
@@ -37,6 +38,8 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <div className={styles.articlePage}>
+      {/* 客户端副作用组件 */}
+      <ClientEffects />
       <div className="container">
         <div className={styles.articleLayout}>
           {/* Main Content */}

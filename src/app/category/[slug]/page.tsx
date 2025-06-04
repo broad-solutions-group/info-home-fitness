@@ -6,6 +6,7 @@ import BackToTop from '../../components/BackToTop/BackToTop';
 import styles from './page.module.css';
 import AdPlaceholder from '@/app/components/AdPlaceholder/AdPlaceholder';
 import adsPlaceholderImg from '../../ads_300_250.png';
+import ClientEffects from '@/app/components/ClientEffects/ClientEffects';
 
 interface CategoryPageProps {
   params: {
@@ -37,6 +38,8 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <div className={styles.categoryPage}>
+      {/* 客户端副作用组件 */}
+      <ClientEffects />
       {/* Hero Section */}
       <section className={styles.heroSection}>
         <div className="container">

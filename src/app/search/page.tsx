@@ -9,6 +9,7 @@ import AdPlaceholder from '../components/AdPlaceholder/AdPlaceholder';
 import { SearchResult, Category } from '../index';
 import styles from './page.module.css';
 import adsPlaceholderImg from '../ads_300_250.png';
+import ClientEffects from '../components/ClientEffects/ClientEffects';
 
 // 由于这是客户端组件，metadata需要在layout中处理
 // 或者创建一个单独的metadata文件
@@ -45,6 +46,8 @@ function SearchPageContent() {
 
   return (
     <div className={styles.searchPage}>
+      {/* 客户端副作用组件 */}
+      <ClientEffects />
       {/* Search Header */}
       <section className={styles.searchHeader}>
         <div className="container">

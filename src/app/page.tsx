@@ -5,6 +5,7 @@ import ArticleCard from './components/ArticleCard/ArticleCard';
 import AdPlaceholder from './components/AdPlaceholder/AdPlaceholder';
 import { DynamicBackToTop } from './components/DynamicComponents/DynamicComponents';
 import RefreshLink from './components/RefreshLink/RefreshLink';
+import ClientEffects from './components/ClientEffects/ClientEffects';
 import { dataService } from './services/dataService';
 import { Category } from './index';
 import styles from './page.module.css';
@@ -33,6 +34,9 @@ export default function Home() {
 
   return (
     <div className={styles.homePage}>
+      {/* 客户端副作用组件 */}
+      <ClientEffects />
+      
       {/* Hero Banner 轮播 */}
       <HeroBanner articles={heroArticles} />
 

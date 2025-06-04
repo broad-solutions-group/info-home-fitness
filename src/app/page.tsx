@@ -72,6 +72,14 @@ export default function Home() {
         </div>
       </section>
 
+      <AdPlaceholder 
+        id="seattle-ad-10002"
+        imageSrc={adsPlaceholderImg}
+        alt="Advertisement"
+        width={300}
+        height={250}
+      />
+
       {/* Build Your Home Gym */}
       <section className={styles.categorySection}>
         <div className="container">
@@ -109,6 +117,14 @@ export default function Home() {
         </div>
       </section>
 
+      <AdPlaceholder 
+        id="seattle-ad-10003"
+        imageSrc={adsPlaceholderImg}
+        alt="Advertisement"
+        width={300}
+        height={250}
+      />
+
       {/* Family & Kids Fitness */}
       <section className={styles.familySection}>
         <div className="container">
@@ -145,6 +161,14 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <AdPlaceholder 
+        id="seattle-ad-10004"
+        imageSrc={adsPlaceholderImg}
+        alt="Advertisement"
+        width={300}
+        height={250}
+      />
 
       {/* Strength Training Without Equipment */}
       <section className={styles.strengthSection}>

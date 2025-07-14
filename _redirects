@@ -1,0 +1,5 @@
+# SPA路由支持 - 将所有非静态资源的请求重定向到index.html
+/*    /index.html   200
+
+# 可选：添加特定的重定向规则
+# /old-page    /new-page    301 

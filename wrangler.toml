@@ -1,0 +1,87 @@
+[build]
+command = "npm run build"
+output_directory = "out"
+
+[site]
+bucket = "out"
+
+[env.production]
+name = "info-home-fitness"
+compatibility_date = "2025-01-01"
+
+[env.preview]
+name = "info-home-fitness-preview"
+compatibility_date = "2025-01-01"
+
+# 环境变量配置
+[vars]
+NODE_ENV = "production"
+
+# 路由配置
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+# 缓存配置
+[[headers]]
+for = "/*"
+[headers.values]
+X-Frame-Options = "DENY"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+for = "/_next/static/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "*.png"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "*.jpg"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "*.jpeg"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "*.gif"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "*.svg"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "*.webp"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "*.woff"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "*.woff2"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "*.ttf"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "*.eot"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable" 

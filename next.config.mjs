@@ -6,6 +6,10 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // 启用静态导出
+  output: 'export',
+  
+  // 禁用图片优化，因为静态导出不支持
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -17,6 +21,15 @@ const nextConfig = {
       },
     ],
   },
+  
+  // 设置基础路径（如果需要）
+  // basePath: '',
+  
+  // 设置资源前缀 - 静态导出时不需要设置
+  // assetPrefix: '.',
+  
+  // 禁用服务端功能
+  trailingSlash: true,
   
   webpack: (config, { dev, isServer }) => {
     if (dev && !isServer) {
@@ -90,37 +103,33 @@ const nextConfig = {
     optimizePackageImports: ['react', 'react-dom'],
   },
   
-  async headers() {
-    return [
-      {
-        source: '/_next/static/css/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-        ],
-      },
-      {
-        source: '/_next/static/js/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-    ];
-  },
-  
-  ...(process.env.NODE_ENV === 'production' && {
-    output: 'standalone',
-    compress: true,
-  }),
+  // 静态导出时不需要headers配置
+  // async headers() {
+  //   return [
+  //     {
+  //       source: '/_next/static/css/:path*',
+  //       headers: [
+  //         {
+  //           key: 'Cache-Control',
+  //           value: 'public, max-age=31536000, immutable',
+  //         },
+  //         {
+  //           key: 'X-Content-Type-Options',
+  //           value: 'nosniff',
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       source: '/_next/static/js/:path*',
+  //       headers: [
+  //         {
+  //           key: 'Cache-Control',
+  //           value: 'public, max-age=31536000, immutable',
+  //         },
+  //       ],
+  //     },
+  //   ];
+  // },
 };
 
 export default withBundleAnalyzer(nextConfig);

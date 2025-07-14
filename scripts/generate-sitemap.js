@@ -4,24 +4,32 @@ const path = require('path');
 // 站点URL
 const siteUrl = 'https://betterhomefit.com';
 const dataPath = path.join(__dirname, '../src/app/data/Home-Fitness.json');
-const outputPath = path.join(__dirname, '../.open-next/assets/sitemap.xml');
-const buildIdPath = path.join(__dirname, '../.open-next/assets/BUILD_ID');
+const outputPath = path.join(__dirname, '../out/sitemap.xml');
 
 // 获取构建时间
 function getBuildTime() {
-  const stat = fs.statSync(buildIdPath);
-  const d = new Date(stat.mtime);
-  return d.toISOString().slice(0, 10);
+  return new Date().toISOString().slice(0, 10);
 }
 
-// 分类slug生成
-function getCategorySlug(name) {
-  return name.toLowerCase().replace(/\s+/g, '-').replace(/'/g, '');
+// 转义XML特殊字符
+function escapeXml(text) {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 }
 
-// xml转义
-function escapeXml(str) {
-  return str.replace(/[<>&'"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','\'':'&apos;','"':'&quot;'}[c]));
+// 获取分类slug
+function getCategorySlug(categoryName) {
+  const slugMap = {
+    'Affordable Home Gym Setups': 'affordable-home-gym-setups',
+    'Family & Kids Friendly Workouts': 'family-kids-friendly-workouts',
+    'Strength Training Without Equipment': 'strength-training-without-equipment',
+    'Motivation & Habit Building Tips': 'motivation-habit-building-tips'
+  };
+  return slugMap[categoryName] || categoryName.toLowerCase().replace(/\s+/g, '-');
 }
 
 function main() {
@@ -77,6 +85,12 @@ function main() {
     ),
     '</urlset>'
   ].join('\n');
+
+  // 确保输出目录存在
+  const outputDir = path.dirname(outputPath);
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
 
   fs.writeFileSync(outputPath, xml, 'utf-8');
   console.log('sitemap.xml generated:', outputPath);

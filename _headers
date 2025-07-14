@@ -1,0 +1,41 @@
+# 静态资源缓存
+/_next/static/css/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
+
+/_next/static/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/_next/static/media/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# 图片缓存
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+# 字体文件缓存
+*.woff
+*.woff2
+*.ttf
+*.eot
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML页面缓存
+/*.html
+  Cache-Control: public, max-age=3600
+
+# 根页面
+/
+  Cache-Control: public, max-age=3600
+
+# 安全头
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=() 

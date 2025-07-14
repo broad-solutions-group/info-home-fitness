@@ -128,7 +128,9 @@ npm start
 - **语言**: TypeScript
 - **样式**: CSS Modules
 - **字体**: Google Fonts (Poppins, Open Sans, Montserrat)
-- **部署**: Cloudflare Workers (可选)
+- **部署**: Cloudflare Pages (静态部署)
+- **构建**: 静态站点生成 (SSG)
+- **CDN**: Cloudflare CDN
 
 ## 📊 数据结构
 
@@ -170,14 +172,49 @@ interface Category {
 
 ## 🚀 部署指南
 
-### Cloudflare Workers 部署
+### Cloudflare Pages 部署（推荐）
+
+项目已配置为使用 Cloudflare Pages 进行静态部署。
+
+#### 方式一：通过 Cloudflare Dashboard（推荐）
+
+1. 访问 [Cloudflare Dashboard](https://dash.cloudflare.com)
+2. 创建新的 Pages 项目
+3. 连接您的 Git 仓库
+4. 配置构建设置：
+   - 构建命令: `npm run build`
+   - 构建输出目录: `out`
+   - Node.js 版本: `18` 或更高
+5. 点击 "Save and Deploy"
+
+#### 方式二：使用部署脚本
+
 ```bash
+# 安装 Wrangler CLI
+npm install -g wrangler
+
+# 登录 Cloudflare
+wrangler login
+
+# 使用部署脚本
+./deploy.sh [project-name]
+```
+
+#### 方式三：手动部署
+
+```bash
+# 构建项目
 npm run build
-npm run deploy
+
+# 部署到 Cloudflare Pages
+wrangler pages deploy out --project-name=your-project-name
 ```
 
 ### 其他平台部署
-项目支持部署到任何支持 Next.js 的平台，如 Vercel、Netlify 等。
+
+项目支持部署到任何支持静态站点的平台，如 Vercel、Netlify、GitHub Pages 等。
+
+详细部署说明请参考 [DEPLOYMENT.md](./DEPLOYMENT.md)
 
 ## 📝 内容管理
 

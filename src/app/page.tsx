@@ -36,12 +36,12 @@ export default function Home() {
     <div className={styles.homePage}>
       {/* 客户端副作用组件 */}
       <ClientEffects />
-      
+
       {/* Hero Banner 轮播 */}
       <HeroBanner articles={heroArticles} />
 
       {/* 广告位 - 使用组件化设计 */}
-      <AdPlaceholder 
+      <AdPlaceholder
         id="seattle-ad-10001"
         imageSrc={adsPlaceholderImg}
         alt="Advertisement"
@@ -60,8 +60,8 @@ export default function Home() {
           </div>
           <div className={styles.trendingGrid}>
             {trendingArticles.map((article, index) => (
-              <ArticleCard 
-                key={article.id} 
+              <ArticleCard
+                key={article.id}
                 article={article}
                 variant={index === 0 ? "featured" : "default"}
                 showCategory={false}
@@ -72,7 +72,7 @@ export default function Home() {
         </div>
       </section>
 
-      <AdPlaceholder 
+      <AdPlaceholder
         id="seattle-ad-10002"
         imageSrc={adsPlaceholderImg}
         alt="Advertisement"
@@ -90,8 +90,8 @@ export default function Home() {
             <p className={styles.sectionSubtitle}>
               Smart solutions for every space and budget
             </p>
-            <RefreshLink 
-              href="/category/affordable-home-gym-setups" 
+            <RefreshLink
+              href="/category/affordable-home-gym-setups"
               className={styles.viewAllButton}
             >
               View All Articles →
@@ -104,8 +104,8 @@ export default function Home() {
                 <div key={category.id} className={styles.categoryBlock}>
                   <div className={styles.categoryArticles}>
                     {category.articles.map(article => (
-                      <ArticleCard 
-                        key={article.id} 
+                      <ArticleCard
+                        key={article.id}
                         article={article}
                         variant="compact"
                       />
@@ -117,13 +117,6 @@ export default function Home() {
         </div>
       </section>
 
-      <AdPlaceholder 
-        id="seattle-ad-10003"
-        imageSrc={adsPlaceholderImg}
-        alt="Advertisement"
-        width={300}
-        height={250}
-      />
 
       {/* Family & Kids Fitness */}
       <section className={styles.familySection}>
@@ -135,8 +128,8 @@ export default function Home() {
             <p className={styles.sectionSubtitle}>
               Fun activities that get the whole family moving together
             </p>
-            <RefreshLink 
-              href="/category/family-kids-friendly-workouts" 
+            <RefreshLink
+              href="/category/family-kids-friendly-workouts"
               className={styles.viewAllButton}
             >
               View All Articles →
@@ -149,8 +142,8 @@ export default function Home() {
                 <div key={category.id} className={styles.categoryBlock}>
                   <div className={styles.categoryArticles}>
                     {category.articles.map(article => (
-                      <ArticleCard 
-                        key={article.id} 
+                      <ArticleCard
+                        key={article.id}
                         article={article}
                         variant="default"
                       />
@@ -162,13 +155,6 @@ export default function Home() {
         </div>
       </section>
 
-      <AdPlaceholder 
-        id="seattle-ad-10004"
-        imageSrc={adsPlaceholderImg}
-        alt="Advertisement"
-        width={300}
-        height={250}
-      />
 
       {/* Strength Training Without Equipment */}
       <section className={styles.strengthSection}>
@@ -180,8 +166,8 @@ export default function Home() {
             <p className={styles.sectionSubtitle}>
               Build muscle and strength using just your bodyweight
             </p>
-            <RefreshLink 
-              href="/category/strength-training-without-equipment" 
+            <RefreshLink
+              href="/category/strength-training-without-equipment"
               className={styles.viewAllButton}
             >
               View All Articles →
@@ -194,8 +180,8 @@ export default function Home() {
                 <div key={category.id} className={styles.categoryBlock}>
                   <div className={styles.categoryArticles}>
                     {category.articles.map(article => (
-                      <ArticleCard 
-                        key={article.id} 
+                      <ArticleCard
+                        key={article.id}
                         article={article}
                         variant="compact"
                       />
@@ -217,8 +203,8 @@ export default function Home() {
             <p className={styles.sectionSubtitle}>
               Build lasting motivation and create sustainable workout routines
             </p>
-            <RefreshLink 
-              href="/category/motivation-habit-building-tips" 
+            <RefreshLink
+              href="/category/motivation-habit-building-tips"
               className={styles.viewAllButton}
             >
               View All Articles →
@@ -231,8 +217,8 @@ export default function Home() {
                 <div key={category.id} className={styles.categoryBlock}>
                   <div className={styles.categoryArticles}>
                     {category.articles.map(article => (
-                      <ArticleCard 
-                        key={article.id} 
+                      <ArticleCard
+                        key={article.id}
                         article={article}
                         variant="default"
                       />

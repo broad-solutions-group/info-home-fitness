@@ -1,0 +1,23 @@
+# robots.txt for betterhomefit.com
+# 允许所有搜索引擎爬虫访问
+
+User-agent: *
+Allow: /
+Allow: /article/
+Allow: /category/
+Allow: /search
+Allow: /about-us
+Allow: /privacy-policy
+Allow: /terms-of-service
+
+# 禁止访问测试和调试页面
+Disallow: /sdk-test
+Disallow: /404.html
+
+# 禁止访问Next.js内部文件和静态资源
+Disallow: /_next/
+Disallow: /out/
+
+# 站点地图位置
+Sitemap: https://betterhomefit.com/sitemap.xml
+

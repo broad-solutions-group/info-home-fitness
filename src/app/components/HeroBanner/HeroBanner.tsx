@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import LazyImage from '../LazyImage';
 import { Article } from '../../index';
+import { generateArticleSlug } from '@/utils';
 import styles from './HeroBanner.module.css';
 
 interface HeroBannerProps {
@@ -177,7 +178,7 @@ const HeroBanner = ({ articles, autoPlayInterval = 4000 }: HeroBannerProps) => {
                   </div>
                   <div className={styles.slideImage}>
                     <a 
-                      href={`/article/${article.id}`}
+                      href={`/article/${generateArticleSlug(article.id, article.title)}`}
                       className={styles.imageLink}
                       aria-label={`Read article: ${article.title}`}
                     >

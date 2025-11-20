@@ -2,6 +2,7 @@
 
 import LazyImage from '../LazyImage';
 import { Article } from '../../index';
+import { generateArticleSlug } from '@/utils';
 import styles from './ArticleCard.module.css';
 
 interface ArticleCardProps {
@@ -30,14 +31,14 @@ const ArticleCard = ({
 
   const handleCardClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.location.href = `/article/${article.id}`;
+    window.location.href = `/article/${generateArticleSlug(article.id, article.title)}`;
   };
 
   const cardClassName = `${styles.card} ${styles[variant]} ${isFirstCard ? styles.firstCard : ''}`;
 
   return (
     <article className={cardClassName}>
-      <a href={`/article/${article.id}`} className={styles.cardLink} onClick={handleCardClick}>
+      <a href={`/article/${generateArticleSlug(article.id, article.title)}`} className={styles.cardLink} onClick={handleCardClick}>
         {/* Image */}
         <div className={styles.imageContainer}>
           <LazyImage

@@ -32,6 +32,25 @@ function getCategorySlug(categoryName) {
   return slugMap[categoryName] || categoryName.toLowerCase().replace(/\s+/g, '-');
 }
 
+// 生成文章slug（id-title格式）
+function generateArticleSlug(id, title) {
+  // 将标题转换为URL友好的格式
+  const titleSlug = title
+    .toLowerCase()
+    .trim()
+    // 替换特殊字符为连字符
+    .replace(/[^\w\s-]/g, '')
+    // 将多个空格或连字符替换为单个连字符
+    .replace(/[\s_-]+/g, '-')
+    // 移除开头和结尾的连字符
+    .replace(/^-+|-+$/g, '')
+    // 限制长度（保留前50个字符）
+    .substring(0, 50)
+    .replace(/-+$/, ''); // 移除末尾的连字符
+
+  return `${id}-${titleSlug}`;
+}
+
 function main() {
   const buildTime = getBuildTime();
   const raw = fs.readFileSync(dataPath, 'utf-8');
@@ -63,7 +82,7 @@ function main() {
   categories.forEach(cat => {
     (cat.articles || []).forEach(article => {
       urls.push({
-        loc: `${siteUrl}/article/${article.id}`,
+        loc: `${siteUrl}/article/${generateArticleSlug(article.id, article.title)}`,
         changefreq: 'daily',
         priority: '0.6',
         lastmod: buildTime

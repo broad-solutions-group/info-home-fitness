@@ -101,11 +101,9 @@ function SearchPageContent() {
               {searchResult.articles.map((article, index) => (
                 <ArticleCard 
                   key={article.id} 
-                  article={{
-                    ...article,
-                    title: highlightText(article.title, query) as any,
-                    description: highlightText(article.description, query) as any
-                  }}
+                  article={article}
+                  highlightedTitle={highlightText(article.title, query)}
+                  highlightedDescription={highlightText(article.description, query)}
                   variant={index === 0 ? "featured" : "default"}
                   showCategory={true}
                   categoryName="Search Result"

@@ -11,6 +11,8 @@ interface ArticleCardProps {
   showCategory?: boolean;
   categoryName?: string;
   isFirstCard?: boolean;
+  highlightedTitle?: React.ReactNode; // 可选的高亮标题
+  highlightedDescription?: React.ReactNode; // 可选的高亮描述
 }
 
 const ArticleCard = ({ 
@@ -18,7 +20,9 @@ const ArticleCard = ({
   variant = 'default', 
   showCategory = false, 
   categoryName,
-  isFirstCard = false
+  isFirstCard = false,
+  highlightedTitle,
+  highlightedDescription
 }: ArticleCardProps) => {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -27,6 +31,27 @@ const ArticleCard = ({
       month: 'long',
       day: 'numeric'
     });
+  };
+
+  // 确保title是字符串（用于alt属性等）
+  const getTitleString = (): string => {
+    if (typeof article.title === 'string') {
+      return article.title;
+    }
+    // 如果是React元素，提取文本内容
+    if (highlightedTitle && typeof highlightedTitle === 'object') {
+      const extractText = (node: any): string => {
+        if (typeof node === 'string') return node;
+        if (typeof node === 'number') return String(node);
+        if (Array.isArray(node)) return node.map(extractText).join('');
+        if (node && typeof node === 'object' && node.props?.children) {
+          return extractText(node.props.children);
+        }
+        return '';
+      };
+      return extractText(highlightedTitle) || String(article.title);
+    }
+    return String(article.title || '');
   };
 
   const handleCardClick = (e: React.MouseEvent) => {
@@ -43,7 +68,7 @@ const ArticleCard = ({
         <div className={styles.imageContainer}>
           <LazyImage
             src={article.imageUrl}
-            alt={article.title}
+            alt={getTitleString()}
             fill
             className={styles.image}
             priority={variant === 'featured' || isFirstCard}
@@ -64,7 +89,7 @@ const ArticleCard = ({
           {/* Featured变体的标题覆盖层 */}
           {variant === 'featured' && (
             <h3 className={styles.overlayTitle}>
-              {article.title}
+              {highlightedTitle || article.title}
             </h3>
           )}
         </div>
@@ -74,12 +99,12 @@ const ArticleCard = ({
           {/* 非featured变体的标题 */}
           {variant !== 'featured' && (
             <h3 className={styles.title}>
-              {article.title}
+              {highlightedTitle || article.title}
             </h3>
           )}
           
           <p className={styles.description}>
-            {article.description}
+            {highlightedDescription || article.description}
           </p>
           
           {/* Meta区域：日期和Read More并排两端对齐 */}

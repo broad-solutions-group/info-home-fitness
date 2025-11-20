@@ -26,12 +26,43 @@ export function transformMarkdown(content: string): string {
 /**
  * 生成文章slug（id-title格式）
  * @param id - 文章ID
- * @param title - 文章标题
+ * @param title - 文章标题（可以是字符串或React元素）
  * @returns 格式化的slug字符串
  */
-export function generateArticleSlug(id: number, title: string): string {
+export function generateArticleSlug(id: number, title: string | any): string {
+  // 确保title是字符串类型
+  let titleStr: string;
+  
+  if (typeof title === 'string') {
+    titleStr = title;
+  } else if (title && typeof title === 'object') {
+    // 如果是React元素，尝试提取文本内容
+    // 递归提取所有文本节点
+    const extractText = (node: any): string => {
+      if (typeof node === 'string') {
+        return node;
+      }
+      if (typeof node === 'number') {
+        return String(node);
+      }
+      if (Array.isArray(node)) {
+        return node.map(extractText).join('');
+      }
+      if (node && typeof node === 'object') {
+        if (node.props && node.props.children) {
+          return extractText(node.props.children);
+        }
+      }
+      return '';
+    };
+    titleStr = extractText(title);
+  } else {
+    // 如果无法提取，使用默认值
+    titleStr = String(title || '');
+  }
+  
   // 将标题转换为URL友好的格式
-  const titleSlug = title
+  const titleSlug = titleStr
     .toLowerCase()
     .trim()
     // 替换特殊字符为连字符

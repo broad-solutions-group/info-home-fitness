@@ -41,6 +41,9 @@ const OptimizedImage = ({
           objectFit,
           ...style,
         }}
+        // 优化 priority 图片的加载
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
         {...props}
       />
     );
@@ -57,6 +60,8 @@ const OptimizedImage = ({
         className={className}
         priority={priority}
         sizes={sizes}
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
         style={{
           width: 'auto',
           height: 'auto',
@@ -78,6 +83,8 @@ const OptimizedImage = ({
       className={className}
       priority={priority}
       sizes={sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
+      loading={priority ? 'eager' : 'lazy'}
+      fetchPriority={priority ? 'high' : 'auto'}
       style={{
         objectFit,
         ...style,

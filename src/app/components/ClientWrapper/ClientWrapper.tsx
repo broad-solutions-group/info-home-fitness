@@ -38,31 +38,45 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
       };
     }
 
-    // 防止FOUC
-    document.documentElement.classList.add('hydrated');
+    // 标记页面已水合（不阻塞渲染，不影响 LCP）
+    // 使用 requestIdleCallback 延迟执行，不阻塞关键渲染路径
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        document.documentElement.classList.add('hydrated');
+      });
+    } else {
+      // 降级方案
+      setTimeout(() => {
+        document.documentElement.classList.add('hydrated');
+      }, 0);
+    }
 
-    // 清理预加载的CSS链接警告
-    const preloadLinks = document.querySelectorAll('link[rel="preload"][as="style"]');
-    preloadLinks.forEach(link => {
-      const href = link.getAttribute('href');
-      if (href && (href.includes('layout.css') || href.includes('page.css'))) {
-        // 将预加载链接转换为实际的样式表链接
-        const styleLink = document.createElement('link');
-        styleLink.rel = 'stylesheet';
-        styleLink.href = href;
-        styleLink.onload = () => {
-          // 移除原始的预加载链接
-          try {
-            if (link.parentNode) {
-              link.parentNode.removeChild(link);
-            }
-          } catch (error) {
-            console.warn('Failed to remove preload link:', error);
+    // 清理预加载的CSS链接警告（延迟执行，不阻塞渲染）
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        const preloadLinks = document.querySelectorAll('link[rel="preload"][as="style"]');
+        preloadLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href && (href.includes('layout.css') || href.includes('page.css'))) {
+            // 将预加载链接转换为实际的样式表链接
+            const styleLink = document.createElement('link');
+            styleLink.rel = 'stylesheet';
+            styleLink.href = href;
+            styleLink.onload = () => {
+              // 移除原始的预加载链接
+              try {
+                if (link.parentNode) {
+                  link.parentNode.removeChild(link);
+                }
+              } catch (error) {
+                console.warn('Failed to remove preload link:', error);
+              }
+            };
+            document.head.appendChild(styleLink);
           }
-        };
-        document.head.appendChild(styleLink);
-      }
-    });
+        });
+      });
+    }
 
   }, []);
 

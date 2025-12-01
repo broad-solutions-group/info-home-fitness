@@ -65,7 +65,7 @@ const SDKLoader: React.FC<SDKLoaderProps> = ({
     <>
       <Script
         src="/perfect_sdk_info_mixed.js"
-        strategy="afterInteractive" // 在页面交互后加载，平衡性能和功能
+        strategy="lazyOnload" // 延迟到页面完全加载后，不阻塞 LCP
         onLoad={() => {
           handleSDKLoad();
           if (defaultConfig.debug) {

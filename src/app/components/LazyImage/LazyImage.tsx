@@ -56,7 +56,13 @@ const LazyImage = ({
 
   // Intersection Observer 监听图片是否进入视口
   useEffect(() => {
-    if (priority || isInView) return;
+    // priority 图片立即加载，不等待 Intersection Observer
+    if (priority) {
+      setIsInView(true);
+      return;
+    }
+    
+    if (isInView) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -85,6 +91,12 @@ const LazyImage = ({
   // 管理图片加载时机
   useEffect(() => {
     if (!isInView || shouldLoad) return;
+
+    // priority 图片立即加载，跳过加载管理器延迟
+    if (priority) {
+      setShouldLoad(true);
+      return;
+    }
 
     if (enableLoadingManager) {
       if (imageStatus?.isLoaded) {
@@ -129,7 +141,7 @@ const LazyImage = ({
         clearTimeout(loadingTimeoutRef.current);
       }
     };
-  }, [isInView, shouldLoad, enableLoadingManager, imageStatus, canStartLoading, startLoading, src]);
+  }, [priority, isInView, shouldLoad, enableLoadingManager, imageStatus, canStartLoading, startLoading, src]);
 
   const handleLoad = useCallback(() => {
     setIsLoaded(true);

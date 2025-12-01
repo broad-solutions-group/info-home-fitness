@@ -10,8 +10,9 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
-  display: 'swap',
+  display: 'swap', // 使用 swap 避免阻塞渲染
   preload: true,
+  adjustFontFallback: true, // 优化字体回退
 });
 
 const openSans = Open_Sans({
@@ -20,6 +21,7 @@ const openSans = Open_Sans({
   variable: "--font-open-sans",
   display: 'swap',
   preload: true,
+  adjustFontFallback: true,
 });
 
 const montserrat = Montserrat({
@@ -27,7 +29,8 @@ const montserrat = Montserrat({
   weight: ["400", "500", "600", "700"],
   variable: "--font-montserrat",
   display: 'swap',
-  preload: false, // 只预加载主要字体
+  preload: false, // 只预加载主要字体，减少阻塞
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -67,24 +70,26 @@ export default function RootLayout({
         {/* 优化字体加载 */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
-        {/* 防止FOUC */}
-        <style dangerouslySetInnerHTML={{
-          __html: `
-            html { 
-              visibility: hidden; 
-              opacity: 0; 
-            }
-            html.hydrated { 
-              visibility: visible; 
-              opacity: 1; 
-              transition: opacity 0.2s ease-in-out; 
-            }
-          `
-        }} />
-        <script async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9928548837090352"
-                crossOrigin="anonymous"></script>
+        
+        {/* 移除 FOUC 的 visibility: hidden，这会严重延迟 LCP */}
+        {/* 使用更轻量的方式防止 FOUC，不影响 LCP */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                // 立即显示页面，不等待 JavaScript
+                document.documentElement.style.visibility = 'visible';
+                document.documentElement.style.opacity = '1';
+              })();
+            `
+          }}
+        />
+        {/* 延迟加载广告脚本，不阻塞 LCP */}
+        <script
+          defer
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9928548837090352"
+          crossOrigin="anonymous"
+        ></script>
       </head>
       <body suppressHydrationWarning={true}>
         <ClientWrapper>

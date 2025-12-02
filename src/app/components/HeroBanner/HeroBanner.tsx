@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import LazyImage from '../LazyImage';
+import OptimizedImage from '../OptimizedImage';
 import { Article } from '../../index';
 import { generateArticleSlug } from '@/utils';
 import styles from './HeroBanner.module.css';
@@ -182,16 +183,27 @@ const HeroBanner = ({ articles, autoPlayInterval = 4000 }: HeroBannerProps) => {
                       className={styles.imageLink}
                       aria-label={`Read article: ${article.title}`}
                     >
-                      <LazyImage
-                        src={article.imageUrl}
-                        alt={article.title}
-                        fill
-                        className={styles.bannerImage}
-                        priority={index === 0}
-                        sizes="(max-width: 480px) 100vw, (max-width: 768px) 400px, 50vw"
-                        placeholder="skeleton"
-                        rootMargin="200px"
-                      />
+                      {index === 0 ? (
+                        <OptimizedImage
+                          src={article.imageUrl}
+                          alt={article.title}
+                          fill
+                          className={styles.bannerImage}
+                          priority={true}
+                          sizes="(max-width: 480px) 100vw, (max-width: 768px) 400px, 50vw"
+                        />
+                      ) : (
+                        <LazyImage
+                          src={article.imageUrl}
+                          alt={article.title}
+                          fill
+                          className={styles.bannerImage}
+                          priority={false}
+                          sizes="(max-width: 480px) 100vw, (max-width: 768px) 400px, 50vw"
+                          placeholder="skeleton"
+                          rootMargin="200px"
+                        />
+                      )}
                       {/* 移动端悬浮元信息 */}
                       <div className={styles.slideImageMeta}>
                         <span className={styles.slideImageDuration}>{article.duration}</span>

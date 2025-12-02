@@ -28,7 +28,11 @@ const AdPlaceholder: React.FC<AdPlaceholderProps> = ({
     <div 
       id={id} 
       className={`${styles.adContainer} ${className}`}
-      style={backgroundColor ? { backgroundColor: `#${backgroundColor}` } : undefined}
+      style={{
+        ...(backgroundColor ? { backgroundColor: `#${backgroundColor}` } : {}),
+        minWidth: width,
+        minHeight: height
+      }}
     >
       <div className={styles.adTip}>Advertisement ▼</div>
       {imageSrc ? (

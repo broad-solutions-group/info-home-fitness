@@ -38,9 +38,6 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
       };
     }
 
-    // 防止FOUC
-    document.documentElement.classList.add('hydrated');
-
     // 清理预加载的CSS链接警告
     const preloadLinks = document.querySelectorAll('link[rel="preload"][as="style"]');
     preloadLinks.forEach(link => {

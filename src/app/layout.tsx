@@ -67,24 +67,6 @@ export default function RootLayout({
         {/* 优化字体加载 */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
-        {/* 防止FOUC */}
-        <style dangerouslySetInnerHTML={{
-          __html: `
-            html { 
-              visibility: hidden; 
-              opacity: 0; 
-            }
-            html.hydrated { 
-              visibility: visible; 
-              opacity: 1; 
-              transition: opacity 0.2s ease-in-out; 
-            }
-          `
-        }} />
-        <script async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9928548837090352"
-                crossOrigin="anonymous"></script>
       </head>
       <body suppressHydrationWarning={true}>
         <ClientWrapper>

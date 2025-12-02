@@ -14,7 +14,7 @@ interface SDKLoaderProps {
  * 负责加载和管理第三方SDK脚本
  * 遵循单一职责原则，专门处理SDK相关逻辑
  */
-const SDKLoader: React.FC<SDKLoaderProps> = ({ 
+const SDKLoader: React.FC<SDKLoaderProps> = ({
   config = {}
 }) => {
   // 默认配置
@@ -25,12 +25,12 @@ const SDKLoader: React.FC<SDKLoaderProps> = ({
     ...config
   };
 
-  const { 
-    status, 
-    handleSDKLoad, 
-    handleSDKError, 
+  const {
+    status,
+    handleSDKLoad,
+    handleSDKError,
     startLoading,
-    trackEvent 
+    trackEvent
   } = useSDK(defaultConfig);
 
   // 内置的加载成功处理
@@ -65,7 +65,7 @@ const SDKLoader: React.FC<SDKLoaderProps> = ({
     <>
       <Script
         src="/perfect_sdk_info_mixed.js"
-        strategy="lazyOnload" // 延迟到页面完全加载后，不阻塞 LCP
+        strategy="afterInteractive" // 延迟到页面完全加载后，不阻塞 LCP
         onLoad={() => {
           handleSDKLoad();
           if (defaultConfig.debug) {
@@ -87,16 +87,16 @@ const SDKLoader: React.FC<SDKLoaderProps> = ({
           }
         }}
       />
-      
+
       {/* 开发环境下显示SDK状态 */}
       {defaultConfig.debug && (
-        <div style={{ 
-          position: 'fixed', 
-          bottom: '10px', 
-          right: '10px', 
-          background: 'rgba(0,0,0,0.8)', 
-          color: 'white', 
-          padding: '8px', 
+        <div style={{
+          position: 'fixed',
+          bottom: '10px',
+          right: '10px',
+          background: 'rgba(0,0,0,0.8)',
+          color: 'white',
+          padding: '8px',
           borderRadius: '4px',
           fontSize: '12px',
           zIndex: 9999
@@ -112,4 +112,4 @@ const SDKLoader: React.FC<SDKLoaderProps> = ({
 export default SDKLoader;
 
 // 导出trackEvent方法供其他组件使用
-export { useSDK }; 
+export { useSDK };

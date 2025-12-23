@@ -4,30 +4,36 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import ClientWrapper from "./components/ClientWrapper/ClientWrapper";
 import SDKLoader from "./components/SDKLoader/SDKLoader";
+import { dataService } from "./services/dataService";
 import "./globals.css";
 
+// 优化字体加载：只加载必要的字重，减少文件大小
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["600", "700"], // 只加载标题需要的粗体字重
   variable: "--font-poppins",
   display: 'swap',
   preload: true,
+  adjustFontFallback: true, // 优化字体回退
 });
 
 const openSans = Open_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"], // 只加载正文需要的字重
   variable: "--font-open-sans",
   display: 'swap',
   preload: true,
+  adjustFontFallback: true,
 });
 
+// Montserrat 延迟加载，不在首屏使用
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"],
   variable: "--font-montserrat",
   display: 'swap',
-  preload: false, // 只预加载主要字体
+  preload: false,
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -57,6 +63,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // 获取Hero Banner第一张图片URL用于预加载（优化LCP）
+  const homeData = dataService.getHomePageData();
+  const firstHeroImageUrl = homeData.heroArticles?.[0]?.imageUrl;
+
   return (
     <html
       lang="en"
@@ -64,9 +74,26 @@ export default function RootLayout({
       suppressHydrationWarning={true}
     >
       <head>
-        {/* 优化字体加载 */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* DNS预解析和预连接 - 优化资源加载速度 */}
+        {/* 注意：Google Fonts 的 preconnect 由 next/font/google 自动处理，不需要手动添加 */}
+        <link rel="dns-prefetch" href="https://cdn-info.broadsolutionsgroup.com" />
+        <link rel="dns-prefetch" href="https://info-domainconfig.cloudinfinitedata.com" />
+        
+        {/* 预连接关键域名（非 Google Fonts） */}
+        <link rel="preconnect" href="https://cdn-info.broadsolutionsgroup.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://info-domainconfig.cloudinfinitedata.com" crossOrigin="anonymous" />
+        
+        {/* 预加载Hero Banner第一张图片 - 优化LCP指标 */}
+        {firstHeroImageUrl && (
+          <link
+            rel="preload"
+            as="image"
+            href={firstHeroImageUrl}
+            fetchPriority="high"
+            // 如果图片来自CDN，添加crossorigin
+            {...(firstHeroImageUrl.startsWith('http') ? { crossOrigin: 'anonymous' } : {})}
+          />
+        )}
       </head>
       <body suppressHydrationWarning={true}>
         <ClientWrapper>

@@ -191,6 +191,7 @@ const HeroBanner = ({ articles, autoPlayInterval = 4000 }: HeroBannerProps) => {
                           className={styles.bannerImage}
                           priority={true}
                           sizes="(max-width: 480px) 100vw, (max-width: 768px) 400px, 50vw"
+                          // 优化LCP：首张图片使用高质量加载
                         />
                       ) : (
                         <LazyImage
@@ -200,7 +201,7 @@ const HeroBanner = ({ articles, autoPlayInterval = 4000 }: HeroBannerProps) => {
                           className={styles.bannerImage}
                           priority={false}
                           sizes="(max-width: 480px) 100vw, (max-width: 768px) 400px, 50vw"
-                          placeholder="skeleton"
+                          placeholder="none"
                           rootMargin="200px"
                         />
                       )}

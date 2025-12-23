@@ -50,6 +50,34 @@
   background-color: var(--color-error-bg, #fef2f2);
 }
 
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  background-color: var(--accent-yellow);
+  color: var(--text-dark-blue);
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: var(--primary-orange);
+  color: var(--white);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
   .form {
     flex-direction: column;

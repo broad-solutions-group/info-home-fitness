@@ -1,15 +1,22 @@
 import { notFound } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { dataService } from '../../services/dataService';
 import LazyImage from '../../components/LazyImage/LazyImage';
 import AdPlaceholder from '../../components/AdPlaceholder/AdPlaceholder';
 import RefreshLink from '../../components/RefreshLink/RefreshLink';
 import { DynamicArticleInteractions } from '../../components/DynamicComponents/DynamicComponents';
-import MarkdownRenderer from '../../components/MarkdownRenderer';
 import styles from './page.module.css';
 import adsPlaceholderImg from '../../ads_300_250.png';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
 import ClientEffects from '@/app/components/ClientEffects/ClientEffects';
 import { parseArticleIdFromSlug, generateArticleSlug } from '@/utils';
+
+// 动态导入 MarkdownRenderer，减少首屏 JavaScript 大小
+// marked 库只在文章详情页使用，不需要在首页加载
+const MarkdownRenderer = dynamic(() => import('../../components/MarkdownRenderer'), {
+  ssr: true, // SSG 模式，构建时生成
+  loading: () => <div style={{ minHeight: '200px' }}>Loading content...</div>,
+});
 
 interface ArticlePageProps {
   params: {

@@ -1,5 +1,11 @@
-import MarkdownRenderer from './MarkdownRenderer';
+import dynamic from 'next/dynamic';
 import styles from './DocumentPage.module.css';
+
+// 动态导入 MarkdownRenderer，减少首屏 JavaScript 大小
+const MarkdownRenderer = dynamic(() => import('./MarkdownRenderer'), {
+  ssr: true,
+  loading: () => <div style={{ minHeight: '200px' }}>Loading content...</div>,
+});
 
 interface DocumentPageProps {
   title: string;

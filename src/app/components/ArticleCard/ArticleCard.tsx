@@ -73,7 +73,7 @@ const ArticleCard = ({
             className={styles.image}
             priority={variant === 'featured' || isFirstCard}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            placeholder="skeleton"
+            placeholder="none"
             rootMargin="100px"
           />
           

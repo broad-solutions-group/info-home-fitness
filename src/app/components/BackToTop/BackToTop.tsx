@@ -12,7 +12,8 @@ const BackToTop = () => {
       setShowButton(window.scrollY > 300);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    // 使用passive选项优化滚动性能，改善INP指标
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

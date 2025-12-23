@@ -120,6 +120,8 @@ const Header = () => {
               width={38} 
               height={38} 
               className={styles.logoIcon}
+              priority={true}
+              fetchPriority="high"
             />
             <span className={styles.logoText}>Home Fitness</span>
           </a>

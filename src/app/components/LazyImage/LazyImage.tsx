@@ -168,11 +168,9 @@ const LazyImage = ({
           backgroundColor: '#f3f4f6',
         };
       case 'skeleton':
+        // 移除skeleton动画，只保留简单的背景色
         return {
           ...baseStyle,
-          background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
-          backgroundSize: '200% 100%',
-          animation: 'skeleton-loading 1.5s infinite',
           backgroundColor: '#f3f4f6',
         };
       default:
@@ -202,8 +200,8 @@ const LazyImage = ({
 
   return (
     <div ref={imgRef} style={containerStyle} className={className}>
-      {/* 占位符 */}
-      {!isLoaded && !hasError && (
+      {/* 占位符 - 仅在placeholder不为'none'时显示 */}
+      {!isLoaded && !hasError && placeholder !== 'none' && (
         <div
           style={{
             ...getPlaceholderStyle(),
@@ -263,18 +261,6 @@ const LazyImage = ({
           />
         </div>
       )}
-
-      {/* CSS动画定义 */}
-      <style jsx>{`
-        @keyframes skeleton-loading {
-          0% {
-            background-position: -200% 0;
-          }
-          100% {
-            background-position: 200% 0;
-          }
-        }
-      `}</style>
     </div>
   );
 };

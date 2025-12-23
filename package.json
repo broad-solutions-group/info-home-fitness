@@ -2,6 +2,12 @@
   "name": "info-home-fitness",
   "description": "Home Fitness - Your Ultimate Guide to Affordable Home Workouts",
   "version": "1.0.0",
+  "browserslist": [
+    "chrome >= 90",
+    "firefox >= 88",
+    "safari >= 14",
+    "edge >= 90"
+  ],
   "cloudflare": {
     "label": "Home Fitness Website",
     "products": [
@@ -19,7 +25,8 @@
     "marked": "^15.0.12",
     "next": "14.2.23",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^15.3.3",

@@ -1,15 +1,21 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import HeroBanner from './components/HeroBanner/HeroBanner';
 import ArticleCard from './components/ArticleCard/ArticleCard';
 import AdPlaceholder from './components/AdPlaceholder/AdPlaceholder';
 import { DynamicBackToTop } from './components/DynamicComponents/DynamicComponents';
 import RefreshLink from './components/RefreshLink/RefreshLink';
-import ClientEffects from './components/ClientEffects/ClientEffects';
+import LazySection from './components/LazySection/LazySection';
 import { dataService } from './services/dataService';
 import { Category } from './index';
 import styles from './page.module.css';
 import adsPlaceholderImg from './ads_300_250.png';
+
+// 延迟加载非关键组件以优化FCP和Speed Index
+const ClientEffects = dynamic(() => import('./components/ClientEffects/ClientEffects'), {
+  ssr: false,
+  loading: () => null, // 不显示加载状态，避免布局偏移
+});
 
 export const metadata: Metadata = {
   title: "Home Fitness - Transform Your Home Into Your Perfect Gym",
@@ -34,54 +40,61 @@ export default function Home() {
 
   return (
     <div className={styles.homePage}>
-      {/* 客户端副作用组件 */}
+      {/* Hero Banner 轮播 - 首屏关键内容优先渲染 */}
+      <HeroBanner articles={heroArticles} />
+      
+      {/* 客户端副作用组件 - 延迟加载以优化FCP */}
       <ClientEffects />
 
-      {/* Hero Banner 轮播 */}
-      <HeroBanner articles={heroArticles} />
+      {/* 广告位 - 延迟加载以优化Speed Index，但保持广告逻辑不变 */}
+      <LazySection rootMargin="200px">
+        <AdPlaceholder
+          id="seattle-ad-10001"
+          imageSrc={adsPlaceholderImg}
+          alt="Advertisement"
+          width={300}
+          height={250}
+        />
+      </LazySection>
 
-      {/* 广告位 - 使用组件化设计 */}
-      <AdPlaceholder
-        id="seattle-ad-10001"
-        imageSrc={adsPlaceholderImg}
-        alt="Advertisement"
-        width={300}
-        height={250}
-      />
-
-      {/* Trending Now */}
-      <section className={styles.trendingSection}>
-        <div className="container">
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>🔥 Trending Now</h2>
-            <p className={styles.sectionSubtitle}>
-              Most popular articles this week - don&apos;t miss out!
-            </p>
+      {/* Trending Now - 延迟加载以优化Speed Index */}
+      <LazySection rootMargin="300px">
+        <section className={styles.trendingSection}>
+          <div className="container">
+            <div className={styles.sectionHeader}>
+              <h2 className={styles.sectionTitle}>🔥 Trending Now</h2>
+              <p className={styles.sectionSubtitle}>
+                Most popular articles this week - don&apos;t miss out!
+              </p>
+            </div>
+            <div className={styles.trendingGrid}>
+              {trendingArticles.map((article, index) => (
+                <ArticleCard
+                  key={article.id}
+                  article={article}
+                  variant={index === 0 ? "featured" : "default"}
+                  showCategory={false}
+                  isFirstCard={index === 0}
+                />
+              ))}
+            </div>
           </div>
-          <div className={styles.trendingGrid}>
-            {trendingArticles.map((article, index) => (
-              <ArticleCard
-                key={article.id}
-                article={article}
-                variant={index === 0 ? "featured" : "default"}
-                showCategory={false}
-                isFirstCard={index === 0}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      </LazySection>
 
-      <AdPlaceholder
-        id="seattle-ad-10002"
-        imageSrc={adsPlaceholderImg}
-        alt="Advertisement"
-        width={300}
-        height={250}
-      />
+      <LazySection rootMargin="300px">
+        <AdPlaceholder
+          id="seattle-ad-10002"
+          imageSrc={adsPlaceholderImg}
+          alt="Advertisement"
+          width={300}
+          height={250}
+        />
+      </LazySection>
 
-      {/* Build Your Home Gym */}
-      <section className={styles.categorySection}>
+      {/* Build Your Home Gym - 延迟加载 */}
+      <LazySection rootMargin="300px">
+        <section className={styles.categorySection}>
         <div className="container">
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTitleRow}>
@@ -116,10 +129,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </LazySection>
 
-
-      {/* Family & Kids Fitness */}
-      <section className={styles.familySection}>
+      {/* Family & Kids Fitness - 延迟加载 */}
+      <LazySection rootMargin="300px">
+        <section className={styles.familySection}>
         <div className="container">
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTitleRow}>
@@ -154,10 +168,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </LazySection>
 
-
-      {/* Strength Training Without Equipment */}
-      <section className={styles.strengthSection}>
+      {/* Strength Training Without Equipment - 延迟加载 */}
+      <LazySection rootMargin="300px">
+        <section className={styles.strengthSection}>
         <div className="container">
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTitleRow}>
@@ -192,9 +207,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </LazySection>
 
-      {/* Motivation & Habit Building */}
-      <section className={styles.motivationSection}>
+      {/* Motivation & Habit Building - 延迟加载 */}
+      <LazySection rootMargin="300px">
+        <section className={styles.motivationSection}>
         <div className="container">
           <div className={styles.sectionHeader}>
             <div className={styles.sectionTitleRow}>
@@ -229,6 +246,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </LazySection>
 
       {/* 返回顶部按钮 */}
       <DynamicBackToTop />

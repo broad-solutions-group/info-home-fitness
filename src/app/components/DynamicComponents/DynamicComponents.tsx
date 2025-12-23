@@ -39,7 +39,7 @@ export const DynamicNewsletter = dynamic(
   }
 );
 
-// 通用的动态组件加载器
+// 通用的动态组件加载器（SSG模式：客户端渲染）
 export function createDynamicComponent<T = {}>(
   importFn: () => Promise<{ default: ComponentType<T> }>,
   options?: {
@@ -49,6 +49,6 @@ export function createDynamicComponent<T = {}>(
 ) {
   return dynamic(importFn, {
     loading: options?.loading || (() => <div>Loading...</div>),
-    ssr: options?.ssr ?? true,
+    ssr: false, // SSG模式：所有动态组件都在客户端渲染
   });
 } 

@@ -46,7 +46,7 @@ const Newsletter = () => {
         />
         <button 
           type="submit" 
-          className="btn btn-accent"
+          className={styles.submitButton}
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Subscribing...' : 'Subscribe Now'}

@@ -132,6 +132,7 @@ export default function RootLayout({
         {/* 预连接关键域名（非 Google Fonts） */}
         <link rel="preconnect" href="https://cdn-info.broadsolutionsgroup.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://info-domainconfig.cloudinfinitedata.com" crossOrigin="anonymous" />
+        <script async src="https://sdk.broadsolutionsgroup.com/BsSDK.js"></script>
 
         {/* 预加载Hero Banner第一张图片 - 优化LCP指标 */}
         {firstHeroImageUrl && (
@@ -153,14 +154,6 @@ export default function RootLayout({
           </main>
           <Footer />
         </ClientWrapper>
-
-        {/* SDK加载器 - 全局引入 */}
-        <SDKLoader
-          config={{
-            enabled: process.env.NEXT_PUBLIC_SDK_ENABLED !== 'false',
-            debug: process.env.NEXT_PUBLIC_SDK_DEBUG === 'true' || process.env.NODE_ENV === 'development'
-          }}
-        />
       </body>
     </html>
   );

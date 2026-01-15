@@ -1,21 +1,18 @@
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 import HeroBanner from './components/HeroBanner/HeroBanner';
 import ArticleCard from './components/ArticleCard/ArticleCard';
-import AdPlaceholder from './components/AdPlaceholder/AdPlaceholder';
 import { DynamicBackToTop } from './components/DynamicComponents/DynamicComponents';
 import RefreshLink from './components/RefreshLink/RefreshLink';
 import LazySection from './components/LazySection/LazySection';
 import { dataService } from './services/dataService';
 import { Category } from './index';
 import styles from './page.module.css';
-import adsPlaceholderImg from './ads_300_250.png';
 
-// 延迟加载非关键组件以优化FCP和Speed Index
-const ClientEffects = dynamic(() => import('./components/ClientEffects/ClientEffects'), {
-  ssr: false,
-  loading: () => null, // 不显示加载状态，避免布局偏移
-});
+// // 延迟加载非关键组件以优化FCP和Speed Index
+// const ClientEffects = dynamic(() => import('./components/ClientEffects/ClientEffects'), {
+//   ssr: false,
+//   loading: () => null, // 不显示加载状态，避免布局偏移
+// });
 
 export const metadata: Metadata = {
   title: "Home Fitness - Transform Your Home Into Your Perfect Gym",
@@ -42,20 +39,35 @@ export default function Home() {
     <div className={styles.homePage}>
       {/* Hero Banner 轮播 - 首屏关键内容优先渲染 */}
       <HeroBanner articles={heroArticles} />
-      
-      {/* 客户端副作用组件 - 延迟加载以优化FCP */}
-      <ClientEffects />
 
-      {/* 广告位 - 延迟加载以优化Speed Index，但保持广告逻辑不变 */}
-      <LazySection rootMargin="200px">
-        <AdPlaceholder
-          id="seattle-ad-10001"
-          imageSrc={adsPlaceholderImg}
-          alt="Advertisement"
-          width={300}
-          height={250}
-        />
-      </LazySection>
+      <div className="ad-container">
+        <div id="seattle-ad-10001" style={{textAlign: 'center', height: '250px'}}>
+          <div id="seattle-ad-10001-placeholder" style={{
+            display: 'flex',
+            width: '300px',
+            height: '250px',
+            margin: '0 auto',
+            border: '1px solid #ccc',
+            backgroundColor: '#f0f0f0',
+            boxSizing: 'border-box',
+            position: 'relative',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '30px',
+            color: '#999',
+          }}>Advertisement
+          </div>
+          <div id="seattle-ad-10001-content" style={{
+            width: '300px',
+            height: '250px',
+            margin: '0 auto',
+            position: 'relative',
+            top: '-250px',
+            zIndex: 10,
+            visibility: 'hidden',
+          }}></div>
+        </div>
+      </div>
 
       {/* Trending Now - 延迟加载以优化Speed Index */}
       <LazySection rootMargin="300px">
@@ -82,15 +94,34 @@ export default function Home() {
         </section>
       </LazySection>
 
-      <LazySection rootMargin="300px">
-        <AdPlaceholder
-          id="seattle-ad-10002"
-          imageSrc={adsPlaceholderImg}
-          alt="Advertisement"
-          width={300}
-          height={250}
-        />
-      </LazySection>
+      <div className="ad-container">
+        <div id="seattle-ad-10002" style={{textAlign: 'center', height: '250px'}}>
+          <div id="seattle-ad-10002-placeholder" style={{
+            display: 'flex',
+            width: '300px',
+            height: '250px',
+            margin: '0 auto',
+            border: '1px solid #ccc',
+            backgroundColor: '#f0f0f0',
+            boxSizing: 'border-box',
+            position: 'relative',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '30px',
+            color: '#999',
+          }}>Advertisement
+          </div>
+          <div id="seattle-ad-10002-content" style={{
+            width: '300px',
+            height: '250px',
+            margin: '0 auto',
+            position: 'relative',
+            top: '-250px',
+            zIndex: 10,
+            visibility: 'hidden',
+          }}></div>
+        </div>
+      </div>
 
       {/* Build Your Home Gym - 延迟加载 */}
       <LazySection rootMargin="300px">

@@ -4,9 +4,6 @@ import { Category } from '../../index';
 import ArticlesGrid from '../../components/ArticlesGrid/ArticlesGrid';
 import BackToTop from '../../components/BackToTop/BackToTop';
 import styles from './page.module.css';
-import AdPlaceholder from '@/app/components/AdPlaceholder/AdPlaceholder';
-import adsPlaceholderImg from '../../ads_300_250.png';
-import ClientEffects from '@/app/components/ClientEffects/ClientEffects';
 
 interface CategoryPageProps {
   params: {
@@ -38,8 +35,6 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <div className={styles.categoryPage}>
-      {/* 客户端副作用组件 */}
-      <ClientEffects />
       {/* Hero Section */}
       <section className={styles.heroSection}>
         <div className="container">
@@ -61,14 +56,34 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         </div>
       </section>
 
-      {/* 广告位 - 使用组件化设计 */}
-      <AdPlaceholder 
-        id="seattle-ad-10001"
-        imageSrc={adsPlaceholderImg}
-        alt="Advertisement"
-        width={300}
-        height={250}
-      />
+      <div className="ad-container">
+        <div id="seattle-ad-10003" style={{textAlign: 'center', height: '250px'}}>
+          <div id="seattle-ad-10003-placeholder" style={{
+            display: 'flex',
+            width: '300px',
+            height: '250px',
+            margin: '0 auto',
+            border: '1px solid #ccc',
+            backgroundColor: '#f0f0f0',
+            boxSizing: 'border-box',
+            position: 'relative',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '30px',
+            color: '#999',
+          }}>Advertisement
+          </div>
+          <div id="seattle-ad-10003-content" style={{
+            width: '300px',
+            height: '250px',
+            margin: '0 auto',
+            position: 'relative',
+            top: '-250px',
+            zIndex: 10,
+            visibility: 'hidden',
+          }}></div>
+        </div>
+      </div>
 
       {/* Articles Grid */}
       <section className={styles.articlesSection}>
@@ -76,8 +91,8 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           <div className={styles.articlesHeader}>
             <h2 className={styles.articlesTitle}>All Articles</h2>
           </div>
-          
-          <ArticlesGrid 
+
+          <ArticlesGrid
             articles={category.articles}
             showCategory={false}
             gridClassName={styles.articlesGrid}
@@ -103,7 +118,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
             {dataService.getAllData().categories
               .filter((cat: Category) => cat.name !== category.name)
               .map((relatedCategory: Category) => (
-                <a 
+                <a
                   key={relatedCategory.id}
                   href={`/category/${relatedCategory.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}`}
                   className={styles.relatedCard}
@@ -117,7 +132,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           </div>
         </div>
       </section>
-      
+
       {/* 返回顶部按钮 */}
       <BackToTop />
     </div>
@@ -128,7 +143,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 export async function generateStaticParams() {
   const categories = [
     'affordable-home-gym-setups',
-    'family-kids-friendly-workouts', 
+    'family-kids-friendly-workouts',
     'strength-training-without-equipment',
     'motivation-habit-building-tips'
   ];
@@ -141,7 +156,7 @@ export async function generateStaticParams() {
 // Generate metadata for each category page
 export async function generateMetadata({ params }: CategoryPageProps) {
   const category = dataService.getCategoryByName(params.slug);
-  
+
   if (!category) {
     return {
       title: 'Category Not Found',
@@ -152,20 +167,20 @@ export async function generateMetadata({ params }: CategoryPageProps) {
   // 根据分类生成相关关键词
   const getCategoryKeywords = (categoryName: string) => {
     const baseKeywords = "home fitness, workout tips, exercise guides";
-    
+
     switch (params.slug) {
       case 'affordable-home-gym-setups':
         return `${baseKeywords}, cheap home gym, home gym setup, small space gym ideas, home workout gear, under $50 fitness items, garage gym ideas, affordable home gym, diy gym space, space-saving gym, compact workout space, foldable fitness gear, dollar store fitness, budget workout tools, cheap gym finds, compact fitness equipment, small apartment workouts, ikea workout hacks, affordable gym design, diy fitness room`;
-      
+
       case 'family-kids-friendly-workouts':
         return `${baseKeywords}, indoor kid workouts, fun family fitness, kids exercise ideas, family fitness time, living room workouts, home family exercises, youtube kid workouts, parent-child fitness channels, family exercise content, screen-free activities, family challenges, indoor games for fitness, dance breaks, mood boosting workouts, kids activity ideas, family olympics, backyard workouts, group fitness games, toddler workouts, energy burners, rainy day exercises, safe kids workouts, family-friendly routines, active kids ideas`;
-      
+
       case 'strength-training-without-equipment':
         return `${baseKeywords}, bodyweight muscle building, no equipment strength, home workouts, no gear fitness, body resistance workouts, home strength plans, push-up progressions, upper body training, beginner to advanced fitness, core workouts, no equipment abs, sculpt your core at home, quick full-body workout, bodyweight burn, at-home routine, squat variations, no weight leg workouts, home leg training, bodyweight strength, everyday objects workout, home power routine, ripped without weights, full body training, calisthenics workout`;
-      
+
       case 'motivation-habit-building-tips':
         return `${baseKeywords}, home fitness motivation, stay consistent, solo workout tips, 5-minute workout, fast fitness start, habit forming tip, morning workouts, early fitness benefits, routine sticking strategy, home habit building, sustainable workouts, routine you won't quit, vision board fitness, playlist motivation, sticky note tips, fitness psychology, long-term habit, sustainable routine guide, low motivation tricks, fitness hacks, stay on track, fitness systems, skip willpower, automated habits`;
-      
+
       default:
         return `${baseKeywords}, ${categoryName.toLowerCase()}`;
     }
@@ -186,4 +201,4 @@ export async function generateMetadata({ params }: CategoryPageProps) {
       description: `Discover ${category.articles.length} articles about ${category.name.toLowerCase()}. Expert tips and guides for your home fitness journey.`,
     }
   };
-} 
+}

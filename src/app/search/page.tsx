@@ -5,11 +5,8 @@ import { useState, useEffect, Suspense } from 'react';
 import { dataService } from '../services/dataService';
 import ArticleCard from '../components/ArticleCard/ArticleCard';
 import SearchSuggestions from '../components/SearchSuggestions/SearchSuggestions';
-import AdPlaceholder from '../components/AdPlaceholder/AdPlaceholder';
 import { SearchResult, Category } from '../index';
 import styles from './page.module.css';
-import adsPlaceholderImg from '../ads_300_250.png';
-import ClientEffects from '../components/ClientEffects/ClientEffects';
 
 // 由于这是客户端组件，metadata需要在layout中处理
 // 或者创建一个单独的metadata文件
@@ -33,11 +30,11 @@ function SearchPageContent() {
 
   const highlightText = (text: string, searchTerm: string) => {
     if (!searchTerm.trim()) return text;
-    
+
     const regex = new RegExp(`(${searchTerm})`, 'gi');
     const parts = text.split(regex);
-    
-    return parts.map((part, index) => 
+
+    return parts.map((part, index) =>
       regex.test(part) ? (
         <mark key={index} className={styles.highlight}>{part}</mark>
       ) : part
@@ -46,8 +43,6 @@ function SearchPageContent() {
 
   return (
     <div className={styles.searchPage}>
-      {/* 客户端副作用组件 */}
-      <ClientEffects />
       {/* Search Header */}
       <section className={styles.searchHeader}>
         <div className="container">
@@ -61,7 +56,7 @@ function SearchPageContent() {
                 'Search Articles'
               )}
             </h1>
-            
+
             {query && (
               <p className={styles.searchMeta}>
                 {isLoading ? (
@@ -78,15 +73,34 @@ function SearchPageContent() {
         </div>
       </section>
 
-      {/* 广告位 - 使用组件化设计 */}
-      <AdPlaceholder 
-        id="seattle-ad-10001"
-        imageSrc={adsPlaceholderImg}
-        alt="Advertisement"
-        width={300}
-        height={250}
-        backgroundColor="f5f5f5"
-      />
+      <div className="ad-container">
+        <div id="seattle-ad-10003" style={{textAlign: 'center', height: '250px'}}>
+          <div id="seattle-ad-10003-placeholder" style={{
+            display: 'flex',
+            width: '300px',
+            height: '250px',
+            margin: '0 auto',
+            border: '1px solid #ccc',
+            backgroundColor: '#f0f0f0',
+            boxSizing: 'border-box',
+            position: 'relative',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '30px',
+            color: '#999',
+          }}>Advertisement
+          </div>
+          <div id="seattle-ad-10003-content" style={{
+            width: '300px',
+            height: '250px',
+            margin: '0 auto',
+            position: 'relative',
+            top: '-250px',
+            zIndex: 10,
+            visibility: 'hidden',
+          }}></div>
+        </div>
+      </div>
 
       {/* Search Results */}
       <section className={styles.resultsSection}>
@@ -99,8 +113,8 @@ function SearchPageContent() {
           ) : query && searchResult.total > 0 ? (
             <div className={styles.resultsGrid}>
               {searchResult.articles.map((article, index) => (
-                <ArticleCard 
-                  key={article.id} 
+                <ArticleCard
+                  key={article.id}
                   article={article}
                   highlightedTitle={highlightText(article.title, query)}
                   highlightedDescription={highlightText(article.description, query)}
@@ -116,12 +130,12 @@ function SearchPageContent() {
               <span className={styles.noResultsIcon}>🔍</span>
               <h2 className={styles.noResultsTitle}>No articles found</h2>
               <p className={styles.noResultsDescription}>
-                We couldn&apos;t find any articles matching &quot;{query}&quot;. 
+                We couldn&apos;t find any articles matching &quot;{query}&quot;.
                 Try different keywords or browse our categories below.
               </p>
               <div className={styles.suggestions}>
                 <h3 className={styles.suggestionsTitle}>Try searching for:</h3>
-                <SearchSuggestions 
+                <SearchSuggestions
                   suggestions={['home gym', 'budget workout', 'family fitness', 'bodyweight', 'motivation']}
                 />
               </div>
@@ -131,7 +145,7 @@ function SearchPageContent() {
               <span className={styles.emptyIcon}>💡</span>
               <h2 className={styles.emptyTitle}>Start Your Search</h2>
               <p className={styles.emptyDescription}>
-                Enter keywords in the search box above to find articles about home fitness, 
+                Enter keywords in the search box above to find articles about home fitness,
                 workout equipment, family exercises, and more.
               </p>
               <div className={styles.popularSearches}>
@@ -156,7 +170,7 @@ function SearchPageContent() {
             <h2 className={styles.categoriesTitle}>Browse by Category</h2>
             <div className={styles.categoriesGrid}>
               {dataService.getAllData().categories.map((category: Category) => (
-                <a 
+                <a
                   key={category.id}
                   href={`/category/${category.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}`}
                   className={styles.categoryCard}
@@ -187,4 +201,4 @@ export default function SearchPage() {
       <SearchPageContent />
     </Suspense>
   );
-} 
+}

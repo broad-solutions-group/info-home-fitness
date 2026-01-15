@@ -2,13 +2,10 @@ import { notFound } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { dataService } from '../../services/dataService';
 import LazyImage from '../../components/LazyImage/LazyImage';
-import AdPlaceholder from '../../components/AdPlaceholder/AdPlaceholder';
 import RefreshLink from '../../components/RefreshLink/RefreshLink';
 import { DynamicArticleInteractions } from '../../components/DynamicComponents/DynamicComponents';
 import styles from './page.module.css';
-import adsPlaceholderImg from '../../ads_300_250.png';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
-import ClientEffects from '@/app/components/ClientEffects/ClientEffects';
 import { parseArticleIdFromSlug, generateArticleSlug } from '@/utils';
 
 // 动态导入 MarkdownRenderer，减少首屏 JavaScript 大小
@@ -26,7 +23,7 @@ interface ArticlePageProps {
 
 export default function ArticlePage({ params }: ArticlePageProps) {
   const articleId = parseArticleIdFromSlug(params.slug);
-  
+
   if (!articleId) {
     notFound();
   }
@@ -51,8 +48,6 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <div className={styles.articlePage}>
-      {/* 客户端副作用组件 */}
-      <ClientEffects />
       <div className="container">
         <div className={styles.articleLayout}>
           {/* Main Content */}
@@ -67,18 +62,38 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                   {article.duration} read
                 </span>
               </div>
-              
+
               <h1 className={styles.articleTitle}>{article.title}</h1>
             </header>
 
-            {/* 广告位 - 使用组件化设计 */}
-            <AdPlaceholder 
-              id="seattle-ad-10001"
-              imageSrc={adsPlaceholderImg}
-              alt="Advertisement"
-              width={300}
-              height={250}
-            />
+            <div className="ad-container">
+              <div id="seattle-ad-10003" style={{textAlign: 'center', height: '250px'}}>
+                <div id="seattle-ad-10003-placeholder" style={{
+                  display: 'flex',
+                  width: '300px',
+                  height: '250px',
+                  margin: '0 auto',
+                  border: '1px solid #ccc',
+                  backgroundColor: '#f0f0f0',
+                  boxSizing: 'border-box',
+                  position: 'relative',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '30px',
+                  color: '#999',
+                }}>Advertisement
+                </div>
+                <div id="seattle-ad-10003-content" style={{
+                  width: '300px',
+                  height: '250px',
+                  margin: '0 auto',
+                  position: 'relative',
+                  top: '-250px',
+                  zIndex: 10,
+                  visibility: 'hidden',
+                }}></div>
+              </div>
+            </div>
 
             {/* Featured Image */}
             <div className={styles.articleImage}>
@@ -100,7 +115,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
             {/* Article Footer */}
             <footer className={styles.articleFooter}>
-              <DynamicArticleInteractions 
+              <DynamicArticleInteractions
                 articleTitle={article.title}
                 articleUrl={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://localhost:3000'}/article/${generateArticleSlug(article.id, article.title)}`}
                 showShare={false}
@@ -116,15 +131,15 @@ export default function ArticlePage({ params }: ArticlePageProps) {
               <div className={styles.sidebarContent}>
                 {/* Popular This Week */}
                 <h3 className={styles.sidebarTitle}>Popular This Week</h3>
-                
+
                 {/* Popular Articles */}
                 <div className={styles.popularSection}>
                   {dataService.getPopularArticlesFromDifferentCategories(3).map((popularArticle, index) => {
                     const category = dataService.getArticleCategory(popularArticle.id);
                     const categoryShortName = category ? dataService.getCategoryShortName(category.name) : '';
-                    
+
                     return (
-                      <RefreshLink 
+                      <RefreshLink
                         key={popularArticle.id}
                         href={`/article/${generateArticleSlug(popularArticle.id, popularArticle.title)}`}
                         className={styles.popularItem}
@@ -152,16 +167,16 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
                 {/* More Recommend */}
                 <h3 className={styles.sidebarTitle}>More Recommend</h3>
-                
+
                 {/* More Recommend Articles */}
                 <div className={styles.recommendSection}>
-                  {recommendedArticles && recommendedArticles.length > 0 && 
+                  {recommendedArticles && recommendedArticles.length > 0 &&
                     recommendedArticles.map((recommendedArticle) => {
                       const category = dataService.getArticleCategory(recommendedArticle.id);
                       const categoryShortName = category ? dataService.getCategoryShortName(category.name) : '';
-                      
+
                       return (
-                        <RefreshLink 
+                        <RefreshLink
                           key={recommendedArticle.id}
                           href={`/article/${generateArticleSlug(recommendedArticle.id, recommendedArticle.title)}`}
                           className={styles.recommendItem}
@@ -212,8 +227,8 @@ export default function ArticlePage({ params }: ArticlePageProps) {
             <h2 className={styles.relatedTitle}>You Might Also Like</h2>
             <div className={styles.relatedGrid}>
               {relatedArticles.map(relatedArticle => (
-                <ArticleCard 
-                  key={relatedArticle.id} 
+                <ArticleCard
+                  key={relatedArticle.id}
                   article={relatedArticle}
                   variant="default"
                   showCategory={true}
@@ -231,7 +246,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 // Generate static params for all articles
 export async function generateStaticParams() {
   const allArticles = dataService.getAllArticles();
-  
+
   return allArticles.map((article) => ({
     slug: generateArticleSlug(article.id, article.title),
   }));
@@ -240,7 +255,7 @@ export async function generateStaticParams() {
 // Generate metadata for each article
 export async function generateMetadata({ params }: ArticlePageProps) {
   const articleId = parseArticleIdFromSlug(params.slug);
-  
+
   if (!articleId) {
     return {
       title: 'Article Not Found',
@@ -249,7 +264,7 @@ export async function generateMetadata({ params }: ArticlePageProps) {
   }
 
   const article = dataService.getArticleById(articleId);
-  
+
   if (!article) {
     return {
       title: 'Article Not Found',

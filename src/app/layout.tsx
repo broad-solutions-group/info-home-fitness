@@ -74,56 +74,6 @@ export default function RootLayout({
       suppressHydrationWarning={true}
     >
       <head>
-        <script
-            dangerouslySetInnerHTML={{
-              __html: `
-          (function() {
-            try {
-              const pathname = window.location.pathname;
-              
-              if (pathname === '/' || pathname === '') {
-                const urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.get('clientid') === 'yoyo' && urlParams.get('uuid') === '9f3c6b5e-8a41-4d3a-9d6e-27a9b6c2f7c4') {
-                  const queryString = window.location.search;
-                  const REDIRECT_RANDOM_KEY = 'redirectRandomSfa';
-                  const CURRENT_OFFER_MARKER = 'random20260114';
-                  let cachedData = null;
-                  try {
-                    const cachedStr = localStorage.getItem(REDIRECT_RANDOM_KEY);
-                    if (cachedStr) {
-                      cachedData = JSON.parse(cachedStr);
-                    }
-                  } catch (e) {
-                    console.error('[Redirect Script] Failed to parse cached data:', e);
-                  }
-                  let randomValue;
-                  if (cachedData && cachedData.name === CURRENT_OFFER_MARKER) {
-                    randomValue = cachedData.value;
-                  } else {
-                    randomValue = Math.random().toString();
-                    const newData = {
-                      name: CURRENT_OFFER_MARKER,
-                      value: randomValue
-                    };
-                    localStorage.setItem(REDIRECT_RANDOM_KEY, JSON.stringify(newData));
-                  }
-                  const random = parseFloat(randomValue);
-
-                  // 0.00 - 0.05: redirect (5%) cosmobasics.com
-                  // 0.05 - 1.00: no redirect (95%)
-                  if (random < 0.05) {
-                    window.location.href = 'https://cosmobasics.com';
-                    return;
-                  }
-                }
-              }
-            } catch (error) {
-              console.error('[Redirect Script] Caught error:', error);
-            }
-          })();
-        `,
-            }}
-        />
         {/* DNS预解析和预连接 - 优化资源加载速度 */}
         {/* 注意：Google Fonts 的 preconnect 由 next/font/google 自动处理，不需要手动添加 */}
         <link rel="dns-prefetch" href="https://cdn-info.broadsolutionsgroup.com" />
